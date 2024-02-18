@@ -19,6 +19,9 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
+// routes
+app.use('/api/auth', require('./routes/authRoutes'))
+
 // server listen
 app.listen(process.env.PORT || 3001, '192.168.158.6', () => {
     console.log(`server running on port ${process.env.PORT}...`.bgGreen.white);
