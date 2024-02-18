@@ -1,7 +1,7 @@
 const colors = require('colors');
-const verifyIfExist = require('../../middlewares/verifyIfExist');
-const { hashPassword } = require('../../helpers/authHelper');
-const studentModel = require('../../models/studentModel');
+const verifyIfExist = require('../../../middlewares/verifyIfExist');
+const { hashPassword } = require('../../../helpers/authHelper');
+const studentModel = require('../../../models/studentModel');
 
 module.exports = async(req, res) => {
     try {
@@ -37,9 +37,10 @@ module.exports = async(req, res) => {
                 message: 'Phone Is Required'
             });
         }
-
+        
         // check if student already exist
-        const existingStudent = await verifyIfExist(student.studentEmail, student.userType);
+        const existingStudent = await studentModel.findOne({studentEmail: student.studentEmail});
+        
         if(existingStudent){
             return res.status(500).send({
                 success: false,
@@ -49,15 +50,14 @@ module.exports = async(req, res) => {
 
         // create hashed password
         const hashedPassword = await hashPassword(student.studentPassword);
-
+        
         // save student
         const newStudent = await studentModel({
             studentName: student.studentName,
             studentRoll: student.studentRoll,
             studentEmail: student.studentEmail,
             studentPassword: hashedPassword,
-            studentPhone: student.studentPhone,
-            userType: 'student'
+            studentPhone: student.studentPhone
         }).save();
 
         res.status(200).send({

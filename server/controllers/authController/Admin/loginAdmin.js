@@ -1,12 +1,11 @@
 const colors = require('colors');
-const { comparePassword } = require("../../helpers/authHelper");
-const verifyIfExist = require("../../middlewares/verifyIfExist");
-const generateAuthToken = require("../tokenController/generateAuthToken");
+const { comparePassword } = require('../../../helpers/authHelper');
+const generateAuthToken = require('../../tokenController/generateAuthToken');
 
 module.exports = async(req, res) => {
     try {
         // match password
-        const match = await comparePassword(req.body.studentPassword, req.studentPassword);
+        const match = await comparePassword(req.body.adminPassword, req.adminPassword);
         if(!match){
             return res.status(500).send({
                 success: false,
@@ -23,10 +22,10 @@ module.exports = async(req, res) => {
             token,
         });
     } catch (error) {
-        console.log(`Error in student login: ${error}`.bgRed.white);
+        console.log(`Error in admin login: ${error}`.bgRed.white);
         return res.status(500).send({
             success: false,
-            message: 'Error in student login api',
+            message: 'Error in admin login api',
             error
         });
     }

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken')
 
 const studentSchema = new mongoose.Schema({
     studentName: {type: String, required: [true, "Please Add Name"], trim: true},
