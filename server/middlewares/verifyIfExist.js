@@ -21,7 +21,7 @@ module.exports = async(req, res, next) => {
             });
         }
         
-        req.id = admin.employeeId;
+        req.id = admin._id;
         req.userType = admin.userType;
         req.adminPassword = admin.adminPassword;
 

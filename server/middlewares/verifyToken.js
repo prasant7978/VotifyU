@@ -28,7 +28,7 @@ module.exports = async(req, res, next) => {
             // else
             //     req.studentEmail = user.email;
 
-            req.id = user._id;
+            req.id = user.id;
             req.userType = user.userType;
 
             next();
