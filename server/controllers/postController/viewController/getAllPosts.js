@@ -1,4 +1,4 @@
-const postModel = require("../../models/postModel");
+const postModel = require("../../../models/postModel");
 
 module.exports = async(req, res) => {
     try {
@@ -18,10 +18,10 @@ module.exports = async(req, res) => {
             posts
         });
     } catch (error) {
-        console.log(`Error in create-post campaign api: ${error}`.bgRed.white);
+        console.log(`Error in get-all-post api: ${error}`.bgRed.white);
         return res.status(500).send({
             success: false,
-            message: 'Error in create-post campaign api',
+            message: 'Error in get-all-post api',
             error
         });
     }
