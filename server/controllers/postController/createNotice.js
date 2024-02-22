@@ -16,7 +16,8 @@ module.exports = async(req, res) => {
                 title: title,
                 description: description,
                 type: 'notice',
-                postedBy: req.id
+                postedBy: req.id,
+                userType: req.userType
             }).save();
 
             res.status(200).send({
