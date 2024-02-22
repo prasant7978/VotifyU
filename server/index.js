@@ -24,6 +24,6 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/post', require('./routes/postRoutes'));
 
 // server listen
-app.listen(process.env.PORT || 3001,'127.0.0.2', () => {
+app.listen(process.env.PORT || 3001,'192.168.158.6', () => {
     console.log(`server running on port ${process.env.PORT}...`.bgGreen.white);
 })
