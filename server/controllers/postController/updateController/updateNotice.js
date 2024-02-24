@@ -4,14 +4,6 @@ module.exports = async(req, res) => {
     try {
         const {title, description} = req.body;
 
-        // validation
-        if(!title || !description){
-            return res.status(500).send({
-                success: false,
-                message: 'Please provide all the details'
-            });
-        }
-
         const notice = await postModel.findById({_id: req.query.id});
 
         const updatedNotice = await postModel.findByIdAndUpdate({_id: req.query.id}, {
