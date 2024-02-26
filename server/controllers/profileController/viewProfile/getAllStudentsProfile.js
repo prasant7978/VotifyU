@@ -1,4 +1,4 @@
-const studentModel = require("../../models/studentModel");
+const studentModel = require("../../../models/studentModel");
 
 module.exports = async(req, res) => {
     try {
@@ -9,11 +9,11 @@ module.exports = async(req, res) => {
             });
         }
 
-        const students = await studentModel.find({userType: 'candidate'});
+        const students = await studentModel.find();
         if(!students){
             return res.status(500).send({
                 success: false,
-                message: 'Candidates not found'
+                message: 'Students not found'
             });
         }
 
@@ -23,14 +23,14 @@ module.exports = async(req, res) => {
 
         res.status(200).send({
             success: true,
-            message: 'All candidates profile found',
+            message: 'All students profile found',
             students
         });
     } catch (error) {
-        console.log(`Error in get-all-candidates-profile api: ${error}`.bgRed.white);
+        console.log(`Error in get-all-students-profile api: ${error}`.bgRed.white);
         return res.status(500).send({
             success: false,
-            message: 'Error in get-all-candidates-profile api',
+            message: 'Error in get-all-students-profile api',
             error
         });
     }

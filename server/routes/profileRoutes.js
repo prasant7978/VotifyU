@@ -4,9 +4,9 @@ const router = express.Router();
 
 const verifyToken = require('../middlewares/verifyToken');
 
-const getStudentProfile = require('../controllers/profileController/getStudentProfile');
-const getAllStudentsProfile = require('../controllers/profileController/getAllStudentsProfile');
-const getAllCandidatesProfile = require('../controllers/profileController/getAllCandidatesProfile');
+const getStudentProfile = require('../controllers/profileController/viewProfile/getStudentProfile');
+const getAllStudentsProfile = require('../controllers/profileController/viewProfile/getAllStudentsProfile');
+const getAllCandidatesProfile = require('../controllers/profileController/viewProfile/getAllCandidatesProfile');
 const deleteStudentProfile = require('../controllers/profileController/deleteStudentProfile');
 const updateStudentProfile = require('../controllers/profileController/updateStudentProfile');
 
