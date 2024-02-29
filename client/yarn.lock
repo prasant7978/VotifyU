@@ -1528,50 +1528,49 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
-"@react-native-community/cli-clean@12.3.2":
-  "integrity" "sha512-90k2hCX0ddSFPT7EN7h5SZj0XZPXP0+y/++v262hssoey3nhurwF57NGWN0XAR0o9BSW7+mBfeInfabzDraO6A=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/cli-clean/-/cli-clean-12.3.2.tgz"
-  "version" "12.3.2"
+"@react-native-community/cli-clean@12.3.6":
+  "integrity" "sha512-gUU29ep8xM0BbnZjwz9MyID74KKwutq9x5iv4BCr2im6nly4UMf1B1D+V225wR7VcDGzbgWjaezsJShLLhC5ig=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/cli-clean/-/cli-clean-12.3.6.tgz"
+  "version" "12.3.6"
   dependencies:
-    "@react-native-community/cli-tools" "12.3.2"
+    "@react-native-community/cli-tools" "12.3.6"
     "chalk" "^4.1.2"
     "execa" "^5.0.0"
 
-"@react-native-community/cli-config@12.3.2":
-  "integrity" "sha512-UUCzDjQgvAVL/57rL7eOuFUhd+d+6qfM7V8uOegQFeFEmSmvUUDLYoXpBa5vAK9JgQtSqMBJ1Shmwao+/oElxQ=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/cli-config/-/cli-config-12.3.2.tgz"
-  "version" "12.3.2"
+"@react-native-community/cli-config@12.3.6":
+  "integrity" "sha512-JGWSYQ9EAK6m2v0abXwFLEfsqJ1zkhzZ4CV261QZF9MoUNB6h57a274h1MLQR9mG6Tsh38wBUuNfEPUvS1vYew=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/cli-config/-/cli-config-12.3.6.tgz"
+  "version" "12.3.6"
   dependencies:
-    "@react-native-community/cli-tools" "12.3.2"
+    "@react-native-community/cli-tools" "12.3.6"
     "chalk" "^4.1.2"
     "cosmiconfig" "^5.1.0"
     "deepmerge" "^4.3.0"
     "glob" "^7.1.3"
     "joi" "^17.2.1"
 
-"@react-native-community/cli-debugger-ui@12.3.2":
-  "integrity" "sha512-nSWQUL+51J682DlfcC1bjkUbQbGvHCC25jpqTwHIjmmVjYCX1uHuhPSqQKgPNdvtfOkrkACxczd7kVMmetxY2Q=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-12.3.2.tgz"
-  "version" "12.3.2"
+"@react-native-community/cli-debugger-ui@12.3.6":
+  "integrity" "sha512-SjUKKsx5FmcK9G6Pb6UBFT0s9JexVStK5WInmANw75Hm7YokVvHEgtprQDz2Uvy5znX5g2ujzrkIU//T15KQzA=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-12.3.6.tgz"
+  "version" "12.3.6"
   dependencies:
     "serve-static" "^1.13.1"
 
-"@react-native-community/cli-doctor@12.3.2":
-  "integrity" "sha512-GrAabdY4qtBX49knHFvEAdLtCjkmndjTeqhYO6BhsbAeKOtspcLT/0WRgdLIaKODRa61ADNB3K5Zm4dU0QrZOg=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/cli-doctor/-/cli-doctor-12.3.2.tgz"
-  "version" "12.3.2"
+"@react-native-community/cli-doctor@12.3.6":
+  "integrity" "sha512-fvBDv2lTthfw4WOQKkdTop2PlE9GtfrlNnpjB818MhcdEnPjfQw5YaTUcnNEGsvGomdCs1MVRMgYXXwPSN6OvQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/cli-doctor/-/cli-doctor-12.3.6.tgz"
+  "version" "12.3.6"
   dependencies:
-    "@react-native-community/cli-config" "12.3.2"
-    "@react-native-community/cli-platform-android" "12.3.2"
-    "@react-native-community/cli-platform-ios" "12.3.2"
-    "@react-native-community/cli-tools" "12.3.2"
+    "@react-native-community/cli-config" "12.3.6"
+    "@react-native-community/cli-platform-android" "12.3.6"
+    "@react-native-community/cli-platform-ios" "12.3.6"
+    "@react-native-community/cli-tools" "12.3.6"
     "chalk" "^4.1.2"
     "command-exists" "^1.2.8"
     "deepmerge" "^4.3.0"
     "envinfo" "^7.10.0"
     "execa" "^5.0.0"
     "hermes-profile-transformer" "^0.0.6"
-    "ip" "^1.1.5"
     "node-stream-zip" "^1.9.1"
     "ora" "^5.4.1"
     "semver" "^7.5.2"
@@ -1579,53 +1578,52 @@
     "wcwidth" "^1.0.1"
     "yaml" "^2.2.1"
 
-"@react-native-community/cli-hermes@12.3.2":
-  "integrity" "sha512-SL6F9O8ghp4ESBFH2YAPLtIN39jdnvGBKnK4FGKpDCjtB3DnUmDsGFlH46S+GGt5M6VzfG2eeKEOKf3pZ6jUzA=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/cli-hermes/-/cli-hermes-12.3.2.tgz"
-  "version" "12.3.2"
+"@react-native-community/cli-hermes@12.3.6":
+  "integrity" "sha512-sNGwfOCl8OAIjWCkwuLpP8NZbuO0dhDI/2W7NeOGDzIBsf4/c4MptTrULWtGIH9okVPLSPX0NnRyGQ+mSwWyuQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/cli-hermes/-/cli-hermes-12.3.6.tgz"
+  "version" "12.3.6"
   dependencies:
-    "@react-native-community/cli-platform-android" "12.3.2"
-    "@react-native-community/cli-tools" "12.3.2"
+    "@react-native-community/cli-platform-android" "12.3.6"
+    "@react-native-community/cli-tools" "12.3.6"
     "chalk" "^4.1.2"
     "hermes-profile-transformer" "^0.0.6"
-    "ip" "^1.1.5"
 
-"@react-native-community/cli-platform-android@12.3.2":
-  "integrity" "sha512-MZ5nO8yi/N+Fj2i9BJcJ9C/ez+9/Ir7lQt49DWRo9YDmzye66mYLr/P2l/qxsixllbbDi7BXrlLpxaEhMrDopg=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/cli-platform-android/-/cli-platform-android-12.3.2.tgz"
-  "version" "12.3.2"
+"@react-native-community/cli-platform-android@12.3.6":
+  "integrity" "sha512-DeDDAB8lHpuGIAPXeeD9Qu2+/wDTFPo99c8uSW49L0hkmZJixzvvvffbGQAYk32H0TmaI7rzvzH+qzu7z3891g=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/cli-platform-android/-/cli-platform-android-12.3.6.tgz"
+  "version" "12.3.6"
   dependencies:
-    "@react-native-community/cli-tools" "12.3.2"
+    "@react-native-community/cli-tools" "12.3.6"
     "chalk" "^4.1.2"
     "execa" "^5.0.0"
     "fast-xml-parser" "^4.2.4"
     "glob" "^7.1.3"
     "logkitty" "^0.7.1"
 
-"@react-native-community/cli-platform-ios@12.3.2":
-  "integrity" "sha512-OcWEAbkev1IL6SUiQnM6DQdsvfsKZhRZtoBNSj9MfdmwotVZSOEZJ+IjZ1FR9ChvMWayO9ns/o8LgoQxr1ZXeg=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/cli-platform-ios/-/cli-platform-ios-12.3.2.tgz"
-  "version" "12.3.2"
+"@react-native-community/cli-platform-ios@12.3.6":
+  "integrity" "sha512-3eZ0jMCkKUO58wzPWlvAPRqezVKm9EPZyaPyHbRPWU8qw7JqkvnRlWIaYDGpjCJgVW4k2hKsEursLtYKb188tg=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/cli-platform-ios/-/cli-platform-ios-12.3.6.tgz"
+  "version" "12.3.6"
   dependencies:
-    "@react-native-community/cli-tools" "12.3.2"
+    "@react-native-community/cli-tools" "12.3.6"
     "chalk" "^4.1.2"
     "execa" "^5.0.0"
     "fast-xml-parser" "^4.0.12"
     "glob" "^7.1.3"
     "ora" "^5.4.1"
 
-"@react-native-community/cli-plugin-metro@12.3.2":
-  "integrity" "sha512-FpFBwu+d2E7KRhYPTkKvQsWb2/JKsJv+t1tcqgQkn+oByhp+qGyXBobFB8/R3yYvRRDCSDhS+atWTJzk9TjM8g=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/cli-plugin-metro/-/cli-plugin-metro-12.3.2.tgz"
-  "version" "12.3.2"
+"@react-native-community/cli-plugin-metro@12.3.6":
+  "integrity" "sha512-3jxSBQt4fkS+KtHCPSyB5auIT+KKIrPCv9Dk14FbvOaEh9erUWEm/5PZWmtboW1z7CYeNbFMeXm9fM2xwtVOpg=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/cli-plugin-metro/-/cli-plugin-metro-12.3.6.tgz"
+  "version" "12.3.6"
 
-"@react-native-community/cli-server-api@12.3.2":
-  "integrity" "sha512-iwa7EO9XFA/OjI5pPLLpI/6mFVqv8L73kNck3CNOJIUCCveGXBKK0VMyOkXaf/BYnihgQrXh+x5cxbDbggr7+Q=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/cli-server-api/-/cli-server-api-12.3.2.tgz"
-  "version" "12.3.2"
+"@react-native-community/cli-server-api@12.3.6":
+  "integrity" "sha512-80NIMzo8b2W+PL0Jd7NjiJW9mgaT8Y8wsIT/lh6mAvYH7mK0ecDJUYUTAAv79Tbo1iCGPAr3T295DlVtS8s4yQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/cli-server-api/-/cli-server-api-12.3.6.tgz"
+  "version" "12.3.6"
   dependencies:
-    "@react-native-community/cli-debugger-ui" "12.3.2"
-    "@react-native-community/cli-tools" "12.3.2"
+    "@react-native-community/cli-debugger-ui" "12.3.6"
+    "@react-native-community/cli-tools" "12.3.6"
     "compression" "^1.7.1"
     "connect" "^3.6.5"
     "errorhandler" "^1.5.1"
@@ -1634,10 +1632,10 @@
     "serve-static" "^1.13.1"
     "ws" "^7.5.1"
 
-"@react-native-community/cli-tools@12.3.2":
-  "integrity" "sha512-nDH7vuEicHI2TI0jac/DjT3fr977iWXRdgVAqPZFFczlbs7A8GQvEdGnZ1G8dqRUmg+kptw0e4hwczAOG89JzQ=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/cli-tools/-/cli-tools-12.3.2.tgz"
-  "version" "12.3.2"
+"@react-native-community/cli-tools@12.3.6":
+  "integrity" "sha512-FPEvZn19UTMMXUp/piwKZSh8cMEfO8G3KDtOwo53O347GTcwNrKjgZGtLSPELBX2gr+YlzEft3CoRv2Qmo83fQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/cli-tools/-/cli-tools-12.3.6.tgz"
+  "version" "12.3.6"
   dependencies:
     "appdirsjs" "^1.2.4"
     "chalk" "^4.1.2"
@@ -1650,27 +1648,27 @@
     "shell-quote" "^1.7.3"
     "sudo-prompt" "^9.0.0"
 
-"@react-native-community/cli-types@12.3.2":
-  "integrity" "sha512-9D0UEFqLW8JmS16mjHJxUJWX8E+zJddrHILSH8AJHZ0NNHv4u2DXKdb0wFLMobFxGNxPT+VSOjc60fGvXzWHog=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/cli-types/-/cli-types-12.3.2.tgz"
-  "version" "12.3.2"
+"@react-native-community/cli-types@12.3.6":
+  "integrity" "sha512-xPqTgcUtZowQ8WKOkI9TLGBwH2bGggOC4d2FFaIRST3gTcjrEeGRNeR5aXCzJFIgItIft8sd7p2oKEdy90+01Q=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/cli-types/-/cli-types-12.3.6.tgz"
+  "version" "12.3.6"
   dependencies:
     "joi" "^17.2.1"
 
-"@react-native-community/cli@12.3.2":
-  "integrity" "sha512-WgoUWwLDcf/G1Su2COUUVs3RzAwnV/vUTdISSpAUGgSc57mPabaAoUctKTnfYEhCnE3j02k3VtaVPwCAFRO3TQ=="
-  "resolved" "https://registry.npmjs.org/@react-native-community/cli/-/cli-12.3.2.tgz"
-  "version" "12.3.2"
+"@react-native-community/cli@12.3.6":
+  "integrity" "sha512-647OSi6xBb8FbwFqX9zsJxOzu685AWtrOUWHfOkbKD+5LOpGORw+GQo0F9rWZnB68rLQyfKUZWJeaD00pGv5fw=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/cli/-/cli-12.3.6.tgz"
+  "version" "12.3.6"
   dependencies:
-    "@react-native-community/cli-clean" "12.3.2"
-    "@react-native-community/cli-config" "12.3.2"
-    "@react-native-community/cli-debugger-ui" "12.3.2"
-    "@react-native-community/cli-doctor" "12.3.2"
-    "@react-native-community/cli-hermes" "12.3.2"
-    "@react-native-community/cli-plugin-metro" "12.3.2"
-    "@react-native-community/cli-server-api" "12.3.2"
-    "@react-native-community/cli-tools" "12.3.2"
-    "@react-native-community/cli-types" "12.3.2"
+    "@react-native-community/cli-clean" "12.3.6"
+    "@react-native-community/cli-config" "12.3.6"
+    "@react-native-community/cli-debugger-ui" "12.3.6"
+    "@react-native-community/cli-doctor" "12.3.6"
+    "@react-native-community/cli-hermes" "12.3.6"
+    "@react-native-community/cli-plugin-metro" "12.3.6"
+    "@react-native-community/cli-server-api" "12.3.6"
+    "@react-native-community/cli-tools" "12.3.6"
+    "@react-native-community/cli-types" "12.3.6"
     "chalk" "^4.1.2"
     "commander" "^9.4.1"
     "deepmerge" "^4.3.0"
@@ -1759,14 +1757,14 @@
     "mkdirp" "^0.5.1"
     "nullthrows" "^1.1.1"
 
-"@react-native/community-cli-plugin@0.73.16":
-  "integrity" "sha512-eNH3v3qJJF6f0n/Dck90qfC9gVOR4coAXMTdYECO33GfgjTi+73vf/SBqlXw9HICH/RNZYGPM3wca4FRF7TYeQ=="
-  "resolved" "https://registry.npmjs.org/@react-native/community-cli-plugin/-/community-cli-plugin-0.73.16.tgz"
-  "version" "0.73.16"
+"@react-native/community-cli-plugin@0.73.17":
+  "integrity" "sha512-F3PXZkcHg+1ARIr6FRQCQiB7ZAA+MQXGmq051metRscoLvgYJwj7dgC8pvgy0kexzUkHu5BNKrZeySzUft3xuQ=="
+  "resolved" "https://registry.npmjs.org/@react-native/community-cli-plugin/-/community-cli-plugin-0.73.17.tgz"
+  "version" "0.73.17"
   dependencies:
-    "@react-native-community/cli-server-api" "12.3.2"
-    "@react-native-community/cli-tools" "12.3.2"
-    "@react-native/dev-middleware" "0.73.7"
+    "@react-native-community/cli-server-api" "12.3.6"
+    "@react-native-community/cli-tools" "12.3.6"
+    "@react-native/dev-middleware" "0.73.8"
     "@react-native/metro-babel-transformer" "0.73.15"
     "chalk" "^4.0.0"
     "execa" "^5.1.1"
@@ -1781,10 +1779,10 @@
   "resolved" "https://registry.npmjs.org/@react-native/debugger-frontend/-/debugger-frontend-0.73.3.tgz"
   "version" "0.73.3"
 
-"@react-native/dev-middleware@0.73.7":
-  "integrity" "sha512-BZXpn+qKp/dNdr4+TkZxXDttfx8YobDh8MFHsMk9usouLm22pKgFIPkGBV0X8Do4LBkFNPGtrnsKkWk/yuUXKg=="
-  "resolved" "https://registry.npmjs.org/@react-native/dev-middleware/-/dev-middleware-0.73.7.tgz"
-  "version" "0.73.7"
+"@react-native/dev-middleware@0.73.8":
+  "integrity" "sha512-oph4NamCIxkMfUL/fYtSsE+JbGOnrlawfQ0kKtDQ5xbOjPKotKoXqrs1eGwozNKv7FfQ393stk1by9a6DyASSg=="
+  "resolved" "https://registry.npmjs.org/@react-native/dev-middleware/-/dev-middleware-0.73.8.tgz"
+  "version" "0.73.8"
   dependencies:
     "@isaacs/ttlcache" "^1.4.1"
     "@react-native/debugger-frontend" "0.73.3"
@@ -1796,6 +1794,7 @@
     "open" "^7.0.3"
     "serve-static" "^1.13.1"
     "temp-dir" "^2.0.0"
+    "ws" "^6.2.2"
 
 "@react-native/eslint-config@0.73.2":
   "integrity" "sha512-YzMfes19loTfbrkbYNAfHBDXX4oRBzc5wnvHs4h2GIHUj6YKs5ZK5lldqSrBJCdZAI3nuaO9Qj+t5JRwou571w=="
@@ -2383,10 +2382,24 @@
   dependencies:
     "has-symbols" "^1.0.3"
 
+"asynckit@^0.4.0":
+  "integrity" "sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q=="
+  "resolved" "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz"
+  "version" "0.4.0"
+
 "available-typed-arrays@^1.0.5", "available-typed-arrays@^1.0.6":
   "integrity" "sha512-j1QzY8iPNPG4o4xmO3ptzpRxTciqD3MgEHtifP/YnJpIo58Xu+ne4BejlbkuaLfXn/nz6HFiw29bLpj2PNMdGg=="
   "resolved" "https://registry.npmjs.org/available-typed-arrays/-/available-typed-arrays-1.0.6.tgz"
   "version" "1.0.6"
+
+"axios@^1.6.7":
+  "integrity" "sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA=="
+  "resolved" "https://registry.npmjs.org/axios/-/axios-1.6.7.tgz"
+  "version" "1.6.7"
+  dependencies:
+    "follow-redirects" "^1.15.4"
+    "form-data" "^4.0.0"
+    "proxy-from-env" "^1.1.0"
 
 "babel-core@^7.0.0-bridge.0":
   "integrity" "sha512-poPX9mZH/5CSanm50Q+1toVci6pv5KSRv/5TWCwtzQS5XEwn40BcCrgIeMFWP9CKKIniKXNxoIOnOq4VVlGXhg=="
@@ -2761,6 +2774,13 @@
   "resolved" "https://registry.npmjs.org/colorette/-/colorette-1.4.0.tgz"
   "version" "1.4.0"
 
+"combined-stream@^1.0.8":
+  "integrity" "sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg=="
+  "resolved" "https://registry.npmjs.org/combined-stream/-/combined-stream-1.0.8.tgz"
+  "version" "1.0.8"
+  dependencies:
+    "delayed-stream" "~1.0.0"
+
 "command-exists@^1.2.8":
   "integrity" "sha512-LTQ/SGc+s0Xc0Fu5WaKnR0YiygZkm9eKFvyS+fRsU7/ZWFF8ykFM6Pc9aCVf1+xasOOZpO3BAVgVrKvsqKHV7w=="
   "resolved" "https://registry.npmjs.org/command-exists/-/command-exists-1.2.9.tgz"
@@ -2952,6 +2972,11 @@
     "define-data-property" "^1.0.1"
     "has-property-descriptors" "^1.0.0"
     "object-keys" "^1.1.1"
+
+"delayed-stream@~1.0.0":
+  "integrity" "sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ=="
+  "resolved" "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz"
+  "version" "1.0.0"
 
 "denodeify@^1.2.1":
   "integrity" "sha512-KNTihKNmQENUZeKu5fzfpzRqR5S2VMp4gl9RFHiWzj9DfvYQPMJ6XHKNaQxaGCXwPk6y9yme3aUoaiAe+KX+vg=="
@@ -3450,9 +3475,9 @@
   "version" "2.0.6"
 
 "fast-xml-parser@^4.0.12", "fast-xml-parser@^4.2.4":
-  "integrity" "sha512-utnwm92SyozgA3hhH2I8qldf2lBqm6qHOICawRNRFu1qMe3+oqr+GcXjGqTmXTMGE5T4eC03kr/rlh5C1IRdZA=="
-  "resolved" "https://registry.npmjs.org/fast-xml-parser/-/fast-xml-parser-4.3.4.tgz"
-  "version" "4.3.4"
+  "integrity" "sha512-sWvP1Pl8H03B8oFJpFR3HE31HUfwtX7Rlf9BNsvdpujD4n7WMhfmu8h9wOV2u+c1k0ZilTADhPqypzx2J690ZQ=="
+  "resolved" "https://registry.npmjs.org/fast-xml-parser/-/fast-xml-parser-4.3.5.tgz"
+  "version" "4.3.5"
   dependencies:
     "strnum" "^1.0.5"
 
@@ -3563,12 +3588,26 @@
   "resolved" "https://registry.npmjs.org/flow-parser/-/flow-parser-0.228.0.tgz"
   "version" "0.228.0"
 
+"follow-redirects@^1.15.4":
+  "integrity" "sha512-vSFWUON1B+yAw1VN4xMfxgn5fTUiaOzAJCKBwIIgT/+7CuGy9+r+5gITvP62j3RmaD5Ph65UaERdOSRGUzZtgw=="
+  "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.5.tgz"
+  "version" "1.15.5"
+
 "for-each@^0.3.3":
   "integrity" "sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw=="
   "resolved" "https://registry.npmjs.org/for-each/-/for-each-0.3.3.tgz"
   "version" "0.3.3"
   dependencies:
     "is-callable" "^1.1.3"
+
+"form-data@^4.0.0":
+  "integrity" "sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww=="
+  "resolved" "https://registry.npmjs.org/form-data/-/form-data-4.0.0.tgz"
+  "version" "4.0.0"
+  dependencies:
+    "asynckit" "^0.4.0"
+    "combined-stream" "^1.0.8"
+    "mime-types" "^2.1.12"
 
 "fresh@0.5.2":
   "integrity" "sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q=="
@@ -3902,11 +3941,6 @@
   "version" "2.2.4"
   dependencies:
     "loose-envify" "^1.0.0"
-
-"ip@^1.1.5":
-  "integrity" "sha512-PuExPYUiu6qMBQb4l06ecm6T6ujzhmh+MeJcW9wa89PoAz5pvd4zPgN5WJV104mb6S2T1AwNIAaB70JNrLQWhg=="
-  "resolved" "https://registry.npmjs.org/ip/-/ip-1.1.8.tgz"
-  "version" "1.1.8"
 
 "is-array-buffer@^3.0.4":
   "integrity" "sha512-wcjaerHw0ydZwfhiKbXJWLDY8A7yV7KhjQOpb83hGgGfId/aQa4TOvwyzn2PuswW2gPCYEL/nEAiSVpdOj1lXw=="
@@ -4583,9 +4617,9 @@
     "jest-cli" "^29.7.0"
 
 "joi@^17.2.1":
-  "integrity" "sha512-vtxmq+Lsc5SlfqotnfVjlViWfOL9nt/avKNbKYizwf6gsCfq9NYY/ceYRMFD8XDdrjJ9abJyScWmhmIiy+XRtQ=="
-  "resolved" "https://registry.npmjs.org/joi/-/joi-17.12.1.tgz"
-  "version" "17.12.1"
+  "integrity" "sha512-RonXAIzCiHLc8ss3Ibuz45u28GOsWE1UpfDXLbN/9NKbL4tCJf8TWYVKsoYuuh+sAUt7fsSNpA+r2+TBA6Wjmw=="
+  "resolved" "https://registry.npmjs.org/joi/-/joi-17.12.2.tgz"
+  "version" "17.12.2"
   dependencies:
     "@hapi/hoek" "^9.3.0"
     "@hapi/topo" "^5.1.0"
@@ -5067,7 +5101,7 @@
   "resolved" "https://registry.npmjs.org/mime-db/-/mime-db-1.52.0.tgz"
   "version" "1.52.0"
 
-"mime-types@^2.1.27", "mime-types@~2.1.34":
+"mime-types@^2.1.12", "mime-types@^2.1.27", "mime-types@~2.1.34":
   "integrity" "sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw=="
   "resolved" "https://registry.npmjs.org/mime-types/-/mime-types-2.1.35.tgz"
   "version" "2.1.35"
@@ -5565,6 +5599,11 @@
     "object-assign" "^4.1.1"
     "react-is" "^16.13.1"
 
+"proxy-from-env@^1.1.0":
+  "integrity" "sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg=="
+  "resolved" "https://registry.npmjs.org/proxy-from-env/-/proxy-from-env-1.1.0.tgz"
+  "version" "1.1.0"
+
 "punycode@^2.1.0":
   "integrity" "sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg=="
   "resolved" "https://registry.npmjs.org/punycode/-/punycode-2.3.1.tgz"
@@ -5669,18 +5708,18 @@
     "react-freeze" "^1.0.0"
     "warn-once" "^0.1.0"
 
-"react-native@*", "react-native@>=0.57", "react-native@0.73.4":
-  "integrity" "sha512-VtS+Yr6OOTIuJGDECIYWzNU8QpJjASQYvMtfa/Hvm/2/h5GdB6W9H9TOmh13x07Lj4AOhNMx3XSsz6TdrO4jIg=="
-  "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.73.4.tgz"
-  "version" "0.73.4"
+"react-native@*", "react-native@>=0.57", "react-native@0.73.5":
+  "integrity" "sha512-iHgDArmF4CrhL0qTj+Rn+CBN5pZWUL9lUGl8ub+V9Hwu/vnzQQh8rTMVSwVd2sV6N76KjpE5a4TfIAHkpIHhKg=="
+  "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.73.5.tgz"
+  "version" "0.73.5"
   dependencies:
     "@jest/create-cache-key-function" "^29.6.3"
-    "@react-native-community/cli" "12.3.2"
-    "@react-native-community/cli-platform-android" "12.3.2"
-    "@react-native-community/cli-platform-ios" "12.3.2"
+    "@react-native-community/cli" "12.3.6"
+    "@react-native-community/cli-platform-android" "12.3.6"
+    "@react-native-community/cli-platform-ios" "12.3.6"
     "@react-native/assets-registry" "0.73.1"
     "@react-native/codegen" "0.73.3"
-    "@react-native/community-cli-plugin" "0.73.16"
+    "@react-native/community-cli-plugin" "0.73.17"
     "@react-native/gradle-plugin" "0.73.4"
     "@react-native/js-polyfills" "0.73.1"
     "@react-native/normalize-colors" "0.73.2"
@@ -6813,9 +6852,9 @@
   "version" "4.0.0"
 
 "yaml@^2.2.1":
-  "integrity" "sha512-8aAvwVUSHpfEqTQ4w/KMlf3HcRdt50E5ODIQJBw1fQ5RL34xabzxtUlzTXVqc4rkZsPbvrXKWnABCD7kWSmocA=="
-  "resolved" "https://registry.npmjs.org/yaml/-/yaml-2.3.4.tgz"
-  "version" "2.3.4"
+  "integrity" "sha512-j9iR8g+/t0lArF4V6NE/QCfT+CO7iLqrXAHZbJdo+LfjqP1vR8Fg5bSiaq6Q2lOD1AUEVrEVIgABvBFYojJVYQ=="
+  "resolved" "https://registry.npmjs.org/yaml/-/yaml-2.4.0.tgz"
+  "version" "2.4.0"
 
 "yargs-parser@^18.1.2":
   "integrity" "sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ=="

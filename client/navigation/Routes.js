@@ -1,4 +1,5 @@
 export const Routes = {
-    Login: 'Login',
+    Student_Login: 'Student_Login',
+    Admin_Login: 'Admin_Login',
     Home: 'Home'
 }

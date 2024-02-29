@@ -13,7 +13,8 @@ const SIZES = {
     medium: 16,
     large: 20,
     xLarge: 24,
-    xxLarge: 44,
+    xxLarge: 30,
+    xxxLarge: 44,
 };
 
 const SHADOWS = {
@@ -39,4 +40,4 @@ const SHADOWS = {
     },
   };
 
-  export default {COLORS, SIZES, SHADOWS};
+  export {COLORS, SIZES, SHADOWS};
