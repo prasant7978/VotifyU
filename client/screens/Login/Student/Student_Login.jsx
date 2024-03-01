@@ -106,7 +106,7 @@ const Student_Login = ({navigation}) => {
 
                 {error && <Text style={styles.errorText}>{error}</Text>}
 
-                <TouchableOpacity style={{alignItems: 'center'}} onPress={() => navigation.navigate(Routes.Admin_Login)}>
+                <TouchableOpacity style={styles.otherLoginText} onPress={() => navigation.navigate(Routes.Admin_Login)}>
                     <Heading title={'Login As Admin'} type={2} color={'#000000'}/>
                 </TouchableOpacity>
 

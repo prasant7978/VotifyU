@@ -39,6 +39,10 @@ const styles = StyleSheet.create({
         color: COLORS.red,
         textAlign: 'center',
         marginBottom: verticalScale(SIZES.xSmall)
+    },
+    otherLoginText: {
+        alignItems: 'center',
+        marginVertical: verticalScale(SIZES.medium)
     }
 });
 
