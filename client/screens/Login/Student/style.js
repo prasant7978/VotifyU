@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
-import { horizontalScale, verticalScale } from "../../../assets/styles/scaling";
+import { horizontalScale, scaleFontSize, verticalScale } from "../../../assets/styles/scaling";
 import { COLORS, SIZES } from "../../../constants/theme";
+import { getFontFamily } from "../../../assets/fonts/helper";
 
 const styles = StyleSheet.create({
     container: {
@@ -29,10 +30,15 @@ const styles = StyleSheet.create({
         textAlign: 'right'
     },
     buttonContainer: {
-        marginVertical: verticalScale(35)
+        marginTop: verticalScale(35),
+        marginBottom: verticalScale(SIZES.xSmall)
     },
     errorText: {
-        color: 'red'
+        fontFamily: getFontFamily('Inter', '400'),
+        fontSize: scaleFontSize(SIZES.medium),
+        color: COLORS.red,
+        textAlign: 'center',
+        marginBottom: verticalScale(SIZES.xSmall)
     }
 });
 

@@ -5,6 +5,8 @@ const COLORS = {
 
     gray: "#CCD3CA",
     gray2: "#EEEDEB",
+
+    red: "#FE0000"
 };
 
 const SIZES = {

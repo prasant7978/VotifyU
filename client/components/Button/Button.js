@@ -3,31 +3,22 @@ import styles from './style'
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native'
 
-const Button = (props) => {
+const Button = ({title, isDisabled, loading, handleSubmit}) => {
   return (
     <View>
         <TouchableOpacity 
-            style={[props.isDisabled && styles.buttonDisable, styles.button]}
-            isDisabled={props.isDisabled}
-            onPress={() => props.onPress()}
+            style={[isDisabled && styles.buttonDisable, styles.button]}
+            // isDisabled={isDisabled}
+            onPress={handleSubmit}
         >
             <Text style={styles.btnText}>
-                {props.title}
+                {loading ? "Please Wait..." : title}
             </Text>
         </TouchableOpacity>
     </View>
   )
 }
 
-Button.default = {
-    isDisabled: false,
-    onPress: () => {}
-}
 
-Button.propTypes = {
-    title: PropTypes.string.isRequired,
-    isDisabled: PropTypes.bool,
-    onPress: PropTypes.func
-}
 
 export default Button
