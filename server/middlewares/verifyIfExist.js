@@ -21,6 +21,7 @@ module.exports = async(req, res, next) => {
             });
         }
         
+        req.user = admin
         req.id = admin._id;
         req.userType = admin.userType;
         req.adminPassword = admin.adminPassword;
@@ -46,6 +47,7 @@ module.exports = async(req, res, next) => {
             });
         }
         
+        req.user = student
         req.id = student._id;
         req.userType = student.userType;
         req.studentPassword = student.studentPassword;

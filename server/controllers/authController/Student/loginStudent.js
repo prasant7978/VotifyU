@@ -19,6 +19,7 @@ module.exports = async(req, res) => {
         res.status(200).send({
             success: true,
             message: 'Login Successfull',
+            user: req.user,
             token,
         });
     } catch (error) {
