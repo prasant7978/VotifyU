@@ -4,6 +4,9 @@ import { Routes } from "./Routes";
 import Student_Login from "../screens/Login/Student/Student_Login";
 import Admin_Login from "../screens/Login/Admin/Admin_Login";
 import Home from "../screens/Home/Home";
+import Elections from "../screens/Elections/Elections";
+import Results from "../screens/Results/Results";
+import Profile from "../screens/Profile/Profile";
  
 const Stack = createStackNavigator();
 
@@ -19,8 +22,38 @@ const NonAuthenticatedNavigator = () => {
 
 const AuthenticatedNavigator = () => {
     return (
-        <Stack.Navigator initialRouteName={Routes.Home} screenOptions={{header: () => null, headerShown: false}}>
-            <Stack.Screen name={Routes.Home} component={Home}/>
+        <Stack.Navigator initialRouteName={Routes.Home}>
+            <Stack.Screen 
+                name={Routes.Home} 
+                component={Home}
+                options={{
+                    title: 'VotifyU'
+                }}
+            />
+            <Stack.Screen 
+                name={Routes.Elections} 
+                component={Elections}
+                options={{
+                    title: 'Ongoing Elections',
+                    headerLeft: () => false
+                }}
+            />
+            <Stack.Screen 
+                name={Routes.Results} 
+                component={Results}
+                options={{
+                    title: 'Results',
+                    headerLeft: () => false
+                }}
+            />
+            <Stack.Screen 
+                name={Routes.Profile} 
+                component={Profile}
+                options={{
+                    title: 'Profile',
+                    headerLeft: () => false
+                }}
+            />
         </Stack.Navigator>
     );
 }
