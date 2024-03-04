@@ -6,7 +6,7 @@ import FooterMenu from '../../components/Menus/FooterMenu'
 const Elections = () => {
   return (
     <View>
-      <Text>Elections</Text>
+      <Text style={{color: '#000000'}}>Elections</Text>
 
       <FooterMenu/>
     </View>

@@ -6,7 +6,7 @@ import FooterMenu from '../../components/Menus/FooterMenu'
 const Profile = () => {
   return (
     <View>
-      <Text>Profile</Text>
+      <Text style={{color: '#000000'}}>Profile</Text>
 
       <FooterMenu/>
     </View>

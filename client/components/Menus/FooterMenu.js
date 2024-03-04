@@ -3,7 +3,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faCheckToSlot, faHouse, faSquarePollVertical, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCheckToSlot, faImages, faSquarePollVertical, faUser } from '@fortawesome/free-solid-svg-icons'
 import { horizontalScale, verticalScale } from '../../assets/styles/scaling'
 import { COLORS, SIZES } from '../../constants/theme'
 import { useNavigation, useRoute } from '@react-navigation/native'
@@ -15,9 +15,9 @@ const FooterMenu = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate(Routes.Home)}>
-        <FontAwesomeIcon icon={faHouse} size={24} style={styles.iconStyle} color={route.name === 'Home' ? COLORS.primary : "black"}/>
-        <Text style={[styles.text, route.name === 'Home' ? {color: COLORS.primary} : {color: 'black'}]}>Home</Text>
+      <TouchableOpacity onPress={() => navigation.navigate(Routes.Feeds)}>
+        <FontAwesomeIcon icon={faImages} size={24} style={styles.iconStyle} color={route.name === 'Feeds' ? COLORS.primary : "black"}/>
+        <Text style={[styles.text, route.name === 'Feeds' ? {color: COLORS.primary} : {color: 'black'}]}>Feeds</Text>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate(Routes.Elections)}>
