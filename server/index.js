@@ -24,6 +24,9 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/post', require('./routes/postRoutes'));
 app.use('/api/profile', require('./routes/profileRoutes'));
 
+// routes to access/get images from uploads folder
+app.use('/api/uploads/profile', express.static('uploads/profile'));
+
 // server listen
 app.listen(process.env.PORT || 3001, '192.168.158.6', () => {
     console.log(`server running on port ${process.env.PORT}...`.bgGreen.white);

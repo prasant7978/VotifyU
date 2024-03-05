@@ -11,7 +11,10 @@ const styles = StyleSheet.create({
     },
     profileImage: {
         height: horizontalScale(90), 
-        width: horizontalScale(90)
+        width: horizontalScale(90),
+        borderRadius: horizontalScale(50),
+        borderWidth: horizontalScale(2),
+        borderColor: COLORS.tertiary
     },
     userDetailsContainer: {
         marginTop: verticalScale(8), 
