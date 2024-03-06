@@ -4,12 +4,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import RootNavigation from './navigation/RootNavigation';
 
 import { AuthProvider } from './context/aurhContext';
+import { PostProvider } from './context/postContext';
 
 const App = () => {
   return (
     <NavigationContainer>
       <AuthProvider>
-        <RootNavigation/>
+        <PostProvider>
+          <RootNavigation/>
+        </PostProvider>
       </AuthProvider>
     </NavigationContainer>
   );

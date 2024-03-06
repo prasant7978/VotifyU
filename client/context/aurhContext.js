@@ -13,18 +13,24 @@ const AuthProvider = ({children}) => {
 
     // default axios settings
     axios.defaults.baseURL = 'http://192.168.158.6:3001/api';
-
+    
     // get initial storage data
     useEffect(() => {
-        const loadLocalStorageData = async() => {
-            const data = await AsyncStorage.getItem('@auth-token');
-            const loginData = JSON.parse(data);
-            setUserState({...userState, user: loginData?.user, token: loginData?.token});
-        }
-
+        const loadLocalStorageData = async () => {
+            try {
+                const data = await AsyncStorage.getItem('@auth-data');
+                if (data) {
+                    const loginData = JSON.parse(data);
+                    setUserState(prevState => ({ ...prevState, user: loginData.user, token: loginData.token }));
+                }
+            } catch (error) {
+                console.error('Error loading localStorage data:', error);
+            }
+        };
+    
         loadLocalStorageData();
     }, []);
-
+    
     return (
         <AuthContext.Provider value={[userState, setUserState]}>
             {children}
