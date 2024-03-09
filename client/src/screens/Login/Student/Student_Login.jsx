@@ -10,14 +10,19 @@ import { verticalScale } from "../../../assets/styles/scaling";
 import Heading from "../../../components/Heading/Heading";
 import Input from "../../../components/Input/Input";
 import Button from "../../../components/Button/Button";
+
 import { Routes } from "../../../navigation/Routes";
+
 import { loginStudent } from "../../../api/loginStudent";
+
 import { AuthContext } from "../../../context/aurhContext";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Student_Login = ({navigation}) => {
     // global state
     const [userState, setUserState] = useContext(AuthContext);
+    // console.log('user state before login: ', userState);
 
     // local state
     const [email, setEmail] = useState('');
@@ -45,8 +50,8 @@ const Student_Login = ({navigation}) => {
             setError('');
             setUserState(user.data);
             await AsyncStorage.setItem('@auth-data', JSON.stringify(user.data));
-            await AsyncStorage.setItem('auth-token', JSON.stringify(user.data?.token));
-            // console.log("user token at login: ",JSON.parse(await AsyncStorage.getItem('auth-token')));
+            await AsyncStorage.setItem('@auth-token', JSON.stringify(user.data?.token));
+            // console.log("user token at login: ",JSON.parse(await AsyncStorage.getItem('@auth-token')));
             // console.log("user data at login: ",JSON.parse(await AsyncStorage.getItem('@auth-data')));
             // Alert.alert(user.data && user.data.message);
             // navigation.navigate(Routes.Feeds);

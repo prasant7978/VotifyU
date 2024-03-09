@@ -13,25 +13,25 @@ module.exports = async(req, res) => {
                 message: 'Id is required'
             });
         }
-        if(!admin.adminName){
+        if(!admin.name){
             return res.status(500).send({
                 success: false,
                 message: 'Name is required'
             });
         }
-        if(!admin.adminEmail){
+        if(!admin.email){
             return res.status(500).send({
                 success: false,
                 message: 'Email is required'
             });
         }
-        if(!admin.adminPassword || admin.adminPassword.length < 6){
+        if(!admin.password || admin.password.length < 6){
             return res.status(500).send({
                 success: false,
                 message: 'Password is required and min 6 char length'
             });
         }
-        if(!admin.adminPhone){
+        if(!admin.phone){
             return res.status(500).send({
                 success: false,
                 message: 'Phone is required'
@@ -39,7 +39,7 @@ module.exports = async(req, res) => {
         }
         
         // check if admin already exist
-        const existingAdmin = await adminModel.findOne({adminId: admin.adminId, adminEmail: admin.adminEmail});
+        const existingAdmin = await adminModel.findOne({adminId: admin.adminId, email: admin.email});
         if(existingAdmin){
             return res.status(500).send({
                 success: false,
@@ -48,15 +48,15 @@ module.exports = async(req, res) => {
         }
 
         // create hashed password
-        const hashedPassword = await hashPassword(admin.adminPassword);
+        const hashedPassword = await hashPassword(admin.password);
 
         // save admin
         const newAdmin = await adminModel({
             employeeId: admin.employeeId,
-            adminName: admin.adminName,
-            adminEmail: admin.adminEmail,
-            adminPassword: hashedPassword,
-            adminPhone: admin.adminPhone
+            name: admin.name,
+            email: admin.email,
+            password: hashedPassword,
+            phone: admin.phone
         }).save();
 
         res.status(200).send({

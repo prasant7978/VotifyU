@@ -28,8 +28,10 @@ module.exports = async(req, res, next) => {
                     error
                 });
             }
-            else
+            else{
+                console.log('file uploaded...');
                 next();
+            }
         });
     } catch (error) {
         console.log('Error in uploading the image: ', error);

@@ -11,7 +11,7 @@ module.exports = async(req, res) => {
         }
 
         // undefine password
-        student.studentPassword = undefined
+        student.password = undefined
 
         res.status(200).send({
             success: true,

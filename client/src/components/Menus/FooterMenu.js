@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: horizontalScale(SIZES.small),
-        paddingVertical: verticalScale(5)
+        paddingVertical: verticalScale(5),
+        backgroundColor: '#00000000',
     },
     iconStyle: {
         marginBottom: verticalScale(3),

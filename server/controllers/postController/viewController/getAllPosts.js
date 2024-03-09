@@ -7,9 +7,9 @@ module.exports = async(req, res) => {
         // populate postedBy on basis of userType
         for(let i=0; i<posts.length; i++){
             if(posts[i].userType === 'admin')
-                posts[i] = await posts[i].populate('postedBy', '_id adminName adminProfileImage', 'Admin');
+                posts[i] = await posts[i].populate('postedBy', '_id name profileImage role', 'Admin');
             else
-                posts[i] = await posts[i].populate('postedBy', '_id studentName studentProfileImage', 'Student');
+                posts[i] = await posts[i].populate('postedBy', '_id name profileImage role', 'Student');
         }
 
         res.status(200).send({

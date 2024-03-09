@@ -2,25 +2,34 @@ import React, { useContext, useEffect } from 'react'
 
 import styles from './style';
 
-import { View, Text, ScrollView } from 'react-native'
+import { View, FlatList } from 'react-native'
 
 import FooterMenu from '../../components/Menus/FooterMenu';
 
 import { AuthContext } from '../../context/aurhContext'
 import { PostContext } from '../../context/postContext';
+import PostCard from '../../components/PostCard/PostCard';
+import globalStyles from '../../assets/styles/globalStyles';
 
 const Home = () => {
   // global states
-  const [userState] = useContext(AuthContext);
-  const [allPosts] = useContext(PostContext);
+  const [allPosts, setAllPosts, fetchAllPosts] = useContext(PostContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchAllPosts('feed page');
+    };
+
+    fetchData();
+  }, [setAllPosts]);
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <Text style={{color: '#000000'}}>Home</Text>
-        <Text style={{color: '#000000'}}>{JSON.stringify(userState, null, 4)}</Text>
-        <Text style={{color: '#000000'}}>{JSON.stringify(allPosts, null, 4)}</Text>
-      </ScrollView>
+    <View style={[globalStyles.whiteBackground, globalStyles.flex, styles.container]}>
+      <FlatList
+        data={allPosts}
+        showsVerticalScrollIndicator={false}
+        renderItem={({item}) => <PostCard post={item}/>}
+      />
 
       <View>
         <FooterMenu/>

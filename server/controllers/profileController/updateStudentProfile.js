@@ -3,7 +3,7 @@ const studentModel = require("../../models/studentModel");
 module.exports = async(req, res) => {
     try {
         // validation
-        if(req.body.studentPhone.length != 10 || req.body.studentParentPhone.length != 10){
+        if(req.body.phone.length != 10 || req.body.parentPhone.length != 10){
             return res.status(500).send({
                 success: false,
                 message: 'Enter a valid phone no.'
@@ -13,17 +13,17 @@ module.exports = async(req, res) => {
         const student = await studentModel.findById({_id: req.query.id});
 
         const updatedStudent = await studentModel.findByIdAndUpdate({_id: req.query.id}, {
-            studentName: req.body.studentName || student?.studentName,
-            studentRoll: req.body.studentRoll || student?.studentRoll,
-            studentEmail: req.body.studentEmail || student?.studentEmail,
-            studentPassword: req.body.studentPassword || student?.studentPassword,
-            studentPhone: req.body.studentPhone || student?.studentPhone,
-            studentParentPhone: req.body.studentParentPhone || student?.studentParentPhone,
-            studentCourse: req.body.studentCourse || student?.studentCourse,
-            studentDepartment: req.body.studentDepartment || student?.studentDepartment,
-            studentDOB: req.body.studentDOB || student?.studentDOB,
-            studentGender: req.body.studentGender || student?.studentGender,
-            studentProfileImage: req.file.path || student?.studentProfileImage,
+            name: req.body.name || student?.name,
+            roll: req.body.roll || student?.roll,
+            email: req.body.email || student?.email,
+            password: req.body.password || student?.password,
+            phone: req.body.phone || student?.phone,
+            parentPhone: req.body.parentPhone || student?.parentPhone,
+            course: req.body.course || student?.course,
+            department: req.body.department || student?.department,
+            dob: req.body.dob || student?.dob,
+            gender: req.body.gender || student?.gender,
+            profileImage: req.file.filename || student?.profileImage,
             userType: req.body.userType || student?.userType
         }, {new: true});
 

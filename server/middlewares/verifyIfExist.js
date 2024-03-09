@@ -3,17 +3,17 @@ const studentModel = require("../models/studentModel")
 
 module.exports = async(req, res, next) => {
     if(req.body.userType === "admin"){
-        const {employeeId, adminEmail, adminPassword} = req.body;
+        const {employeeId, email, password} = req.body;
 
         // validation
-        if(!employeeId || !adminEmail || !adminPassword){
+        if(!employeeId || !email || !password){
             return res.status(500).send({
                 success: false,
                 message: 'Please Provide All admin Details'
             });
         }
 
-        const admin = await adminModel.findOne({employeeId: req.body.employeeId, adminEmail: req.body.adminEmail});
+        const admin = await adminModel.findOne({employeeId: req.body.employeeId, email: req.body.email});
         if(!admin){
             return res.status(500).send({
                 success: false,
@@ -24,22 +24,22 @@ module.exports = async(req, res, next) => {
         req.user = admin
         req.id = admin._id;
         req.userType = admin.userType;
-        req.adminPassword = admin.adminPassword;
+        req.password = admin.password;
 
         next();
     }
     else{
-        const {studentEmail, studentPassword} = req.body;
+        const {email, password} = req.body;
 
         // validation
-        if(!studentEmail || !studentPassword){
+        if(!email || !password){
             return res.status(500).send({
                 success: false,
                 message: 'Please Provide All Details'
             });
         }
 
-        const student = await studentModel.findOne({studentEmail: req.body.studentEmail})
+        const student = await studentModel.findOne({email: req.body.email})
         if(!student){
             return res.status(500).send({
                 success: false,
@@ -50,7 +50,7 @@ module.exports = async(req, res, next) => {
         req.user = student
         req.id = student._id;
         req.userType = student.userType;
-        req.studentPassword = student.studentPassword;
+        req.password = student.password;
 
         next();
     }

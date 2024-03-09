@@ -26,6 +26,7 @@ app.use('/api/profile', require('./routes/profileRoutes'));
 
 // routes to access/get images from uploads folder
 app.use('/api/uploads/profile', express.static('uploads/profile'));
+app.use('/api/uploads/campaign', express.static('uploads/campaign'));
 
 // server listen
 app.listen(process.env.PORT || 3001, '192.168.158.6', () => {

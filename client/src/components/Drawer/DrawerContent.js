@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 import { AuthContext } from '../../context/aurhContext'
+import { PostContext } from '../../context/postContext'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
@@ -22,9 +23,7 @@ import InitialAvatar from '../InitialAvatar/InitialAvatar'
 const DrawerContent = (props) => {
   // global state
   const [userState, setUserState] = useContext(AuthContext);
-
-  const profileImage = userState.user.userType === 'student' ? userState.user.studentProfileImage : userState.user.adminProfileImage;
-  const userName = userState.user.userType === 'student' ? userState.user.studentName : userState.user.adminName;
+  const [resetAllPosts] = useContext(PostContext);
   
   const handleSignOut = async() => {
     // set the authContext to null
@@ -33,8 +32,16 @@ const DrawerContent = (props) => {
       token: ''
     });
 
+    // set allPosts to empty array
+    resetAllPosts;
+
     // delete the token in storage
-    AsyncStorage.removeItem('@auth-token')
+    await AsyncStorage.removeItem('@auth-token')
+    await AsyncStorage.removeItem('@auth-data')
+
+    // console.log("user state after logout: ", userState);
+    // console.log("user token after logout: ",JSON.parse(await AsyncStorage.getItem('@auth-token')));
+    // console.log("user data after logout: ",JSON.parse(await AsyncStorage.getItem('@auth-data')));
 
     Snackbar.show({
       text: 'Sign Out Successfull',
@@ -48,22 +55,27 @@ const DrawerContent = (props) => {
       <DrawerContentScrollView {...props}>
         <View style={styles.topContainer}>
           {
-            profileImage == undefined 
+            userState.user.profileImage == undefined 
               ? 
-                <InitialAvatar name={userName}/> 
+                <InitialAvatar 
+                  name={userState.user.name} 
+                  avatarSize={90} 
+                  textSize={33}
+                  padding={15}
+                /> 
               : 
                 <Image 
-                  source={{uri: `http://192.168.158.6:3001/api/uploads/profile/${profileImage}`}}
+                  source={{uri: `http://192.168.158.6:3001/api/uploads/profile/${userState.user.profileImage}`}}
                   style={styles.profileImage}
                   resizeMode={'cover'}
                 />
           }
           <View style={styles.userDetailsContainer}>
             <Text style={styles.userNameText}>
-              {userState.user.userType === 'student' ? userState.user.studentName : userState.user.adminName}
+              {userState.user.name}
             </Text>
             <Text style={styles.userEmailText}>
-              {userState.user.userType === 'student' ? userState.user.studentEmail : userState.user.adminEmail}
+              {userState.user.email}
             </Text>
           </View>
         </View>

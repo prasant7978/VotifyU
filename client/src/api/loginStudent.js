@@ -1,12 +1,12 @@
 import axios from "axios";
 
-export const loginStudent = async(studentEmail, studentPassword) => {
+export const loginStudent = async(email, password) => {
     try {
         const {data} = await axios.post(
             '/auth/login/student', 
             {
-                studentEmail, 
-                studentPassword, 
+                email, 
+                password, 
                 userType: 'student'
             }
         );

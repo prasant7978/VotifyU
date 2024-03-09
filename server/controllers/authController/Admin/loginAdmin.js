@@ -5,7 +5,7 @@ const generateAuthToken = require('../../tokenController/generateAuthToken');
 module.exports = async(req, res) => {
     try {
         // match password
-        const match = await comparePassword(req.body.adminPassword, req.adminPassword);
+        const match = await comparePassword(req.body.password, req.password);
         if(!match){
             return res.status(500).send({
                 success: false,

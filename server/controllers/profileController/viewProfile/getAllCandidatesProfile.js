@@ -18,7 +18,7 @@ module.exports = async(req, res) => {
         }
 
         for(let i=0; i<students.length; i++){
-            students[i].studentPassword = undefined
+            students[i].password = undefined
         }
 
         res.status(200).send({

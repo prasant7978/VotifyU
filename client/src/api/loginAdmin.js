@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export const loginAdmin = async(employeeId, adminEmail, adminPassword) => {
+export const loginAdmin = async(employeeId, email, password) => {
     try {
         const {data} = await axios.post(
             '/auth/login/admin', 
             {
                 employeeId,
-                adminEmail, 
-                adminPassword, 
+                email, 
+                password, 
                 userType: 'admin'
             }
         );

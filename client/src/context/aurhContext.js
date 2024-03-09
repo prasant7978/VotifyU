@@ -19,9 +19,14 @@ const AuthProvider = ({children}) => {
         const loadLocalStorageData = async () => {
             try {
                 const data = await AsyncStorage.getItem('@auth-data');
+                // console.log('data at auth context: ', data);
                 if (data) {
                     const loginData = JSON.parse(data);
                     setUserState(prevState => ({ ...prevState, user: loginData.user, token: loginData.token }));
+                }
+                else{
+                    console.log('No data found in auth context...');
+                    return;
                 }
             } catch (error) {
                 console.error('Error loading localStorage data:', error);
