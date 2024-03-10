@@ -3,10 +3,42 @@ const COLORS = {
     secondary: '#17B1A4',
     tertiary: '#2B768F',
 
-    gray: "#CCD3CA",
-    gray2: "#EEEDEB",
+    darkGray: "#CCD3CA",
+    lightGray: "#EEEDEB",
 
-    red: "#FE0000"
+    boneWhite: "#f9f6ee",
+    snowWhite: "#fffafa",
+    antifleshWhite: "#fafafa",
+    ivoryWhite: "#fffff0",
+
+    slateShadow: "#101415",
+    earthlyMocha: "#110904",
+    velvetAubergine: "#190b14",
+    chocolateNoir: "#262020",
+    midnightSapphire: "#0b1623",
+    forestShadow: "#0e1514",
+
+    lime: "#c8f560",
+
+    red: "#FE0000",
+
+    darkBeach: "#4FACFE",
+    lightBeach: "#00f2fe",
+
+    darkLove: "#ff0844",
+    lightLove: "#ffb199",
+
+    darkEarth: "#94716b",
+    lightEarth: "#b79891",
+
+    darkSkyLine: "#2b32b2",
+    lightSkyLine: "#1488cc",
+
+    darkMojito: "#1d976c",
+    lightMojito: "#93f9b9",
+
+    darkMango: "#ffa751",
+    lightMango: "#ffe259",
 };
 
 const SIZES = {
