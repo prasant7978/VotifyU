@@ -3,7 +3,7 @@ import { horizontalScale, verticalScale } from "../../assets/styles/scaling";
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: horizontalScale(10)
+        paddingHorizontal: horizontalScale(10),
     }
 });
 

@@ -5,14 +5,27 @@ import { getFontFamily } from "../../assets/fonts/helper";
 
 const styles = StyleSheet.create({
     postContainer: {
+        marginTop: verticalScale(5),
         marginBottom: verticalScale(15),
         marginHorizontal: horizontalScale(10),
         padding: horizontalScale(5),
-        borderRadius: horizontalScale(10)
+        borderRadius: horizontalScale(10),
+        backgroundColor: '#FAFAFA',
+        borderRadius: horizontalScale(10),
+        shadowColor: '#000000',
+        shadowOffset: { 
+            width: 0, 
+            height: 2 
+        },
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        elevation: 5,
     },
     topContainer: {
         flexDirection: 'row',
         alignItems: 'center',
+        marginVertical: verticalScale(2),
+        marginHorizontal: horizontalScale(5)
     },
     avatarImageContainer: {
         borderWidth: 2,
@@ -42,12 +55,13 @@ const styles = StyleSheet.create({
         color: '#79869F'    
     },
     middleContainer: {
-        marginTop: verticalScale(10),
-        marginBottom: verticalScale(7)
+        marginTop: verticalScale(5),
+        marginBottom: verticalScale(7),
+        marginHorizontal: horizontalScale(5)
     },
     campaignImage: {
         height: horizontalScale(200),
-        width: horizontalScale(300),
+        width: horizontalScale(290),
         borderRadius: horizontalScale(5),
     },
     titleText: { 
@@ -57,7 +71,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: horizontalScale(5)
     },
     descriptionTextContainer: {
-        paddingHorizontal: horizontalScale(5)
+        paddingHorizontal: horizontalScale(5),
+        marginHorizontal: horizontalScale(5)
     },
     descriptionText: {
         color: '#000000',
