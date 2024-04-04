@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import RootNavigation from './navigation/RootNavigation';
 
-import { AuthProvider } from './context/aurhContext';
+import { AuthProvider } from './context/authContext';
 import { PostProvider } from './context/postContext';
 
 const App = () => {

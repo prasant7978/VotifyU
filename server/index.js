@@ -29,6 +29,6 @@ app.use('/api/uploads/profile', express.static('uploads/profile'));
 app.use('/api/uploads/campaign', express.static('uploads/campaign'));
 
 // server listen
-app.listen(process.env.PORT || 3001, '192.168.158.6', () => {
+app.listen(process.env.PORT || 3001, '192.168.156.96', () => {
     console.log(`server running on port ${process.env.PORT}...`.bgGreen.white);
 })

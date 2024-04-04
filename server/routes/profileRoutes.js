@@ -15,7 +15,8 @@ const uploadImage = require('../middlewares/uploadImage');
 router.get('/student/get-profile', verifyToken, getStudentProfile);
 router.get('/student/get-all-profile', verifyToken, getAllStudentsProfile);
 router.get('/student/get-all-candidates-profile', verifyToken, getAllCandidatesProfile);
-router.put('/student/update-profile', verifyToken, uploadImage, updateStudentProfile);
+// router.put('/student/update-profile', verifyToken, uploadImage, updateStudentProfile);
+router.put('/student/update-profile', verifyToken, updateStudentProfile);
 router.delete('/student/delete-profile', verifyToken, deleteStudentProfile);
 
 module.exports = router;

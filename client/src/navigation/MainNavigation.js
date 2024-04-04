@@ -31,7 +31,6 @@ import { COLORS } from "../constants/theme";
 
 import { horizontalScale, scaleFontSize } from "../assets/styles/scaling";
 
-
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -163,7 +162,7 @@ const NonAuthenticatedNavigator = () => {
         <Stack.Navigator initialRouteName={Routes.Student_Login} screenOptions={{header: () => null, headerShown: false}}>
             <Stack.Screen name={Routes.Student_Login} component={Student_Login}/>
             <Stack.Screen name={Routes.Admin_Login} component={Admin_Login}/>
-            {/* <Stack.Screen name={'AuthenticatedNavigator'} component={AuthenticatedNavigator}/> */}
+            <Stack.Screen name={'AuthenticatedNavigator'} component={AuthenticatedNavigator}/>
         </Stack.Navigator>
     );
 }

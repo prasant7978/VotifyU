@@ -9,7 +9,7 @@ import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawe
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
-import { AuthContext } from '../../context/aurhContext'
+import { AuthContext } from '../../context/authContext'
 import { PostContext } from '../../context/postContext'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -65,7 +65,7 @@ const DrawerContent = (props) => {
                 /> 
               : 
                 <Image 
-                  source={{uri: `http://192.168.158.6:3001/api/uploads/profile/${userState.user.profileImage}`}}
+                  source={{uri: `http://192.168.156.96:3001/api/uploads/profile/${userState.user.profileImage}`}}
                   style={styles.profileImage}
                   resizeMode={'cover'}
                 />

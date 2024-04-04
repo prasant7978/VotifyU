@@ -13,7 +13,7 @@ import Button from "../../../components/Button/Button";
 
 import { loginAdmin } from "../../../api/loginAdmin";
 
-import { AuthContext } from "../../../context/aurhContext";
+import { AuthContext } from "../../../context/authContext";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Routes } from "../../../navigation/Routes";

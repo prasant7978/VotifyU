@@ -15,7 +15,7 @@ import { Routes } from "../../../navigation/Routes";
 
 import { loginStudent } from "../../../api/loginStudent";
 
-import { AuthContext } from "../../../context/aurhContext";
+import { AuthContext } from "../../../context/authContext";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 

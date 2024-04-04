@@ -5,12 +5,14 @@ import { horizontalScale, scaleFontSize } from '../../assets/styles/scaling';
 import { COLORS } from '../../constants/theme';
 
 const InitialAvatar = ({name, avatarSize, textSize, padding}) => {
-    // functions to extract initial name
-    const getInitials = (name) => {
-        const nameArray = name.split(' ');
-        const initials = nameArray.map((word) => word.charAt(0).toUpperCase()).join('');
-        return initials;
-    }
+  // console.log('name: ', name);
+
+  // functions to extract initial name
+  const getInitials = (name) => {
+      const nameArray = name.split(' ');
+      const initials = nameArray.map((word) => word.charAt(0).toUpperCase()).join('');
+      return initials;
+  }
 
   return (
     <View 
@@ -23,7 +25,7 @@ const InitialAvatar = ({name, avatarSize, textSize, padding}) => {
         }
       ]}
     >
-      <Text style={[styles.text, {fontSize: scaleFontSize(textSize)}]}>{getInitials(name)}</Text>
+      <Text style={[styles.text, {fontSize: scaleFontSize(textSize)}]}>{name && getInitials(name)}</Text>
     </View>
   )
 }

@@ -6,7 +6,7 @@ import { View, FlatList } from 'react-native'
 
 import FooterMenu from '../../components/Menus/FooterMenu';
 
-import { AuthContext } from '../../context/aurhContext'
+import { AuthContext } from '../../context/authContext'
 import { PostContext } from '../../context/postContext';
 import PostCard from '../../components/PostCard/PostCard';
 import globalStyles from '../../assets/styles/globalStyles';

@@ -12,7 +12,7 @@ const Input = (props) => {
             <TextInput
                 style={styles.input}
                 placeholder={props.placeholder ? props.placeholder : null}
-                placeholderTextColor={COLORS.gray}
+                placeholderTextColor={COLORS.darkGray}
                 value={value}
                 onChangeText={(val) => {
                     setValue(val);

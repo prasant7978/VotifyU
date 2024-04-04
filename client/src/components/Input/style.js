@@ -4,11 +4,11 @@ import { COLORS, SIZES } from "../../constants/theme";
 
 const styles = StyleSheet.create({
     input: {
-        backgroundColor: COLORS.gray2,
+        backgroundColor: COLORS.boneWhite,
         paddingVertical: verticalScale(SIZES.small),
         paddingHorizontal: horizontalScale(SIZES.xSmall), 
         fontSize: scaleFontSize(SIZES.large),
-        color: '#000000',
+        color: COLORS.earthlyMocha,
         borderRadius: SIZES.xSmall,
     }
 });

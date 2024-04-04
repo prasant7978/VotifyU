@@ -3,13 +3,14 @@ const COLORS = {
     secondary: '#17B1A4',
     tertiary: '#2B768F',
 
-    darkGray: "#CCD3CA",
-    lightGray: "#EEEDEB",
+    darkGray: "#808080",
+    lightGray: "#CCD3CA",
 
     boneWhite: "#f9f6ee",
     snowWhite: "#fffafa",
     antifleshWhite: "#fafafa",
     ivoryWhite: "#fffff0",
+    coffeeWhite: "#e9e3d5",
 
     slateShadow: "#101415",
     earthlyMocha: "#110904",

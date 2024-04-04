@@ -10,9 +10,9 @@ module.exports = async(req, res) => {
             });
         }
 
-        const student = await studentModel.findById({_id: req.query.id});
+        const student = await studentModel.findById({_id: req.id});
 
-        const updatedStudent = await studentModel.findByIdAndUpdate({_id: req.query.id}, {
+        const user = await studentModel.findByIdAndUpdate({_id: req.id}, {
             name: req.body.name || student?.name,
             roll: req.body.roll || student?.roll,
             email: req.body.email || student?.email,
@@ -23,14 +23,21 @@ module.exports = async(req, res) => {
             department: req.body.department || student?.department,
             dob: req.body.dob || student?.dob,
             gender: req.body.gender || student?.gender,
-            profileImage: req.file.filename || student?.profileImage,
+            // profileImage: req.file.filename || student?.profileImage,
+            profileImage: student?.profileImage,
             userType: req.body.userType || student?.userType
         }, {new: true});
+
+        // making password undefined
+        user.password = undefined;
+
+        const token = req.headers['auth-token']
 
         res.status(200).send({
             success: true,
             message: 'Profile has been updated successfully',
-            updatedStudent
+            user,
+            token
         });
     } catch (error) {
         console.log(`Error in update-student-profile api: ${error}`.bgRed.white);
