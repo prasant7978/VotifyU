@@ -5,6 +5,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import { Routes } from "./Routes";
 
+// importing screens
 import Student_Login from "../screens/Login/Student/Student_Login";
 import Admin_Login from "../screens/Login/Admin/Admin_Login";
 import Feeds from "../screens/Feeds/Feeds";
@@ -15,6 +16,7 @@ import AboutElection from "../screens/About Election/AboutElection";
 import CreateCampaign from "../screens/Create Campaign/CreateCampaign";
 import Feedback from "../screens/Feedback/Feedback";
 import HelpCenter from "../screens/Help Center/HelpCenter";
+import UpdatePassword from "../screens/UpdatePassword/UpdatePassword";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faBars, faCircleInfo, faHome } from "@fortawesome/free-solid-svg-icons";
@@ -153,6 +155,14 @@ const StackNavigator = () => {
                     title: 'Profile',
                 }}
             />
+            <Stack.Screen 
+                name={Routes.UpdatePassword} 
+                component={UpdatePassword}
+                options={{
+                    title: 'Update Password',
+                }}
+            />
+            <Stack.Screen name={'NonAuthenticatedNavigator'} component={NonAuthenticatedNavigator}/>
         </Stack.Navigator>
     )
 }
@@ -162,7 +172,8 @@ const NonAuthenticatedNavigator = () => {
         <Stack.Navigator initialRouteName={Routes.Student_Login} screenOptions={{header: () => null, headerShown: false}}>
             <Stack.Screen name={Routes.Student_Login} component={Student_Login}/>
             <Stack.Screen name={Routes.Admin_Login} component={Admin_Login}/>
-            <Stack.Screen name={'AuthenticatedNavigator'} component={AuthenticatedNavigator}/>
+            {/* <Stack.Screen name={'AuthenticatedNavigator'} component={AuthenticatedNavigator}/> */}
+            <Stack.Screen name={'StackNavigator'} component={StackNavigator} />
         </Stack.Navigator>
     );
 }

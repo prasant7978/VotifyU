@@ -9,4 +9,5 @@ export const Routes = {
     CreateCampaign: 'CreateCampaign',
     Feedback: 'Feedback',
     HelpCenter: 'HelpCenter',
+    UpdatePassword: 'UpdatePassword'
 }

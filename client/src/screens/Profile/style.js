@@ -138,6 +138,19 @@ const styles = StyleSheet.create({
         fontFamily: getFontFamily('Inter', '700'),
         fontSize: scaleFontSize(20),
         color: COLORS.midnightSapphire
+    },
+    bottomContainer: {
+        paddingHorizontal: horizontalScale(30),
+        paddingVertical: verticalScale(15),
+    },
+    updatePasswordContainer: {
+        paddingTop: verticalScale(25)
+    },
+    updatePasswordText: {
+        color: COLORS.secondary,
+        fontSize: scaleFontSize(16),
+        fontFamily: getFontFamily('Inter', '500'),
+        textAlign: 'center'
     }
 });
 

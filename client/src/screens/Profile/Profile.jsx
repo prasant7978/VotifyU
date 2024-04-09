@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import styles from './style'
 import globalStyles from '../../assets/styles/globalStyles'
 
-import { View, Text, Image, TextInput, ScrollView, Pressable, Alert } from 'react-native'
+import { View, Text, Image, TextInput, ScrollView, Pressable, Alert, TouchableOpacity } from 'react-native'
 
 import { Dropdown } from 'react-native-element-dropdown';
 import DatePicker from 'react-native-date-picker'
@@ -21,8 +21,9 @@ import { getFontFamily } from '../../assets/fonts/helper'
 
 import { COLORS } from '../../constants/theme'
 import { updateProfile } from '../../api/updateProfile';
+import { Routes } from '../../navigation/Routes';
 
-const Profile = () => {
+const Profile = ({navigation}) => {
   // global state
   const [userState, setUserState] = useContext(AuthContext); 
 
@@ -262,13 +263,20 @@ const Profile = () => {
           </View>
         </View> */}
 
-        <View style={{padding: 40}}>
+        <View style={styles.updatePasswordContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate(Routes.UpdatePassword)}>
+            <Text style={styles.updatePasswordText}>Update Password</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.bottomContainer}>
           <Button
             title={'Update Profile'}
             loading={isLoading}
             handleSubmit={handleUpdateProfile}
           />
         </View>
+
       </ScrollView>
 
       <View>
