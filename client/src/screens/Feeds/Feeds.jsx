@@ -55,7 +55,7 @@ const Home = () => {
   }, [allPosts]);
 
   return (
-    <View style={[globalStyles.whiteBackground, globalStyles.flex, styles.container]}>
+    <View style={[globalStyles.whiteBackground, globalStyles.flex, globalStyles.paddingHorizontal]}>
       <FlatList
         data={userPostsRenderData}
         onEndReachedThreshold={0.5}

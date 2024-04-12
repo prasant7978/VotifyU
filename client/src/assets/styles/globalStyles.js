@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { horizontalScale } from "./scaling";
 
 const globalStyles = StyleSheet.create({
     whiteBackground: {
@@ -6,6 +7,9 @@ const globalStyles = StyleSheet.create({
     },
     flex: {
         flex: 1
+    },
+    paddingHorizontal: {
+        paddingHorizontal: horizontalScale(10)
     }
 })
 

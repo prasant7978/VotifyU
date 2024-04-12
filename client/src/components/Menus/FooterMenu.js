@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
@@ -8,10 +8,13 @@ import { horizontalScale, verticalScale } from '../../assets/styles/scaling'
 import { COLORS, SIZES } from '../../constants/theme'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Routes } from '../../navigation/Routes'
+import { AuthContext } from '../../context/authContext'
 
 const FooterMenu = () => {
-    const navigation = useNavigation();
-    const route = useRoute();
+  const [userState] = useContext(AuthContext);
+
+  const navigation = useNavigation();
+  const route = useRoute();
 
   return (
     <View style={styles.container}>
@@ -30,9 +33,14 @@ const FooterMenu = () => {
         <Text style={[styles.text, route.name === 'Results' ? { color: COLORS.primary } : { color: 'black' }]}>Results</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate(Routes.Profile)}>
-        <FontAwesomeIcon icon={faUser} size={24} style={styles.iconStyle} color={route.name === 'Profile' ? COLORS.primary : "black"}/>
-        <Text style={[styles.text, route.name === 'Profile' ? {color: COLORS.primary} : {color: 'black'}]}>Profile</Text>
+      <TouchableOpacity onPress={() => {
+        if(userState.user.role === 'Student')
+          navigation.navigate(Routes.StudentProfile)
+        else if(userState.user.role === 'Candidate')
+          navigation.navigate(Routes.CandidateProfile)
+      }}>
+        <FontAwesomeIcon icon={faUser} size={24} style={styles.iconStyle} color={route.name === 'StudentProfile' || route.name === 'CandidateProfile' ? COLORS.primary : "black"}/>
+        <Text style={[styles.text, route.name === 'StudentProfile' || route.name === 'CandidateProfile' ? {color: COLORS.primary} : {color: 'black'}]}>Profile</Text>
       </TouchableOpacity>
     </View>
   )

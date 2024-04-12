@@ -11,7 +11,8 @@ import Admin_Login from "../screens/Login/Admin/Admin_Login";
 import Feeds from "../screens/Feeds/Feeds";
 import Elections from "../screens/Elections/Elections";
 import Results from "../screens/Results/Results";
-import Profile from "../screens/Profile/Profile";
+import StudentProfile from "../screens/Profile/StudentProfile/StudentProfile";
+import CandidateProfile from "../screens/Profile/CandidateProfile/CandidateProfile";
 import AboutElection from "../screens/About Election/AboutElection";
 import CreateCampaign from "../screens/Create Campaign/CreateCampaign";
 import Feedback from "../screens/Feedback/Feedback";
@@ -149,8 +150,15 @@ const StackNavigator = () => {
                 }}
             />
             <Stack.Screen 
-                name={Routes.Profile} 
-                component={Profile}
+                name={Routes.StudentProfile} 
+                component={StudentProfile}
+                options={{
+                    title: 'Profile',
+                }}
+            />
+            <Stack.Screen 
+                name={Routes.CandidateProfile} 
+                component={CandidateProfile}
                 options={{
                     title: 'Profile',
                 }}

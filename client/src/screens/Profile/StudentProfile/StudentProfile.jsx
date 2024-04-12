@@ -1,29 +1,38 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import styles from './style'
-import globalStyles from '../../assets/styles/globalStyles'
-
 import { View, Text, Image, TextInput, ScrollView, Pressable, Alert, TouchableOpacity } from 'react-native'
 
 import { Dropdown } from 'react-native-element-dropdown';
 import DatePicker from 'react-native-date-picker'
 
-import { AuthContext } from '../../context/authContext'
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import InitialAvatar from '../../components/InitialAvatar/InitialAvatar'
-import FooterMenu from '../../components/Menus/FooterMenu'
-import Button from '../../components/Button/Button'
+// imporitng styles
+import styles from './style'
+import globalStyles from '../../../assets/styles/globalStyles'
 
-import { horizontalScale } from '../../assets/styles/scaling'
-import { getFontFamily } from '../../assets/fonts/helper'
+// importing user context api
+import { AuthContext } from '../../../context/authContext'
 
-import { COLORS } from '../../constants/theme'
-import { updateProfile } from '../../api/updateProfile';
-import { Routes } from '../../navigation/Routes';
+// importing components
+import InitialAvatar from '../../../components/InitialAvatar/InitialAvatar'
+import FooterMenu from '../../../components/Menus/FooterMenu'
+import Button from '../../../components/Button/Button'
 
-const Profile = ({navigation}) => {
+// importing update profile api
+import { updateProfile } from '../../../api/profile/updateProfile';
+
+// imporing assets
+import { horizontalScale } from '../../../assets/styles/scaling'
+import { getFontFamily } from '../../../assets/fonts/helper'
+
+// importing colors
+import { COLORS } from '../../../constants/theme'
+
+// importing navigation routes
+import { Routes } from '../../../navigation/Routes';
+
+const StudentProfile = ({navigation}) => {
   // global state
   const [userState, setUserState] = useContext(AuthContext); 
 
@@ -35,9 +44,6 @@ const Profile = ({navigation}) => {
   const [gender, setGender] = useState(userState.user.gender);
   const [dob, setDob] = useState(userState.user.dob);
   const [isLoading, setIsLoading] = useState(false);
-
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
 
   // dropdown visibility state
   const [isFocus, setIsFocus] = useState(false);
@@ -90,7 +96,7 @@ const Profile = ({navigation}) => {
   }
 
   return (
-    <View style={[globalStyles.whiteBackground, globalStyles.flex, {justifyContent: 'space-between'}]}>
+    <View style={[globalStyles.whiteBackground, globalStyles.flex, globalStyles.paddingHorizontal, {justifyContent: 'space-between'}]}>
       <ScrollView style={styles.profileContainer}>
         <View style={styles.userPrimaryDetailsContainer}>
           <View style={styles.profileImageContainer}>
@@ -230,38 +236,7 @@ const Profile = ({navigation}) => {
             </View>
           </View>
 
-          
         </View>
-
-        {/* <View style={styles.userSecondaryDetailsContainer}>
-          <View style={styles.changePasswordTextContainer}>
-            <Text style={styles.changePasswordHeading}>Change Password</Text>
-          </View>
-
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabelText}>New Password</Text>
-            <TextInput
-              value={newPassword}
-              onChangeText={(val) => setNewPassword(val)}
-              style={styles.inputBox}
-            />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabelText}>Confirm Password</Text>
-            <TextInput
-              value={confirmPassword}
-              onChangeText={(val) => setConfirmPassword(val)}
-              style={styles.inputBox}
-            />
-          </View>
-
-          <View>
-            <Button
-              title={'Save Password'}
-            />
-          </View>
-        </View> */}
 
         <View style={styles.updatePasswordContainer}>
           <TouchableOpacity onPress={() => navigation.navigate(Routes.UpdatePassword)}>
@@ -276,7 +251,6 @@ const Profile = ({navigation}) => {
             handleSubmit={handleUpdateProfile}
           />
         </View>
-
       </ScrollView>
 
       <View>
@@ -286,4 +260,4 @@ const Profile = ({navigation}) => {
   )
 }
 
-export default Profile;
+export default StudentProfile;

@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
-import { horizontalScale, scaleFontSize, verticalScale } from "../../assets/styles/scaling";
-import { getFontFamily } from "../../assets/fonts/helper";
-import { COLORS } from "../../constants/theme";
+import { horizontalScale, scaleFontSize, verticalScale } from "../../../assets/styles/scaling";
+import { getFontFamily } from "../../../assets/fonts/helper";
+import { COLORS } from "../../../constants/theme";
 
 const styles = StyleSheet.create({
     profileContainer: {

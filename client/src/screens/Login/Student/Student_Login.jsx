@@ -13,7 +13,7 @@ import Button from "../../../components/Button/Button";
 
 import { Routes } from "../../../navigation/Routes";
 
-import { loginStudent } from "../../../api/loginStudent";
+import { loginStudent } from "../../../api/authentication/loginStudent";
 
 import { AuthContext } from "../../../context/authContext";
 

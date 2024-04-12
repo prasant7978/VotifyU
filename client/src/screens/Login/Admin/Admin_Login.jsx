@@ -11,7 +11,7 @@ import Heading from "../../../components/Heading/Heading";
 import Input from "../../../components/Input/Input";
 import Button from "../../../components/Button/Button";
 
-import { loginAdmin } from "../../../api/loginAdmin";
+import { loginAdmin } from "../../../api/authentication/loginAdmin";
 
 import { AuthContext } from "../../../context/authContext";
 

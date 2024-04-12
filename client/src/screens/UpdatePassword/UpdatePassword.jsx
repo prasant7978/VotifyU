@@ -8,7 +8,7 @@ import { Alert, Image, ScrollView, Text, View } from "react-native";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 
-import { updatePassword } from "../../api/updatePassword";
+import { updatePassword } from "../../api/profile/updatePassword";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../../context/authContext";
