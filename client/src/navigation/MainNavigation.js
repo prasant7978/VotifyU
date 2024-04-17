@@ -18,6 +18,7 @@ import CreateCampaign from "../screens/Create Campaign/CreateCampaign";
 import Feedback from "../screens/Feedback/Feedback";
 import HelpCenter from "../screens/Help Center/HelpCenter";
 import UpdatePassword from "../screens/UpdatePassword/UpdatePassword";
+import UpdateCampaign from "./../screens/UpdateCampaign/UpdateCampaign";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faBars, faCircleInfo, faHome } from "@fortawesome/free-solid-svg-icons";
@@ -168,6 +169,13 @@ const StackNavigator = () => {
                 component={UpdatePassword}
                 options={{
                     title: 'Update Password',
+                }}
+            />
+            <Stack.Screen 
+                name={Routes.UpdateCampaign} 
+                component={UpdateCampaign}
+                options={{
+                    title: 'Update Campaign',
                 }}
             />
             <Stack.Screen name={'NonAuthenticatedNavigator'} component={NonAuthenticatedNavigator}/>

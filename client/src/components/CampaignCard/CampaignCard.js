@@ -1,12 +1,16 @@
 import React from 'react'
 import styles from './style'
 import { View, Text, Image, Pressable } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { Routes } from '../../navigation/Routes'
 
 const CampaignCard = ({post}) => {
+  const navigation = useNavigation();
+
   return (
     <Pressable 
       style={styles.campaignContainer} 
-      onPress={() => console.log(post._id)}
+      onPress={() => navigation.navigate(Routes.UpdateCampaign, {post: post})}
     >
         {post.type === 'campaign' ? (
             <Image

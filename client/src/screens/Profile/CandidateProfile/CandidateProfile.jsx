@@ -19,7 +19,7 @@ import FooterMenu from "../../../components/Menus/FooterMenu";
 
 const CandidateProfile = () => {
     // global states
-    const [userState, setUserState] = useContext(AuthContext);
+    const [userState] = useContext(AuthContext);
     
     // local states
     const [ownPosts, setOwnPosts] = useState([]);
@@ -31,7 +31,7 @@ const CandidateProfile = () => {
             setOwnPosts(posts);
         }
         fetchAllOwnPosts();
-    }, [])
+    }, [ownPosts])
 
     return (
         <View style={[globalStyles.whiteBackground, globalStyles.flex, globalStyles.paddingHorizontal]}>
