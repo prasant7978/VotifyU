@@ -6,7 +6,6 @@ import { View, FlatList } from 'react-native'
 
 import FooterMenu from '../../components/Menus/FooterMenu';
 
-import { AuthContext } from '../../context/authContext'
 import { PostContext } from '../../context/postContext';
 import PostCard from '../../components/PostCard/PostCard';
 import globalStyles from '../../assets/styles/globalStyles';
@@ -37,17 +36,14 @@ const Home = () => {
     };
 
     fetchData()
-
-    // setIsLoadingUserPosts(true);
-    // const initialPosts = pagination(allPosts, 1, userPostPageSize);
-    // console.log('all posts: ', allPosts);
-    // console.log('initial posts: ', initialPosts);
-    // setUserPostsRenderData(initialPosts);
-    // setIsLoadingUserPosts(false);
-  }, [setAllPosts]);
+  }, []);
 
   // initial loading of posts
   useEffect(() => {
+    setUserPostsCurrentPage(1);
+    setUserPostsRenderData([]);
+    setIsLoadingUserPosts(false);
+
     setIsLoadingUserPosts(true);
     const initialPosts = pagination(allPosts, 1, userPostPageSize);
     setUserPostsRenderData(initialPosts);

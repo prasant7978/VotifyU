@@ -1,18 +1,33 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+
 import { Alert, Image, ScrollView, Text, TextInput, View } from 'react-native';
+
+// styles
 import styles from './style';
-import { useRoute } from '@react-navigation/native';
 import globalStyles from '../../assets/styles/globalStyles';
-import Button from '../../components/Button/Button';
-import { verticalScale } from '../../assets/styles/scaling';
-import { updatePost } from '../../api/posts/updatePost';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import Snackbar from 'react-native-snackbar';
+import { useRoute } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// components
+import Button from '../../components/Button/Button';
+
+// fonts and scale
+import { verticalScale } from '../../assets/styles/scaling';
 import { getFontFamily } from '../../assets/fonts/helper';
+
+// api
+import { updatePost } from '../../api/posts/updatePost';
+
+// all posts context api
+import { PostContext } from '../../context/postContext';
 
 const UpdateCampaign = () => {
     const route = useRoute();
     const post = route.params?.post;
+
+    const [, , fetchAllPosts] = useContext(PostContext);
 
     const [title, setTitle] = useState(post.type === 'notice' ? post.title : '');
     const [description, setDescription] = useState(post.description);
@@ -50,10 +65,12 @@ const UpdateCampaign = () => {
 
         setLoading(true);
         const updatedPost = await updatePost(token, newPost);
-        // console.log('updated post: ', updatedPost);
         setLoading(false);
 
         if(updatedPost.status){
+            // fetch the updated posts
+            fetchUpdatedData();
+
             Snackbar.show({
                 text: 'The post has been updated successfully',
                 duration: Snackbar.LENGTH_SHORT,
@@ -63,6 +80,10 @@ const UpdateCampaign = () => {
         else
             Alert.alert('Alert', 'Error in updating the post.\nPlease try again later.')
     }
+
+    const fetchUpdatedData = async () => {
+        await fetchAllPosts('update page');
+    };
 
     return (
         <ScrollView style={[globalStyles.flex, globalStyles.whiteBackground, globalStyles.paddingHorizontal]} scrollEnabled={true} showsVerticalScrollIndicator={true}>
