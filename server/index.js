@@ -23,6 +23,7 @@ app.use(morgan("dev"));
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/post', require('./routes/postRoutes'));
 app.use('/api/profile', require('./routes/profileRoutes'));
+app.use('/api/position', require('./routes/positionRoutes'));
 
 // routes to access/get images from uploads folder
 app.use('/api/uploads/profile', express.static('uploads/profile'));
