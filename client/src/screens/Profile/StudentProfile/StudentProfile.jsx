@@ -102,7 +102,7 @@ const StudentProfile = ({navigation}) => {
           <View style={styles.profileImageContainer}>
             {userState.user.profileImage ? (
               <Image
-                source={{uri: `http://192.168.156.96:3001/api/uploads/profile/${userState.user.profileImage}`}}
+                source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${userState.user.profileImage}`}}
                 style={styles.profileImage}
                 resizeMode='cover'
               />

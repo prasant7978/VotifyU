@@ -19,9 +19,10 @@ import Feedback from "../screens/Feedback/Feedback";
 import HelpCenter from "../screens/Help Center/HelpCenter";
 import UpdatePassword from "../screens/UpdatePassword/UpdatePassword";
 import UpdateCampaign from "./../screens/UpdateCampaign/UpdateCampaign";
+import CandidateApply from "../screens/CandidateApply/CandidateApply";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faBars, faCircleInfo, faHome } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCircleInfo, faHome, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faComments, faSquarePlus } from "@fortawesome/free-regular-svg-icons";
 import { faHeadset } from "@fortawesome/free-solid-svg-icons/faHeadset";
 
@@ -91,6 +92,17 @@ const DrawerNavigator = () => {
                     drawerIcon: () => (
                         <FontAwesomeIcon icon={faComments} size={22}/>
                     ),
+                }}
+            />
+            <Drawer.Screen 
+                name={Routes.CandidateApply} 
+                component={CandidateApply} 
+                options={{
+                    title: 'Apply For Candidate',
+                    drawerIcon: () => (
+                        <FontAwesomeIcon icon={faPenToSquare} size={22}/>
+                    ),
+                    headerShown: true
                 }}
             />
             <Drawer.Screen 

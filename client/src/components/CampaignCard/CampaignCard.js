@@ -14,7 +14,7 @@ const CampaignCard = ({post}) => {
     >
         {post.type === 'campaign' ? (
             <Image
-                source={{uri: `http://192.168.156.96:3001/api/uploads/campaign/${post.image}`}}
+                source={{uri: `http://192.168.93.221:3001/api/uploads/campaign/${post.image}`}}
                 style={styles.campaignImage}
             />
             ) : (

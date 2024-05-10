@@ -24,12 +24,13 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/post', require('./routes/postRoutes'));
 app.use('/api/profile', require('./routes/profileRoutes'));
 app.use('/api/position', require('./routes/positionRoutes'));
+app.use('/api/candidate', require('./routes/candidateRoutes'));
 
 // routes to access/get images from uploads folder
 app.use('/api/uploads/profile', express.static('uploads/profile'));
 app.use('/api/uploads/campaign', express.static('uploads/campaign'));
 
 // server listen
-app.listen(process.env.PORT || 3001, '192.168.156.96', () => {
+app.listen(process.env.PORT || 3001, '192.168.93.221', () => {
     console.log(`server running on port ${process.env.PORT}...`.bgGreen.white);
 })

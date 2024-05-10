@@ -10,7 +10,7 @@ const PostCard = ({post}) => {
         <View style={styles.avatarImageContainer}>
           {post.postedBy.profileImage ? (
             <Image
-              source={{uri: `http://192.168.156.96:3001/api/uploads/profile/${post.postedBy.profileImage}`}}
+              source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${post.postedBy.profileImage}`}}
               style={styles.avatarImage}
               resizeMode='cover'
             />
@@ -34,7 +34,7 @@ const PostCard = ({post}) => {
       <View style={styles.middleContainer}>
         {post.type === 'campaign' ? (
             <Image
-                source={{uri: `http://192.168.156.96:3001/api/uploads/campaign/${post.image}`}}
+                source={{uri: `http://192.168.93.221:3001/api/uploads/campaign/${post.image}`}}
                 style={styles.campaignImage}
                 resizeMode='cover'
             />
