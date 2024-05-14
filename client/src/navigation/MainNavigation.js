@@ -20,9 +20,12 @@ import HelpCenter from "../screens/Help Center/HelpCenter";
 import UpdatePassword from "../screens/UpdatePassword/UpdatePassword";
 import UpdateCampaign from "./../screens/UpdateCampaign/UpdateCampaign";
 import CandidateApply from "../screens/CandidateApply/CandidateApply";
+import SingleCandidateApplication from "../screens/SingleCandidateApplication/SingleCandidateApplication";
+import AllPendingCandidateApplications from "../screens/AllCandidateApplication/AllPendingCandidateApplications";
 
+// icons
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faBars, faCircleInfo, faHome, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCircleInfo, faHome, faPenToSquare, faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faComments, faSquarePlus } from "@fortawesome/free-regular-svg-icons";
 import { faHeadset } from "@fortawesome/free-solid-svg-icons/faHeadset";
 
@@ -30,11 +33,11 @@ import { DrawerActions, useNavigation } from "@react-navigation/native";
 
 import DrawerContent from "../components/Drawer/DrawerContent";
 
+// assets
 import { getFontFamily } from "../assets/fonts/helper";
+import { horizontalScale, scaleFontSize } from "../assets/styles/scaling";
 
 import { COLORS } from "../constants/theme";
-
-import { horizontalScale, scaleFontSize } from "../assets/styles/scaling";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -101,6 +104,17 @@ const DrawerNavigator = () => {
                     title: 'Apply For Candidate',
                     drawerIcon: () => (
                         <FontAwesomeIcon icon={faPenToSquare} size={22}/>
+                    ),
+                    headerShown: true
+                }}
+            />
+            <Drawer.Screen 
+                name={Routes.AllPendingCandidateApplications} 
+                component={AllPendingCandidateApplications} 
+                options={{
+                    title: 'Candidate Applications',
+                    drawerIcon: () => (
+                        <FontAwesomeIcon icon={faUsers} size={22}/>
                     ),
                     headerShown: true
                 }}
@@ -188,6 +202,20 @@ const StackNavigator = () => {
                 component={UpdateCampaign}
                 options={{
                     title: 'Update Campaign',
+                }}
+            />
+            <Stack.Screen 
+                name={Routes.SingleCandidateApplication} 
+                component={SingleCandidateApplication}
+                options={{
+                    title: 'Application',
+                }}
+            />
+            <Stack.Screen 
+                name={'DrawerNavigator'} 
+                component={DrawerNavigator}
+                options={{
+                    headerShown: false,
                 }}
             />
             <Stack.Screen name={'NonAuthenticatedNavigator'} component={NonAuthenticatedNavigator}/>

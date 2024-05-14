@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const checkIfExistAPI = async (token) => {
+const getAllCandidateApplicationsAPI = async(token) => {
     try {
         const {data} = await axios.get(
-            '/candidate/check-if-exist',
+            '/candidate/view-pending-candidate-applications',
             {
                 headers: {
                     'auth-token': token,
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
             }
         );
@@ -17,11 +17,11 @@ const checkIfExistAPI = async (token) => {
             data
         }
     } catch (error) {
-        console.log('Error in check existing candidate api: ', error);
+        console.log('Error in getting all candidate applications api: ', error);
         return {
             status: false,
         };
     }
 }
 
-export default checkIfExistAPI;
+export default getAllCandidateApplicationsAPI;

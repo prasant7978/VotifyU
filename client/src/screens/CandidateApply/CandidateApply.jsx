@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from "react";
 
+// styles
 import styles from "./style";
 import globalStyles from "../../assets/styles/globalStyles";
 
 import { Alert, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
-import { COLORS } from "../../constants/theme";
-import { getFontFamily } from "../../assets/fonts/helper";
 import DocumentPicker from 'react-native-document-picker';
-import getAllPositionAPI from "../../api/position/getAllPositionAPI";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Button from '../../components/Button/Button'
-import applyCandidateAPI from "../../api/candidate/applyCandidateAPI";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faFileCirclePlus } from "@fortawesome/free-solid-svg-icons";
+
+// assets and constants
+import { COLORS } from "../../constants/theme";
+import { getFontFamily } from "../../assets/fonts/helper";
 import { horizontalScale, verticalScale } from "../../assets/styles/scaling";
+
+// apis
+import getAllPositionAPI from "../../api/position/getAllPositionAPI";
+import applyCandidateAPI from "../../api/candidate/applyCandidateAPI";
+
+// components
+import Button from '../../components/Button/Button'
+
+// functions
 import checkExistingCandidate from "./checkExistingCandidate";
 
 const CandidateApply = ({navigation}) => {

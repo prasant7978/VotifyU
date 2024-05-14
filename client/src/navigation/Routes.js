@@ -12,5 +12,7 @@ export const Routes = {
     HelpCenter: 'HelpCenter',
     UpdatePassword: 'UpdatePassword',
     UpdateCampaign: 'UpdateCampaign',
-    CandidateApply: 'CandidateApply'
+    CandidateApply: 'CandidateApply',
+    AllPendingCandidateApplications: 'AllPendingCandidateApplications',
+    SingleCandidateApplication: 'SingleCandidateApplication',
 }
