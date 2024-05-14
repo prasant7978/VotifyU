@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import globalStyles from '../../assets/styles/globalStyles'
 
 const CreateCampaign = () => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text style={{color: '#000000'}}>Create Campaign</Text>
+    <View style={[globalStyles.flex, globalStyles.paddingHorizontal, globalStyles.whiteBackground]}>
+      
     </View>
   )
 }

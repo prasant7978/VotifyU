@@ -16,6 +16,7 @@ import { AuthContext } from "../../../context/authContext";
 import InitialAvatar from "../../../components/InitialAvatar/InitialAvatar";
 import CampaignCard from "../../../components/CampaignCard/CampaignCard";
 import FooterMenu from "../../../components/Menus/FooterMenu";
+import { useFocusEffect } from "@react-navigation/native";
 
 const CandidateProfile = () => {
     // global states
@@ -25,13 +26,24 @@ const CandidateProfile = () => {
     const [ownPosts, setOwnPosts] = useState([]);
     // console.log('all own posts: ', ownPosts);
 
-    useEffect(() => {
-        async function fetchAllOwnPosts(){
-            const {posts} = await getAllOwnPostsAPI(userState.token);
-            setOwnPosts(posts);
-        }
-        fetchAllOwnPosts();
-    }, [ownPosts])
+    useFocusEffect(
+        React.useCallback(() => {
+            async function fetchAllOwnPosts(){
+                const {posts} = await getAllOwnPostsAPI(userState.token);
+                setOwnPosts(posts);
+            }
+
+            fetchAllOwnPosts();
+        }, [])
+    );
+
+    // useEffect(() => {
+    //     async function fetchAllOwnPosts(){
+    //         const {posts} = await getAllOwnPostsAPI(userState.token);
+    //         setOwnPosts(posts);
+    //     }
+    //     fetchAllOwnPosts();
+    // }, [ownPosts])
 
     return (
         <View style={[globalStyles.whiteBackground, globalStyles.flex, globalStyles.paddingHorizontal]}>

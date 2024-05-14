@@ -86,6 +86,7 @@ const DrawerNavigator = () => {
                     drawerIcon: () => (
                         <FontAwesomeIcon icon={faSquarePlus} size={22}/>
                     ),
+                    headerShown: true
                 }}
             />
             <Drawer.Screen 
