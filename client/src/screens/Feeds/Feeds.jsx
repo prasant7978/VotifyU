@@ -1,20 +1,28 @@
 import React, { useContext, useEffect, useState } from 'react'
 
+// styles
 import styles from './style';
-
-import { View, FlatList } from 'react-native'
-
-import FooterMenu from '../../components/Menus/FooterMenu';
-
-import { PostContext } from '../../context/postContext';
-import PostCard from '../../components/PostCard/PostCard';
 import globalStyles from '../../assets/styles/globalStyles';
+
+import { View, FlatList, RefreshControl } from 'react-native'
+
+// components
+import FooterMenu from '../../components/Menus/FooterMenu';
+import PostCard from '../../components/PostCard/PostCard';
+
+// post context api
+import { PostContext } from '../../context/postContext';
+
+import { useFocusEffect } from '@react-navigation/native';
 
 const Home = () => {
   // global states
   const [allPosts, setAllPosts, fetchAllPosts] = useContext(PostContext);
 
-  const userPostPageSize = 3;
+  // local states
+  const [refreshing, setRefreshing] = useState(false);
+
+  const userPostPageSize = 5;
   const [userPostscurrentPage, setUserPostsCurrentPage] = useState(1);
   const [userPostsRenderData, setUserPostsRenderData] = useState([]);
   const [isLoadingUserPosts, setIsLoadingUserPosts] = useState(false);
@@ -30,13 +38,21 @@ const Home = () => {
     return allPosts.slice(startIndex, endIndex);
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await fetchAllPosts('feed page');
-    };
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchAllPosts('feed page');
+    setRefreshing(false);
+  }
 
-    fetchData()
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchData = async () => {
+        await fetchAllPosts('feed page');
+      };
+  
+      fetchData();
+    }, [])
+  );
 
   // initial loading of posts
   useEffect(() => {
@@ -53,6 +69,9 @@ const Home = () => {
   return (
     <View style={[globalStyles.whiteBackground, globalStyles.flex, globalStyles.paddingHorizontal]}>
       <FlatList
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
+      }
         data={userPostsRenderData}
         onEndReachedThreshold={0.5}
         onEndReached={() => {

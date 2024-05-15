@@ -17,7 +17,7 @@ import { getFontFamily } from "../../../assets/fonts/helper";
 // APIs
 import createNoticeAPI from "../../../api/posts/createNoticeAPI";
 
-const CreateNotice = () => {
+const CreateNotice = ({navigation}) => {
     // local states
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -36,6 +36,9 @@ const CreateNotice = () => {
                 fontFamily: getFontFamily('Inter', '400')
               });
       
+              setTitle('');
+              setDescription('');
+              
               navigation.goBack();
             }
             else{
