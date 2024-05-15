@@ -38,6 +38,7 @@ import { getFontFamily } from "../assets/fonts/helper";
 import { horizontalScale, scaleFontSize } from "../assets/styles/scaling";
 
 import { COLORS } from "../constants/theme";
+import CreateNotice from "../screens/CreateNotice/CreateNotice";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -83,6 +84,17 @@ const DrawerNavigator = () => {
                 component={CreateCampaign} 
                 options={{
                     title: 'Create Campaign',
+                    drawerIcon: () => (
+                        <FontAwesomeIcon icon={faSquarePlus} size={22}/>
+                    ),
+                    headerShown: true
+                }}
+            />
+            <Drawer.Screen 
+                name={Routes.CreateNotice} 
+                component={CreateNotice} 
+                options={{
+                    title: 'Create Notice',
                     drawerIcon: () => (
                         <FontAwesomeIcon icon={faSquarePlus} size={22}/>
                     ),

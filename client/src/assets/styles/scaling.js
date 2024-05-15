@@ -31,4 +31,4 @@ const guidlineBaseFont = () => {
 
 const scaleFontSize = (size) => Math.round((width / guidlineBaseFont()) * size);
 
-export {horizontalScale, verticalScale, scaleFontSize};
+export {horizontalScale, verticalScale, scaleFontSize, width, height};

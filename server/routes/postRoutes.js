@@ -8,6 +8,7 @@ const getAllOwnPost = require('../controllers/postController/viewController/getA
 const deletePost = require('../controllers/postController/deletePost');
 const updatePost = require('../controllers/postController/updateController/updatePost');
 const updateNotice = require('../controllers/postController/updateController/updateNotice');
+const verifyApplicationStatus = require('../middlewares/verifyApplicationStatus');
 
 // const multer  = require('multer')
 // const storage = multer.diskStorage({
@@ -29,8 +30,8 @@ const router = express.Router();
 // router.post('/create-post', upload.single('image'), createPost)
 
 // CREATE
-router.post('/create-post/campaign', verifyToken, upload, createPost);
-router.post('/create-post/notice', verifyToken, createNotice);
+router.post('/create-post/campaign', verifyToken, verifyApplicationStatus, upload, createPost);
+router.post('/create-post/notice', verifyToken, verifyApplicationStatus, createNotice);
 
 // UPDATE
 router.put('/update-post/campaign', verifyToken, updatePost);

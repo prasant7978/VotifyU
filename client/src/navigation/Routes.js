@@ -8,6 +8,7 @@ export const Routes = {
     CandidateProfile: 'CandidateProfile',
     AboutElection: 'AboutElection',
     CreateCampaign: 'CreateCampaign',
+    CreateNotice: 'CreateNotice',
     Feedback: 'Feedback',
     HelpCenter: 'HelpCenter',
     UpdatePassword: 'UpdatePassword',

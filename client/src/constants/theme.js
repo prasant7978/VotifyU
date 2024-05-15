@@ -11,6 +11,7 @@ const COLORS = {
     antifleshWhite: "#fafafa",
     ivoryWhite: "#fffff0",
     coffeeWhite: "#e9e3d5",
+    coolWhite: "#EEF7FF",
 
     slateShadow: "#101415",
     earthlyMocha: "#110904",
@@ -40,6 +41,8 @@ const COLORS = {
 
     darkMango: "#ffa751",
     lightMango: "#ffe259",
+
+    darkYellow: "#FFC100"
 };
 
 const SIZES = {
