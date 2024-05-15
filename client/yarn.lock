@@ -1593,6 +1593,11 @@
   dependencies:
     "merge-options" "^3.0.4"
 
+"@react-native-community/checkbox@^0.5.17":
+  "integrity" "sha512-ZZx/eOH3SIxBg+hvA2zRd7lX5zPQEWcZU8C8Dn7WLdpJkiTkPmIUDFHWrmzxCnwZcyoD+BIt6gUZPKGGb9WmeQ=="
+  "resolved" "https://registry.npmjs.org/@react-native-community/checkbox/-/checkbox-0.5.17.tgz"
+  "version" "0.5.17"
+
 "@react-native-community/cli-clean@12.3.6":
   "integrity" "sha512-gUU29ep8xM0BbnZjwz9MyID74KKwutq9x5iv4BCr2im6nly4UMf1B1D+V225wR7VcDGzbgWjaezsJShLLhC5ig=="
   "resolved" "https://registry.npmjs.org/@react-native-community/cli-clean/-/cli-clean-12.3.6.tgz"
@@ -6041,7 +6046,7 @@
     "css-select" "^5.1.0"
     "css-tree" "^1.1.3"
 
-"react-native@*", "react-native@^0.0.0-0 || >=0.60 <1.0", "react-native@>= 0.64.3", "react-native@>= 0.67", "react-native@>=0.57", "react-native@>=0.60", "react-native@0.73.6":
+"react-native@*", "react-native@^0.0.0-0 || >=0.60 <1.0", "react-native@>= 0.62", "react-native@>= 0.64.3", "react-native@>= 0.67", "react-native@>=0.57", "react-native@>=0.60", "react-native@0.73.6":
   "integrity" "sha512-oqmZe8D2/VolIzSPZw+oUd6j/bEmeRHwsLn1xLA5wllEYsZ5zNuMsDus235ONOnCRwexqof/J3aztyQswSmiaA=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.73.6.tgz"
   "version" "0.73.6"

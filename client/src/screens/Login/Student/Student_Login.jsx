@@ -1,23 +1,31 @@
 import React, { useContext, useState } from "react";
 
+// styles
 import styles from "./style";
 import globalStyles from "../../../assets/styles/globalStyles";
 
 import { Alert, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import CheckBox from "@react-native-community/checkbox";
 
+// assets
 import { verticalScale } from "../../../assets/styles/scaling";
 
+// componenets
 import Heading from "../../../components/Heading/Heading";
 import Input from "../../../components/Input/Input";
 import Button from "../../../components/Button/Button";
 
+// routes
 import { Routes } from "../../../navigation/Routes";
 
+// APIs
 import { loginStudent } from "../../../api/authentication/loginStudent";
 
+// auth context API
 import { AuthContext } from "../../../context/authContext";
-
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { COLORS } from "../../../constants/theme";
+import { loginCandidateAPI } from "../../../api/authentication/loginCandidateAPI";
 
 const Student_Login = ({navigation}) => {
     // global state
@@ -29,6 +37,7 @@ const Student_Login = ({navigation}) => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState('');
+    const [isCheckBoxSelected, setIsCheckBoxSelected] = useState(false);
 
     const handleLogin = async() => {
 
@@ -39,7 +48,11 @@ const Student_Login = ({navigation}) => {
 
         setIsLoading(true);
 
-        const user = await loginStudent(email, password);
+        let user = {};
+        if(isCheckBoxSelected)
+            user = await loginCandidateAPI(email, password);
+        else
+            user = await loginStudent(email, password);
 
         // console.log('user: ', user);
         
@@ -99,9 +112,27 @@ const Student_Login = ({navigation}) => {
                     />
                 </View>
 
-                <TouchableOpacity>
-                    <Text style={styles.forgotPasswordText}>Forgot your password?</Text>
-                </TouchableOpacity>
+                <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <View style={styles.checkBoxContainer}>
+                        <CheckBox
+                            disabled={false}
+                            value={isCheckBoxSelected}
+                            onValueChange={(val) => setIsCheckBoxSelected(val)}
+                            tintColors={{
+                                true: COLORS.primary,
+                                false: COLORS.primary
+                            }}
+                        />
+
+                        <TouchableOpacity onPress={() => setIsCheckBoxSelected(!isCheckBoxSelected)}>
+                            <Text style={styles.candidateLoginText}>Login as Candidate</Text>
+                        </TouchableOpacity>
+                    </View>
+
+                    <TouchableOpacity>
+                        <Text style={styles.forgotPasswordText}>Forgot your password?</Text>
+                    </TouchableOpacity>
+                </View>
                 
                 <View style={styles.buttonContainer}>
                     <Button

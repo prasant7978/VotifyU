@@ -25,6 +25,17 @@ const styles = StyleSheet.create({
     inputContainer: {
         marginBottom: verticalScale(SIZES.xLarge),
     },
+    checkBoxContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    checkBox: {
+        color: COLORS.slateShadow
+    },
+    candidateLoginText: {
+        color: COLORS.forestShadow,
+        marginLeft: horizontalScale(3)
+    },
     forgotPasswordText: {
         color: COLORS.tertiary,
         textAlign: 'right'
