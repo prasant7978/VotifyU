@@ -8,7 +8,7 @@ const PostCard = ({post}) => {
     <View style={styles.postContainer}>
       <View style={styles.topContainer}>
         <View style={styles.avatarImageContainer}>
-          {post.postedBy.profileImage ? (
+          {post.postedBy?.profileImage ? (
             <Image
               source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${post.postedBy.profileImage}`}}
               style={styles.avatarImage}
@@ -16,7 +16,7 @@ const PostCard = ({post}) => {
             />
           ) : (
             <InitialAvatar 
-              name={post.postedBy.name} 
+              name={post.postedBy?.name} 
               avatarSize={40} 
               textSize={16}
               padding={5}
@@ -26,8 +26,8 @@ const PostCard = ({post}) => {
         </View>
   
         <View style={styles.userDetailsContainer}>
-            <Text style={styles.nameText}>{post.postedBy.name}</Text>
-            <Text style={styles.roleText}>{post.postedBy.role}</Text>
+            <Text style={styles.nameText}>{post.postedBy?.name}</Text>
+            <Text style={styles.roleText}>{post.postedBy?.role}</Text>
         </View>
       </View>
 

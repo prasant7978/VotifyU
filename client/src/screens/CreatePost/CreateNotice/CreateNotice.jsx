@@ -2,16 +2,20 @@ import React, { useState } from "react";
 
 // styles
 import styles from "./style";
-import globalStyles from "../../assets/styles/globalStyles";
+import globalStyles from "../../../assets/styles/globalStyles";
 
 import { Alert, SafeAreaView, Text, TextInput, View } from "react-native";
-
-import Button from "../../components/Button/Button";
-
-import { COLORS } from "../../constants/theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Snackbar from "react-native-snackbar";
-import createNoticeAPI from "../../api/posts/createNoticeAPI";
+
+import Button from "../../../components/Button/Button";
+
+import { COLORS } from "../../../constants/theme";
+
+import { getFontFamily } from "../../../assets/fonts/helper";
+
+// APIs
+import createNoticeAPI from "../../../api/posts/createNoticeAPI";
 
 const CreateNotice = () => {
     // local states

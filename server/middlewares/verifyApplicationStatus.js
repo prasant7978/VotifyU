@@ -1,6 +1,6 @@
 const candidateModel = require("../models/candidateModel");
 
-module.exports = async(req, res) => {
+module.exports = async(req, res, next) => {
     try {
         const candidateId = req.id;
         // console.log('candiate id: ', candidateId);
@@ -17,6 +17,7 @@ module.exports = async(req, res) => {
         }
 
         if(candidate.status === 'accepted'){
+            console.log('Application verified...');
             next();
         }
         else {

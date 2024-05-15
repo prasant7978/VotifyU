@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 // styles
 import styles from './style';
-import globalStyles from '../../assets/styles/globalStyles'
+import globalStyles from '../../../assets/styles/globalStyles'
 
 // components
 import { View, Text, TouchableOpacity, SafeAreaView, Image, TextInput, ScrollView, Alert } from 'react-native'
@@ -14,15 +14,15 @@ import Snackbar from 'react-native-snackbar';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import { horizontalScale } from '../../assets/styles/scaling';
-import { getFontFamily } from '../../assets/fonts/helper';
+import { horizontalScale } from '../../../assets/styles/scaling';
+import { getFontFamily } from '../../../assets/fonts/helper';
 
-import Button from '../../components/Button/Button';
+import Button from '../../../components/Button/Button';
 
-import { COLORS } from '../../constants/theme';
+import { COLORS } from '../../../constants/theme';
 
 // APIs
-import createCampaignAPI from '../../api/posts/createCampaignAPI';
+import createCampaignAPI from '../../../api/posts/createCampaignAPI';
 
 const CreateCampaign = ({navigation}) => {
   // local states
@@ -47,6 +47,15 @@ const CreateCampaign = ({navigation}) => {
   }
 
   const confirmDioalog = () => {
+    if(!image){
+      Alert.alert('Alert', 'Please select an image for posting');
+      return;
+    }
+    else if(!description){
+      Alert.alert('Alert', 'Please provide some description for the post');
+      return;
+    }
+
     Alert.alert(
       'Alert', 
       'Are you sure, you want to publish the campaign?',

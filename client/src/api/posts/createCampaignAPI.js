@@ -3,7 +3,7 @@ import axios from "axios";
 const createCampaignAPI = async(token, formData) => {
     try {
         const {data} = await axios.post(
-            '/post/create-post/campaign',
+            `/post/create-post/campaign?type=${'campaign'}`,
             formData,
             {
                 headers: {
