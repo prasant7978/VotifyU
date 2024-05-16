@@ -11,6 +11,7 @@ const viewSingleCandidateApplication = require('../controllers/candidateControll
 const updateApplicationStatus = require('../controllers/candidateController/updateApplicationStatus');
 
 router.post('/apply-for-candidate', verifyToken, upload, applyForCandidate)
+// can be converted to middleware
 router.get('/check-if-exist', verifyToken, checkIfAlreadyExist)
 router.get('/view-pending-candidate-applications', verifyToken, viewAllPendingApplications)
 router.get('/view-single-candidate-application', verifyToken, viewSingleCandidateApplication)

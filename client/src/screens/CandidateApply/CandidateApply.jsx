@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./style";
 import globalStyles from "../../assets/styles/globalStyles";
 
-import { Alert, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, Image, RefreshControl, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import DocumentPicker from 'react-native-document-picker';
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -32,20 +32,46 @@ const CandidateApply = ({navigation}) => {
     const [allPositions, setAllPositions] = useState([]);
     const [position, setPosition] = useState('');
     const [aadhar, setAadhar] = useState({});
+    const [marksheet, setMarksheet] = useState({});
     const [collegeId, setCollegeId] = useState({});
     const [hostelId, setHostelId] = useState({});
-    const [marksheet, setMarksheet] = useState({});
     const [loading, setLoading] = useState(false);
+    const [refreshing, setRefreshing] = useState(false);
 
     const [aadharCardFileName, setAadharCardFileName] = useState('Select aadhar')
     const [marksheetFileName, setMarksheetFileName] = useState('Select marksheet')
     const [collegeIdFileName, setCollegeIdFileName] = useState('Select college id card')
     const [hostelIdFileName, setHostelIdFileName] = useState('Select hostel id card')
 
-    const [documents, setDocuments] = useState([]);
+    // const [documents, setDocuments] = useState([]);
 
     // dropdown visibility state
     const [isFocus, setIsFocus] = useState(false);
+
+    const onRefresh = async() => {
+        setRefreshing(true);
+        handleClearStates();
+        try {
+            const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
+            const {positions} = await getAllPositionAPI(token);
+
+            // reseting the array before assigning all positions
+            allPositions.length = 0;
+
+            positions.map((item) => {
+                allPositions.push({
+                    label: item.name,
+                    value: item._id
+                });
+            });
+
+            // console.log('all positions list: ', allPositions)
+        } catch (error) {
+            console.error('Error fetching positions on refresh: ', error)
+        } finally {
+            setRefreshing(false);
+        }
+    }
 
     const selectDocument = async(docType) => {
         try {
@@ -53,9 +79,9 @@ const CandidateApply = ({navigation}) => {
                 type: [DocumentPicker.types.pdf]
             });
 
-            setDocuments([...documents, doc]);
+            // setDocuments([...documents, doc]);
 
-            // console.log('Document Selected: ', doc);
+            console.log('Document Selected: ', doc);
 
             if(docType === 'aadhar'){
                 setAadhar(doc)
@@ -85,29 +111,68 @@ const CandidateApply = ({navigation}) => {
         setCollegeId({});
         setHostelId({});
         setMarksheet({});
+        // setDocuments([]);
         setAadharCardFileName('Select aadhar');
         setMarksheetFileName('Select marksheet');
         setCollegeIdFileName('Select college id card');
         setHostelIdFileName('Select hostel id card');
     }
 
+    // const updateDocuments = (newDocument) => {
+    //     console.log('new document: ', newDocument);
+    //     setDocuments((prevDocuments) => [...prevDocuments, newDocument]);
+    //     console.log('documents after update: ', documents);
+    // }
+
     const handleApplyCandidate = async() => {
         const formData = new FormData();
 
         // console.log('documents array: ', documents);
+        // for(const documentIndex in documents){
+        //     const document = documents[documentIndex];
 
-        for(const documentIndex in documents){
-            const document = documents[documentIndex];
+        //     const {uri, name, type} = document;
 
-            const {uri, name, type} = document;
+        //     formData.append('documents[]', {
+        //         uri,
+        //         type,
+        //         name
+        //     });
 
-            formData.append('documents[]', {
-                uri,
-                type,
-                name
-            });
+        // }
 
-        }
+        // console.log('aadhar: ', aadhar);
+        // console.log('marksheet: ', marksheet);
+        // console.log('collegeId: ', collegeId);
+        // console.log('hostelId: ', hostelId);
+
+        var {uri, name, type} = aadhar;
+        formData.append('documents[]', {
+            uri: uri,
+            type: type,
+            name: name
+        });
+
+        var {uri, name, type} = marksheet;
+        formData.append('documents[]', {
+            uri: uri,
+            type: type,
+            name: name
+        });
+
+        var {uri, name, type} = collegeId;
+        formData.append('documents[]', {
+            uri: uri,
+            type: type,
+            name: name
+        });
+
+        var {uri, name, type} = hostelId;
+        formData.append('documents[]', {
+            uri: uri,
+            type: type,
+            name: name
+        });
 
         formData.append('slogan', slogan);
         formData.append('position', position);
@@ -130,9 +195,23 @@ const CandidateApply = ({navigation}) => {
     }
 
     const confirmDioalog = async() => {
-        const check = await checkExistingCandidate();
+        // validation
+        if(
+            !slogan || 
+            !position || 
+            Object.keys(aadhar).length === 0 || 
+            Object.keys(marksheet).length === 0 || 
+            Object.keys(collegeId).length === 0 || 
+            Object.keys(hostelId).length === 0
+        ){
+            Alert.alert('Alert', 'Please provide all the details required to apply as a candidate.')
+            return;
+        }
 
-        if(check.isExist === true){
+        const check = await checkExistingCandidate();
+        // console.log('check: ', check);
+        
+        if(check.isExist === true && check.candidate?.status === 'pending'){
             Alert.alert('Alert', `You've already applied for the ${check.candidate.position.name} position`);
             return;
         }
@@ -159,27 +238,36 @@ const CandidateApply = ({navigation}) => {
 
     useEffect(() => {
         const fetchAllPositions = async() => {
-            const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
-            const {positions} = await getAllPositionAPI(token);
-
-            // reseting the array before assigning all positions
-            allPositions.length = 0;
-
-            positions.map((item) => {
-                allPositions.push({
-                    label: item.name,
-                    value: item._id
+            try {
+                const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
+                const {positions} = await getAllPositionAPI(token);
+    
+                // reseting the array before assigning all positions
+                allPositions.length = 0;
+    
+                positions.map((item) => {
+                    allPositions.push({
+                        label: item.name,
+                        value: item._id
+                    });
                 });
-            });
-
-            // console.log('all positions list: ', allPositions)
+    
+                // console.log('all positions list: ', allPositions)
+            } catch (error) {
+                Alert.alert('Alert', `${error}, please refresh the page.`);
+            }
         }
 
         fetchAllPositions();
     }, [])
 
     return (
-        <ScrollView style={[globalStyles.flex, globalStyles.whiteBackground, globalStyles.paddingHorizontal]}>
+        <ScrollView 
+            style={[globalStyles.flex, globalStyles.whiteBackground, globalStyles.paddingHorizontal]}
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
+            }
+        >
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     <Image

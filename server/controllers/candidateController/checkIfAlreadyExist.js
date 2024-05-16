@@ -2,7 +2,8 @@ const candidateModel = require("../../models/candidateModel");
 
 module.exports = async(req, res) => {
     try {
-        const candidate = await candidateModel.findOne({student: req.id});
+        const candidateApplications = await candidateModel.find({student: req.id}).sort({createdAt: -1});
+        const candidate = candidateApplications[0];
 
         if(!candidate){
             return res.status(200).send({
@@ -11,6 +12,8 @@ module.exports = async(req, res) => {
                 message: 'Candidate not found'
             })
         }
+
+        console.log('candidate found');
 
         await candidate.populate('position', '_id name', 'Position');
 

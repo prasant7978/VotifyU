@@ -14,8 +14,8 @@ const getAllPositionAPI = async(token) => {
         
         return data;
     } catch (error) {
-        console.log('Error in getting all positions: ', error);
-        return null;
+        console.log('Error in getting all positions: ', error.response.data.message);
+        return error.response.data.message;
     }
 }
 

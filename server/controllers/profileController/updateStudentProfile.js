@@ -2,8 +2,11 @@ const studentModel = require("../../models/studentModel");
 
 module.exports = async(req, res) => {
     try {
+        // console.log('req body: ', req.body);
+        // console.log('req file: ', req.file);
+
         // validation
-        if(req.body.phone.length != 10 || req.body.parentPhone.length != 10){
+        if(req.body.phone?.length != 10 || req.body.parentPhone.length != 10){
             return res.status(500).send({
                 success: false,
                 message: 'Enter a valid phone no.'
@@ -22,9 +25,9 @@ module.exports = async(req, res) => {
             course: req.body.course || student?.course,
             department: req.body.department || student?.department,
             dob: req.body.dob || student?.dob,
+            // address: req.body.address || student?.address,
             gender: req.body.gender || student?.gender,
-            // profileImage: req.file.filename || student?.profileImage,
-            profileImage: student?.profileImage,
+            profileImage: req.file.filename || student?.profileImage,
             userType: req.body.userType || student?.userType
         }, {new: true});
 
