@@ -215,6 +215,10 @@ const CandidateApply = ({navigation}) => {
             Alert.alert('Alert', `You've already applied for the ${check.candidate.position.name} position`);
             return;
         }
+        else if(check.candidate?.status === 'accepted'){
+            Alert.alert('Alert', `Your application for the ${check.candidate?.position.name} position has already been accepted.`);
+            return;
+        }
         else{
             Alert.alert(
                 'Apply for candidate', 

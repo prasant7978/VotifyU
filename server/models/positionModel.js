@@ -7,7 +7,12 @@ const positionSchema = new mongoose.Schema({
     responsibilities: [String],
     status: {type: String, required: true},
     electedCandidate: {type: mongoose.Schema.ObjectId},
-    appliedCandidates: [mongoose.Schema.ObjectId]
+    appliedCandidates: [mongoose.Schema.ObjectId],
+    studentVoted: [mongoose.Schema.ObjectId],
+    voteCount: [{
+        candidateId: { type: String, required: true },
+        count: { type: Number, required: true },
+    }]
 }, {timestamps: true});
 
 module.exports = mongoose.model('Position', positionSchema);

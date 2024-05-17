@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const getAllPositionAPI = async(token) => {
+const getAllPositionAPI = async(token, type) => {
     try {
         const {data} = await axios.get(
-            '/position/view-all-positions',
+            `/position/view-all-positions?type=${type}`,
             {
                 headers: {
                     'auth-token': token,
