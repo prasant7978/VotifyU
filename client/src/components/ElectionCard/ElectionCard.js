@@ -5,13 +5,19 @@ import styles from './style';
 import {Alert, Image, Text, TouchableOpacity, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CheckBox from '@react-native-community/checkbox';
+import DropShadow from "react-native-drop-shadow";
+import { useNavigation } from '@react-navigation/native';
 
 import {COLORS} from '../../constants/theme';
 
+import { Routes } from '../../navigation/Routes';
+
+// APIs
 import getSingleCandidateApplicationAPI from '../../api/candidate/getSingleCandidateApplication';
-import submitVote from '../../api/position/submitVoteAPI';
 
 const ElectionCard = ({position, onVoteSubmit}) => {
+  const navigation = useNavigation();
+
   const [isChecked, setIsChecked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedId, setSelectedId] = useState('');
@@ -56,26 +62,6 @@ const ElectionCard = ({position, onVoteSubmit}) => {
     fetchCandidates();
   }, [position.appliedCandidates]);
 
-  const handleSubmitVote = async () => {
-    try {
-      const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
-      const response = await submitVote(token, selectedId, position._id);
-
-      if (!response.success) {
-        Alert.alert(
-          'Alert',
-          response,
-        );
-        return;
-      }
-
-      Alert.alert('Alert', response.message);
-    } catch (error) {
-      console.error('Error in submitting the vote:', error);
-      Alert.alert('Alert', error);
-    }
-  };
-
   const confirmDialog = () => {
     if (!selectedId) {
       Alert.alert(
@@ -109,7 +95,7 @@ const ElectionCard = ({position, onVoteSubmit}) => {
       <View style={styles.topContainer}>
         <Text style={styles.positonNameText}>{position.name}</Text>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.AboutElection)}>
           <Image
             source={require('../../assets/images/information.png')}
             style={styles.infoImage}
@@ -121,33 +107,46 @@ const ElectionCard = ({position, onVoteSubmit}) => {
         {position.appliedCandidates.map(id => (
           <View key={id}>
             {candidateDetails[id] && ( // Check if details exist for this ID
-              <TouchableOpacity
-                style={[
-                  styles.candidateCardContainer,
-                  {
-                    backgroundColor:
-                      selectedId === id
-                        ? COLORS.lightMojito
-                        : COLORS.antifleshWhite,
-                  },
-                ]}
-                onPress={() => {
-                  if (selectedId === id) setSelectedId('');
-                  else setSelectedId(id);
-                  setIsChecked(false);
-                }}>
-                <Image
-                  source={{
-                    uri: `http://192.168.93.221:3001/api/uploads/profile/${candidateDetails[id].student?.profileImage}`,
-                  }}
-                  resizeMode={'cover'}
-                  style={styles.image}
-                />
+              <DropShadow style={styles.candidateCardshadow}>
+                <TouchableOpacity
+                  style={[
+                    styles.candidateCardContainer,
+                    {
+                      backgroundColor:
+                        selectedId === id
+                          ? COLORS.lightMojito
+                          : COLORS.antifleshWhite,
+                    },
+                  ]}
+                  onPress={() => {
+                    if (selectedId === id) setSelectedId('');
+                    else setSelectedId(id);
+                    setIsChecked(false);
+                  }}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                      <DropShadow style={styles.shadow}>
+                        <Image
+                          source={{
+                            uri: `http://192.168.93.221:3001/api/uploads/profile/${candidateDetails[id].student?.profileImage}`,
+                          }}
+                          resizeMode={'cover'}
+                          style={styles.image}
+                        />
+                      </DropShadow>
 
-                <Text style={styles.candidateNameText}>
-                  {candidateDetails[id].student?.name}
-                </Text>
-              </TouchableOpacity>
+                      <Text style={styles.candidateNameText}>
+                        {candidateDetails[id].student?.name}
+                      </Text>
+                    </View>
+                    
+                    <TouchableOpacity onPress={() => navigation.navigate(Routes.CandidateProfile, {candidateId: id})}>
+                      <Image
+                        source={require('../../assets/images/info.png')}
+                        style={styles.profileInfoImage}
+                      />
+                    </TouchableOpacity>
+                </TouchableOpacity>
+              </DropShadow>
             )}
           </View>
         ))}

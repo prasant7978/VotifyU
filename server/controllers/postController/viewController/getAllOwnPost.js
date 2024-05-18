@@ -2,11 +2,18 @@ const postModel = require("../../../models/postModel");
 
 module.exports = async(req, res) => {
     try {
-        const posts = await postModel.find({postedBy: req.id}).sort({createdAt: -1});
+        const posts = await postModel.find({postedBy: req.query.candidateId}).sort({createdAt: -1});
+
+        if(!posts){
+            return res.status(500).send({
+                success: false,
+                message: 'Candidate Posts Not Found'
+            });
+        }
 
         res.status(200).send({
             success: true,
-            message: 'All user\'s own posts have been fetched',
+            message: 'All candidate\'s own posts have been fetched',
             posts
         });
     } catch (error) {

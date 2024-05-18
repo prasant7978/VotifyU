@@ -5988,6 +5988,11 @@
   dependencies:
     "invariant" "^2.2.4"
 
+"react-native-drop-shadow@^1.0.0":
+  "integrity" "sha512-om6oMDDn90ClFa+tEGMsFcACKlea5TO4jYur8PJKRpzfz+SnDIJlddhzp2kbOLpRTe7lleq6Md5QqC3u7RfOow=="
+  "resolved" "https://registry.npmjs.org/react-native-drop-shadow/-/react-native-drop-shadow-1.0.0.tgz"
+  "version" "1.0.0"
+
 "react-native-element-dropdown@^2.10.2":
   "integrity" "sha512-z6UemDzQdr+a1NDhImCApzRaW9uNiPOPRhjbMFVds855rqSjXPc3vGNaevxWi5q7PdqjyIxWTL6Z1rifcHl53g=="
   "resolved" "https://registry.npmjs.org/react-native-element-dropdown/-/react-native-element-dropdown-2.10.2.tgz"

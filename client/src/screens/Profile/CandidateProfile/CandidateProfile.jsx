@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 
 // importing styles
 import globalStyles from "../../../assets/styles/globalStyles";
@@ -8,6 +9,7 @@ import styles from "./styles";
 
 // importing api
 import { getAllOwnPostsAPI } from "../../../api/posts/getAllOwnPostsAPI";
+import getSingleCandidateApplicationAPI from "../../../api/candidate/getSingleCandidateApplication";
 
 // importing user context api
 import { AuthContext } from "../../../context/authContext";
@@ -16,20 +18,24 @@ import { AuthContext } from "../../../context/authContext";
 import InitialAvatar from "../../../components/InitialAvatar/InitialAvatar";
 import CampaignCard from "../../../components/CampaignCard/CampaignCard";
 import FooterMenu from "../../../components/Menus/FooterMenu";
-import { useFocusEffect } from "@react-navigation/native";
 
-const CandidateProfile = () => {
+const CandidateProfile = (props) => {
     // global states
     const [userState] = useContext(AuthContext);
     
     // local states
     const [ownPosts, setOwnPosts] = useState([]);
+    const [candidate, setCandidate] = useState({});
     // console.log('all own posts: ', ownPosts);
 
+    const candidateId = props.route.params.candidateId;
+    // console.log('candidateId in candidate profile: ', candidateId);
+
+    // get candidate posts
     useFocusEffect(
         React.useCallback(() => {
             async function fetchAllOwnPosts(){
-                const {posts} = await getAllOwnPostsAPI(userState.token);
+                const {posts} = await getAllOwnPostsAPI(userState.token, candidateId);
                 setOwnPosts(posts);
             }
 
@@ -37,13 +43,21 @@ const CandidateProfile = () => {
         }, [])
     );
 
-    // useEffect(() => {
-    //     async function fetchAllOwnPosts(){
-    //         const {posts} = await getAllOwnPostsAPI(userState.token);
-    //         setOwnPosts(posts);
-    //     }
-    //     fetchAllOwnPosts();
-    // }, [ownPosts])
+    // get candidate profile details
+    useFocusEffect(
+        React.useCallback(() => {
+            async function candidateProfileDetails(){
+                const response = await getSingleCandidateApplicationAPI(userState.token, candidateId);
+
+                if(response.status)
+                    setCandidate(response.data?.candidate);
+                else
+                    console.log('Error In Getting Candidate Profile Details');
+            }
+
+            candidateProfileDetails();
+        }, [])
+    );
 
     return (
         <View style={[globalStyles.whiteBackground, globalStyles.flex, globalStyles.paddingHorizontal]}>
@@ -51,14 +65,14 @@ const CandidateProfile = () => {
                 <View style={styles.topContainer}>
                     <View style={{alignItems: 'center'}}>
                         <View style={styles.profileImageContainer}>
-                            {userState.user.profileImage ? (
+                            {candidate.student?.profileImage ? (
                                 <Image
-                                    source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${userState.user.profileImage}`}}
+                                    source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${candidate.student?.profileImage}`}}
                                     style={styles.profileImage}
                                     resizeMode='cover'
                                 /> ) : (
                                     <InitialAvatar
-                                        name={userState.user.name}
+                                        name={candidate.student?.name}
                                         avatarSize={40} 
                                         textSize={16}
                                         padding={5}
@@ -69,9 +83,9 @@ const CandidateProfile = () => {
                     </View>
 
                     <View style={styles.primaryDetailsContainer}>
-                        <Text style={styles.candidateNameText}>{userState.user.name}</Text>
+                        <Text style={styles.candidateNameText}>{candidate.student?.name}</Text>
                         <Text style={styles.sloganText}>
-                            {userState.user.slogan ? userState.user.slogan : 'Vote for Unity: Together, We Can Achieve Greater Success'}
+                            {candidate.slogan ? candidate.slogan : 'Vote for Unity: Together, We Can Achieve Greater Success'}
                         </Text>
                     </View>
 
@@ -80,22 +94,22 @@ const CandidateProfile = () => {
 
                         <View style={styles.singleDetailsContainer}>
                             <Text style={styles.detailsLabelText}>Course</Text>
-                            <Text style={styles.detailsText}>{userState.user.course}</Text>
+                            <Text style={styles.detailsText}>{candidate.student?.course}</Text>
                         </View>
 
                         <View style={styles.singleDetailsContainer}>
                             <Text style={styles.detailsLabelText}>Email</Text>
-                            <Text style={styles.detailsText}>{userState.user.email}</Text>
+                            <Text style={styles.detailsText}>{candidate.student?.email}</Text>
                         </View>
 
                         <View style={styles.singleDetailsContainer}>
                             <Text style={styles.detailsLabelText}>Department</Text>
-                            <Text style={styles.detailsText}>{userState.user.department}</Text>
+                            <Text style={styles.detailsText}>{candidate.student?.department}</Text>
                         </View>
 
                         <View style={styles.singleDetailsContainer}>
                             <Text style={styles.detailsLabelText}>Registration No.</Text>
-                            <Text style={styles.detailsText}>{userState.user.roll}</Text>
+                            <Text style={styles.detailsText}>{candidate.student?.roll}</Text>
                         </View>
 
                     </View>

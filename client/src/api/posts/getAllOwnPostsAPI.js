@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const getAllOwnPostsAPI = async(token) => {
+export const getAllOwnPostsAPI = async(token, candidateId) => {
     try {
         const {data} = await axios.get(
-            '/post/get-all-own-posts',
+            `/post/get-all-own-posts?candidateId=${candidateId}`,
             {
                 headers: {
                     'auth-token': token,

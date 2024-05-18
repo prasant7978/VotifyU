@@ -31,6 +31,9 @@ module.exports = async(req, res) => {
         // generate jwt token
         const token = await generateAuthToken(candidate._id, req.userType);
 
+        req.user._doc['candidateId'] = candidate._id;
+        // console.log('req.user in candidate login: ', req.user);
+
         res.status(200).send({
             success: true,
             message: 'Login Successfull',

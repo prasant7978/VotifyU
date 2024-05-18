@@ -53,8 +53,6 @@ const Student_Login = ({navigation}) => {
             user = await loginCandidateAPI(email, password);
         else
             user = await loginStudent(email, password);
-
-        // console.log('user: ', user);
         
         if(!user.status){
             setError(user.error.response.data.message);
