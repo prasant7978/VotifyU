@@ -42,7 +42,9 @@ const COLORS = {
     darkMango: "#ffa751",
     lightMango: "#ffe259",
 
-    darkYellow: "#FFC100"
+    darkYellow: "#FFC100",
+
+    lightGold: "#FFEC9E"
 };
 
 const SIZES = {
