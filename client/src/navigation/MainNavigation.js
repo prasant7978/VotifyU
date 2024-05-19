@@ -13,7 +13,7 @@ import Elections from '../screens/Elections/Elections';
 import Results from '../screens/Results/Results';
 import StudentProfile from '../screens/Profile/StudentProfile/StudentProfile';
 import CandidateProfile from '../screens/Profile/CandidateProfile/CandidateProfile';
-import AboutElection from '../screens/About Election/AboutElection';
+import AboutElection from '../screens/AboutElection/AboutElection';
 import Feedback from '../screens/Feedback/Feedback';
 import HelpCenter from '../screens/Help Center/HelpCenter';
 import UpdatePassword from '../screens/UpdatePassword/UpdatePassword';
@@ -77,6 +77,7 @@ const DrawerNavigator = () => {
         options={{
           title: 'About Election',
           drawerIcon: () => <FontAwesomeIcon icon={faCircleInfo} size={22} />,
+          headerShown: true,
         }}
       />
       <Drawer.Screen
