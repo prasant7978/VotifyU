@@ -5,12 +5,15 @@ import styles from "./style";
 import globalStyles from "../../assets/styles/globalStyles";
 
 import { Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
-
-import FooterMenu from "../../components/Menus/FooterMenu";
-import { horizontalScale, verticalScale } from "../../assets/styles/scaling";
 import DropShadow from "react-native-drop-shadow";
 
-const AdminDashboard = () => {
+import FooterMenu from "../../components/Menus/FooterMenu";
+
+import { horizontalScale, verticalScale } from "../../assets/styles/scaling";
+
+import { Routes } from "../../navigation/Routes";
+
+const AdminDashboard = ({navigation}) => {
     return (
         <SafeAreaView style={[globalStyles.flex, globalStyles.paddingHorizontal, globalStyles.whiteBackground]}>
             <ScrollView>
@@ -84,7 +87,7 @@ const AdminDashboard = () => {
                     </View>
 
                     <DropShadow style={styles.containerShadow}>
-                        <TouchableOpacity style={styles.candidateApplicationContainer}>
+                        <TouchableOpacity style={styles.candidateApplicationContainer} onPress={() => navigation.navigate(Routes.AllPendingCandidateApplications)}>
                             <Image
                                 source={require('../../assets/images/approved.png')}
                                 style={styles.applicationImage}

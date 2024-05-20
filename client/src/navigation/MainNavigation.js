@@ -107,15 +107,6 @@ const DrawerNavigator = () => {
         }}
       />
       <Drawer.Screen
-        name={Routes.AllPendingCandidateApplications}
-        component={AllPendingCandidateApplications}
-        options={{
-          title: 'Candidate Applications',
-          drawerIcon: () => <FontAwesomeIcon icon={faUsers} size={22} />,
-          headerShown: true,
-        }}
-      />
-      <Drawer.Screen
         name={Routes.HelpCenter}
         component={HelpCenter}
         options={{
@@ -216,6 +207,13 @@ const StackNavigator = () => {
         component={AdminDashboard}
         options={{
           title: 'Dashboard',
+        }}
+      />
+      <Stack.Screen
+        name={Routes.AllPendingCandidateApplications}
+        component={AllPendingCandidateApplications}
+        options={{
+          title: 'Candidate Applications',
         }}
       />
       <Stack.Screen
