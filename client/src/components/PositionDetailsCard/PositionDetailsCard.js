@@ -1,19 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import { useNavigation } from "@react-navigation/native";
 import { Routes } from "../../navigation/Routes";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { COLORS } from "../../constants/theme";
+import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
 const PositionDetailsCard = ({position}) => {
     const navigation = useNavigation();
+    const [isExpanded, setIsExpanded] = useState(false);
 
-    return (
-        <View style={styles.container}>
-            <Text style={styles.positionNameText}>{position.name}</Text>
-
-            <Text style={styles.descriptionText}>{position.description}</Text>
-
+    const expandedContent = (
+        <>
             <View style={styles.responsibilitiesContainer}>
                 <Text style={styles.containerHeading}>Roles & Responsibilities</Text>
 
@@ -46,7 +46,26 @@ const PositionDetailsCard = ({position}) => {
                     </TouchableOpacity>
                 </View>
             )}
-        </View>
+        </>
+    )
+
+    return (
+        <TouchableOpacity onPress={() => setIsExpanded(!isExpanded)}>
+            <View style={styles.container}>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                        <Text style={styles.positionNameText}>{position.name}</Text>
+                        {isExpanded ? (
+                            <FontAwesomeIcon icon={faAngleUp} size={24} color={COLORS.slateShadow}/>
+                        ) : (
+                            <FontAwesomeIcon icon={faAngleDown} size={24} color={COLORS.slateShadow}/>
+                        )}
+                    </View>
+
+                    <Text style={styles.descriptionText}>{position.description}</Text>
+
+                {isExpanded && expandedContent}
+            </View>
+        </TouchableOpacity>
     )
 }
 
