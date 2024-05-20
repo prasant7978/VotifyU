@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faCheckToSlot, faImages, faSquarePollVertical, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCheckToSlot, faImages, faSquarePollVertical, faUser, faUserGear } from '@fortawesome/free-solid-svg-icons'
 
 import { AuthContext } from '../../context/authContext'
 
@@ -40,12 +40,13 @@ const FooterMenu = () => {
       <TouchableOpacity onPress={() => {
         if(userState.user.role === 'Student')
           navigation.navigate(Routes.StudentProfile)
-        else if(userState.user.role === 'Candidate'){
+        else if(userState.user.role === 'Candidate')
           navigation.navigate(Routes.CandidateProfile, {candidateId: userState.user.candidateId})
-        }
+        else if(userState.user.role === 'Admin')
+          navigation.navigate(Routes.AdminDashboard)
       }}>
-        <FontAwesomeIcon icon={faUser} size={24} style={styles.iconStyle} color={route.name === 'StudentProfile' || route.name === 'CandidateProfile' ? COLORS.primary : "black"}/>
-        <Text style={[styles.text, route.name === 'StudentProfile' || route.name === 'CandidateProfile' ? {color: COLORS.primary} : {color: 'black'}]}>Profile</Text>
+        <FontAwesomeIcon icon={faUser} size={24} style={styles.iconStyle} color={route.name === 'StudentProfile' || route.name === 'CandidateProfile' || route.name === 'AdminDashboard' ? COLORS.primary : "black"}/>
+        <Text style={[styles.text, route.name === 'StudentProfile' || route.name === 'CandidateProfile' ? {color: COLORS.primary} : {color: 'black'}]}>{userState.user.role === 'Admin' ? 'Dashboard' : 'Profile'}</Text>
       </TouchableOpacity>
     </View>
   )

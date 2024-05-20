@@ -17,4 +17,5 @@ export const Routes = {
     CandidateApply: 'CandidateApply',
     AllPendingCandidateApplications: 'AllPendingCandidateApplications',
     SingleCandidateApplication: 'SingleCandidateApplication',
+    AdminDashboard: 'AdminDashboard',
 }

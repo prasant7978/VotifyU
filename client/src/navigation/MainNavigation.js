@@ -44,6 +44,7 @@ import {getFontFamily} from '../assets/fonts/helper';
 import {horizontalScale, scaleFontSize} from '../assets/styles/scaling';
 
 import {COLORS} from '../constants/theme';
+import AdminDashboard from '../screens/AdminDashboard/AdminDashboard';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -208,6 +209,13 @@ const StackNavigator = () => {
         component={SingleCandidateApplication}
         options={{
           title: 'Application',
+        }}
+      />
+      <Stack.Screen
+        name={Routes.AdminDashboard}
+        component={AdminDashboard}
+        options={{
+          title: 'Dashboard',
         }}
       />
       <Stack.Screen
