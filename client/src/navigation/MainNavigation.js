@@ -120,6 +120,7 @@ const DrawerNavigator = () => {
         options={{
           title: 'Help Center',
           drawerIcon: () => <FontAwesomeIcon icon={faHeadset} size={22} />,
+          headerShown: true,
         }}
       />
     </Drawer.Navigator>
