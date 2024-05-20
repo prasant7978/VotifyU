@@ -20,8 +20,9 @@ import UpdatePassword from '../screens/UpdatePassword/UpdatePassword';
 import UpdateCampaign from './../screens/UpdateCampaign/UpdateCampaign';
 import CandidateApply from '../screens/CandidateApply/CandidateApply';
 import SingleCandidateApplication from '../screens/SingleCandidateApplication/SingleCandidateApplication';
-import AllPendingCandidateApplications from '../screens/AllCandidateApplication/AllPendingCandidateApplications';
+import AllPendingCandidateApplications from '../screens/Admin/AllCandidateApplication/AllPendingCandidateApplications';
 import CreatePost from '../screens/CreatePost/CreatePost';
+import AdminDashboard from '../screens/Admin/AdminDashboard/AdminDashboard';
 
 // icons
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -44,7 +45,6 @@ import {getFontFamily} from '../assets/fonts/helper';
 import {horizontalScale, scaleFontSize} from '../assets/styles/scaling';
 
 import {COLORS} from '../constants/theme';
-import AdminDashboard from '../screens/AdminDashboard/AdminDashboard';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
