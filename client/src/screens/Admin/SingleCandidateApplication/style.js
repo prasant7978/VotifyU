@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
-import { horizontalScale, scaleFontSize, verticalScale } from "../../assets/styles/scaling";
-import { COLORS } from "../../constants/theme";
-import { getFontFamily } from "../../assets/fonts/helper";
+import { horizontalScale, scaleFontSize, verticalScale } from "../../../assets/styles/scaling";
+import { COLORS } from "../../../constants/theme";
+import { getFontFamily } from "../../../assets/fonts/helper";
 
 const styles = StyleSheet.create({
     imageContainer: {

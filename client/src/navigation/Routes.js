@@ -18,4 +18,8 @@ export const Routes = {
     AllPendingCandidateApplications: 'AllPendingCandidateApplications',
     SingleCandidateApplication: 'SingleCandidateApplication',
     AdminDashboard: 'AdminDashboard',
+    ManageStudent: 'ManageStudent',
+    viewAllStudents: 'viewAllStudents',
+    ViewSingleStudentDetails: 'ViewSingleStudentDetails',
+    AddStudent: 'AddStudent',
 }

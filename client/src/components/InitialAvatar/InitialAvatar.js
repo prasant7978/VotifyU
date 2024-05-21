@@ -32,9 +32,8 @@ const InitialAvatar = ({name, avatarSize, textSize, padding}) => {
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: COLORS.coffeeWhite,
         borderRadius: horizontalScale(50),
-        borderColor: COLORS.tertiary,
-        backgroundColor: COLORS.gray2,
         justifyContent: 'center',
         alignItems: 'center'
     },

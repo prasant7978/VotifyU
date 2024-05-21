@@ -1,7 +1,8 @@
 const colors = require('colors');
-const { comparePassword } = require("../../../helpers/authHelper");
-const generateAuthToken = require("../../tokenController/generateAuthToken");
-const candidateModel = require('../../../models/candidateModel');
+const { comparePassword } = require('../../helpers/authHelper');
+const generateAuthToken = require('../tokenController/generateAuthToken');
+const candidateModel = require('../../models/candidateModel');
+
 
 module.exports = async(req, res) => {
     try {

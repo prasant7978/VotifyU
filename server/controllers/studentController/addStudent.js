@@ -1,11 +1,11 @@
 const colors = require('colors');
-const verifyIfExist = require('../../../middlewares/verifyIfExist');
-const { hashPassword } = require('../../../helpers/authHelper');
-const studentModel = require('../../../models/studentModel');
+const { hashPassword } = require('../../helpers/authHelper');
+const studentModel = require('../../models/studentModel');
 
 module.exports = async(req, res) => {
     try {
         const student = req.body;
+
         // validation
         if(!student.name){
             return res.status(500).send({
@@ -25,12 +25,6 @@ module.exports = async(req, res) => {
                 message: 'Email Is Required'
             });
         }
-        if(!student.password || student.password.length < 6){
-            return res.status(500).send({
-                success: false,
-                message: 'Password Is Required And Min 6 Char Length'
-            });
-        }
         if(!student.phone || student.phone.length < 10){
             return res.status(500).send({
                 success: false,
@@ -48,8 +42,11 @@ module.exports = async(req, res) => {
             });
         }
         
+        // create password from email
+        const password = '123456'
+
         // create hashed password
-        const hashedPassword = await hashPassword(student.password);
+        const hashedPassword = await hashPassword(password);
         
         // save student
         const newStudent = await studentModel({
@@ -66,10 +63,10 @@ module.exports = async(req, res) => {
             newStudent
         });
     } catch (error) {
-        console.log(`Error in register student: ${error}`.bgRed.white);
+        console.log(`Error in registering the student: ${error}`.bgRed.white);
         return res.status(500).send({
             success: false,
-            message: 'Error in register student api',
+            message: 'Error in add-student api',
             error: error
         });
     }

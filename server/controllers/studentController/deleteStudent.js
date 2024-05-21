@@ -1,5 +1,6 @@
 const postModel = require("../../models/postModel");
 const studentModel = require("../../models/studentModel");
+const candidateModel = require("../../models/candidateModel");
 
 module.exports = async(req, res) => {
     try {
@@ -11,7 +12,7 @@ module.exports = async(req, res) => {
         }
 
         // delete student
-        const deletedStudent = await studentModel.findByIdAndDelete({_id: req.query.id});
+        const deletedStudent = await studentModel.findByIdAndDelete({_id: req.query.studentId});
 
         if(!deletedStudent){
             res.status(500).send({
@@ -21,7 +22,10 @@ module.exports = async(req, res) => {
         }
 
         // delete all posts related to the deleted student
-        await postModel.deleteMany({postedBy: req.query.id});
+        await postModel.deleteMany({postedBy: req.query.studentId});
+
+        // delete corresponding candidate if present
+        await candidateModel.deleteOne({student: req.query.studentId})
 
         res.status(200).send({
             success: true,

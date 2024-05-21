@@ -19,20 +19,24 @@ module.exports = async(req, res, next) => {
     const upload = multer({ storage });
 
     try {
-        upload.single("image")(req, res, function(err){
-            if(err){
-                console.log('Errorrrr: ', err);
-                res.status(500).send({
-                    success: false,
-                    message: 'Error in uploading the image',
-                    error
-                });
-            }
-            else{
-                console.log('file uploaded...');
-                next();
-            }
-        });
+        if(!req.body.profileImage)
+            next();
+        else{
+            upload.single("image")(req, res, function(err){
+                if(err){
+                    console.log('Errorrrr: ', err);
+                    res.status(500).send({
+                        success: false,
+                        message: 'Error in uploading the image',
+                        error
+                    });
+                }
+                else{
+                    console.log('file uploaded...');
+                    next();
+                }
+            });
+        }
     } catch (error) {
         console.log('Error in uploading the image: ', error);
         res.status(500).send({

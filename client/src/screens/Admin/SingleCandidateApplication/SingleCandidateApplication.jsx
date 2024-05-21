@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 // styles
 import styles from "./style";
-import globalStyles from "../../assets/styles/globalStyles";
+import globalStyles from "../../../assets/styles/globalStyles";
 
 // components
 import { ActivityIndicator, Alert, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
@@ -12,16 +12,16 @@ import Snackbar from "react-native-snackbar";
 import Pdf from "react-native-pdf";
 
 // APIs
-import getSingleCandidateApplicationAPI from "../../api/candidate/getSingleCandidateApplication";
-import updateApplicationStatusAPI from "../../api/candidate/updateApplicationStatusAPI";
+import getSingleCandidateApplicationAPI from "../../../api/candidate/getSingleCandidateApplication";
+import updateApplicationStatusAPI from "../../../api/candidate/updateApplicationStatusAPI";
 
 // assets
-import { verticalScale } from "../../assets/styles/scaling";
-import { getFontFamily } from "../../assets/fonts/helper";
+import { verticalScale } from "../../../assets/styles/scaling";
+import { getFontFamily } from "../../../assets/fonts/helper";
 
-import { COLORS } from "../../constants/theme";
+import { COLORS } from "../../../constants/theme";
 
-import { Routes } from "../../navigation/Routes";
+import { Routes } from "../../../navigation/Routes";
 
 const SingleCandidateApplication = (props) => {
     const candidateId = props.route.params.candidateId;

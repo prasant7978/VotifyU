@@ -1,11 +1,10 @@
 const express = require('express');
-const loginStudent = require('../controllers/authController/Student/loginStudent');
-const registerStudent = require('../controllers/authController/Student/registerStudent');
+const loginStudent = require('../controllers/authController/studentLogin');
 const verifyIfExist = require('../middlewares/verifyIfExist');
 const verifyToken = require('../middlewares/verifyToken');
 const loginAdmin = require('../controllers/authController/Admin/loginAdmin');
 const registerAdmin = require('../controllers/authController/Admin/registerAdmin');
-const candidateLogin = require('../controllers/authController/Candidate/candidateLogin');
+const candidateLogin = require('../controllers/authController/candidateLogin');
 
 const router = express.Router();
 
@@ -13,7 +12,6 @@ router.get('/verifyToken', verifyToken);
 
 // Register
 router.post('/register/admin', registerAdmin);
-router.post('/register/student', registerStudent);
 
 // Login
 router.post('/login/admin', verifyIfExist, loginAdmin);

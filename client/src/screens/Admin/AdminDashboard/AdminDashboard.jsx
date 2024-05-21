@@ -46,7 +46,7 @@ const AdminDashboard = ({navigation}) => {
                   styles.manageContentContainer,
                   {justifyContent: 'space-between'},
                 ]}>
-                <TouchableOpacity style={styles.capsuleContainer}>
+                <TouchableOpacity style={styles.capsuleContainer} onPress={() => navigation.navigate(Routes.ManageStudent)}>
                   <Image
                     source={require('../../../assets/images/group.png')}
                     style={styles.capsuleImage}

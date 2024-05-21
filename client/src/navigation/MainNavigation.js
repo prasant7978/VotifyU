@@ -19,10 +19,12 @@ import HelpCenter from '../screens/Help Center/HelpCenter';
 import UpdatePassword from '../screens/UpdatePassword/UpdatePassword';
 import UpdateCampaign from './../screens/UpdateCampaign/UpdateCampaign';
 import CandidateApply from '../screens/CandidateApply/CandidateApply';
-import SingleCandidateApplication from '../screens/SingleCandidateApplication/SingleCandidateApplication';
+import SingleCandidateApplication from '../screens/Admin/SingleCandidateApplication/SingleCandidateApplication';
 import AllPendingCandidateApplications from '../screens/Admin/AllCandidateApplication/AllPendingCandidateApplications';
 import CreatePost from '../screens/CreatePost/CreatePost';
 import AdminDashboard from '../screens/Admin/AdminDashboard/AdminDashboard';
+import ManageStudent from '../screens/Admin/ManageStudents/ManageStudents';
+import ViewSingleStudentDetails from '../screens/Admin/ManageStudents/ViewSingleStudentDetails/ViewSingleStudentDetails';
 
 // icons
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -214,6 +216,21 @@ const StackNavigator = () => {
         component={AllPendingCandidateApplications}
         options={{
           title: 'Candidate Applications',
+        }}
+      />
+      <Stack.Screen
+        name={Routes.ManageStudent}
+        component={ManageStudent}
+        options={{
+          title: 'Manage Students',
+          // headerShown: false
+        }}
+      />
+      <Stack.Screen
+        name={Routes.ViewSingleStudentDetails}
+        component={ViewSingleStudentDetails}
+        options={{
+          title: 'Student Details'
         }}
       />
       <Stack.Screen
