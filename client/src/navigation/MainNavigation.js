@@ -5,8 +5,33 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import {Routes} from './Routes';
 
+// icons
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {
+  faBars,
+  faCircleInfo,
+  faHome,
+  faPenToSquare,
+  faUsers,
+} from '@fortawesome/free-solid-svg-icons';
+import {faComments, faSquarePlus} from '@fortawesome/free-regular-svg-icons';
+import {faHeadset} from '@fortawesome/free-solid-svg-icons/faHeadset';
+
+// assets
+import {getFontFamily} from '../assets/fonts/helper';
+import {horizontalScale, scaleFontSize} from '../assets/styles/scaling';
+
+import {COLORS} from '../constants/theme';
+
+import DrawerContent from '../components/Drawer/DrawerContent';
+
+// context api
+import { useContext } from 'react';
+import { AuthContext } from '../context/authContext';
+
 // importing screens
 import Student_Login from '../screens/Login/Student/Student_Login';
+import {DrawerActions, useNavigation} from '@react-navigation/native';
 import Admin_Login from '../screens/Login/Admin/Admin_Login';
 import Feeds from '../screens/Feeds/Feeds';
 import Elections from '../screens/Elections/Elections';
@@ -25,28 +50,7 @@ import CreatePost from '../screens/CreatePost/CreatePost';
 import AdminDashboard from '../screens/Admin/AdminDashboard/AdminDashboard';
 import ManageStudent from '../screens/Admin/ManageStudents/ManageStudents';
 import ViewSingleStudentDetails from '../screens/Admin/ManageStudents/ViewSingleStudentDetails/ViewSingleStudentDetails';
-
-// icons
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {
-  faBars,
-  faCircleInfo,
-  faHome,
-  faPenToSquare,
-  faUsers,
-} from '@fortawesome/free-solid-svg-icons';
-import {faComments, faSquarePlus} from '@fortawesome/free-regular-svg-icons';
-import {faHeadset} from '@fortawesome/free-solid-svg-icons/faHeadset';
-
-import {DrawerActions, useNavigation} from '@react-navigation/native';
-
-import DrawerContent from '../components/Drawer/DrawerContent';
-
-// assets
-import {getFontFamily} from '../assets/fonts/helper';
-import {horizontalScale, scaleFontSize} from '../assets/styles/scaling';
-
-import {COLORS} from '../constants/theme';
+import AllCandidates from '../screens/AllCandidates/AllCandidates';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -129,6 +133,7 @@ const DrawerNavigator = () => {
 };
 
 const StackNavigator = () => {
+  const [userState] = useContext(AuthContext)
   const navigation = useNavigation();
 
   return (
@@ -180,7 +185,7 @@ const StackNavigator = () => {
         name={Routes.CandidateProfile}
         component={CandidateProfile}
         options={{
-          title: 'Profile',
+          title: userState.user.role === 'Admin' ? 'Candidate Profile' : 'Profile',
         }}
       />
       <Stack.Screen
@@ -231,6 +236,13 @@ const StackNavigator = () => {
         component={ViewSingleStudentDetails}
         options={{
           title: 'Student Details'
+        }}
+      />
+      <Stack.Screen
+        name={Routes.AllCandidates}
+        component={AllCandidates}
+        options={{
+          title: 'All Candidates'
         }}
       />
       <Stack.Screen

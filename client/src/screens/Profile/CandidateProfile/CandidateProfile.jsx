@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { Image, Pressable, ScrollView, Text, View } from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
+import { ActivityIndicator, Alert, Image, Pressable, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import Pdf from "react-native-pdf";
 
 // importing styles
 import globalStyles from "../../../assets/styles/globalStyles";
@@ -10,6 +11,7 @@ import styles from "./styles";
 // importing api
 import { getAllOwnPostsAPI } from "../../../api/posts/getAllOwnPostsAPI";
 import getSingleCandidateApplicationAPI from "../../../api/candidate/getSingleCandidateApplication";
+import deleteCandidateAPI from "../../../api/candidate/deleteCandidateAPI";
 
 // importing user context api
 import { AuthContext } from "../../../context/authContext";
@@ -18,6 +20,7 @@ import { AuthContext } from "../../../context/authContext";
 import InitialAvatar from "../../../components/InitialAvatar/InitialAvatar";
 import CampaignCard from "../../../components/CampaignCard/CampaignCard";
 import FooterMenu from "../../../components/Menus/FooterMenu";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CandidateProfile = (props) => {
     // global states
@@ -26,7 +29,10 @@ const CandidateProfile = (props) => {
     // local states
     const [ownPosts, setOwnPosts] = useState([]);
     const [candidate, setCandidate] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
     // console.log('all own posts: ', ownPosts);
+
+    const navigation = useNavigation();
 
     const candidateId = props.route.params.candidateId;
     // console.log('candidateId in candidate profile: ', candidateId);
@@ -59,9 +65,52 @@ const CandidateProfile = (props) => {
         }, [])
     );
 
+    const deleteCandidate = async() => {
+        setIsLoading(true);
+        
+        try {
+            const token = JSON.parse(await AsyncStorage.getItem('@auth-token'))
+            const response = await deleteCandidateAPI(token, candidate._id)
+
+            if(!response.success){
+                console.log('Error in deleting the candidate: ', response.error);
+                Alert.alert('Error', response.error)
+                return
+            }
+
+            Alert.alert('Alert', response.message)
+            navigation.goBack()
+        } catch (error) {
+            console.log('Error in deleting candidate: ', error);
+            Alert.alert('Error', error)
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    const confirmDioalog = () => {
+        Alert.alert(
+            'Delete Candidate', 
+            'Are you sure, you want to delete the candidate?',
+            [
+                {
+                    text: 'Cancel',
+                    style: 'cancel'
+                },
+                {
+                    text: 'Yes',
+                    onPress: () => deleteCandidate()
+                }
+            ],
+            {
+                cancelable: false
+            }
+        );
+    }
+
     return (
         <View style={[globalStyles.whiteBackground, globalStyles.flex, globalStyles.paddingHorizontal]}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.topContainer}>
                     <View style={{alignItems: 'center'}}>
                         <View style={styles.profileImageContainer}>
@@ -152,6 +201,80 @@ const CandidateProfile = (props) => {
                         </View>
                     </View>
 
+                    {userState.user.role === 'Admin' && (
+                        <View style={styles.documentsContainer}>
+                            <Text style={styles.conatainerHeadingText}>Document Details:</Text>
+
+                            <View style={styles.pdfContainer}>
+                                <Text style={styles.labelText}>Aadhar Card</Text>
+                                <Pdf
+                                    trustAllCerts={false}
+                                    source={{uri: `http://192.168.93.221:3001/api/uploads/files/${candidate.aadharCard}`}}
+                                    renderActivityIndicator={() => (
+                                        <ActivityIndicator color="white" size="large" />
+                                    )}
+                                    page={1}
+                                    scale={1.0}
+                                    minScale={1.0}
+                                    maxScale={3.0}
+                                    onError={(error) => console.log(error)}
+                                    style={styles.pdf}
+                                />
+                            </View>
+
+                            <View style={styles.pdfContainer}>
+                                <Text style={styles.labelText}>Marksheet</Text>
+                                <Pdf
+                                    trustAllCerts={false}
+                                    source={{uri: `http://192.168.93.221:3001/api/uploads/files/${candidate.marksheet}`}}
+                                    renderActivityIndicator={() => (
+                                        <ActivityIndicator color="white" size="large" />
+                                    )}
+                                    page={1}
+                                    scale={1.0}
+                                    minScale={1.0}
+                                    maxScale={3.0}
+                                    onError={(error) => console.log(error)}
+                                    style={styles.pdf}
+                                />
+                            </View>
+
+                            <View style={styles.pdfContainer}>
+                                <Text style={styles.labelText}>College Id Card</Text>
+                                <Pdf
+                                    trustAllCerts={false}
+                                    source={{uri: `http://192.168.93.221:3001/api/uploads/files/${candidate.collegeIdCard}`}}
+                                    renderActivityIndicator={() => (
+                                        <ActivityIndicator color="white" size="large" />
+                                    )}
+                                    page={1}
+                                    scale={1.0}
+                                    minScale={1.0}
+                                    maxScale={3.0}
+                                    onError={(error) => console.log(error)}
+                                    style={styles.pdf}
+                                />
+                            </View>
+
+                            <View style={styles.pdfContainer}>
+                                <Text style={styles.labelText}>Hostel Id Card</Text>
+                                <Pdf
+                                    trustAllCerts={false}
+                                    source={{uri: `http://192.168.93.221:3001/api/uploads/files/${candidate.hostelIdCard}`}}
+                                    renderActivityIndicator={() => (
+                                        <ActivityIndicator color="white" size="large" />
+                                    )}
+                                    page={1}
+                                    scale={1.0}
+                                    minScale={1.0}
+                                    maxScale={3.0}
+                                    onError={(error) => console.log(error)}
+                                    style={styles.pdf}
+                                />
+                            </View>
+                        </View>
+                    )}
+
                     <View style={styles.campaignListsContainer}>
                         <Text style={styles.conatainerHeadingText}>Campaigns</Text>
 
@@ -168,11 +291,21 @@ const CandidateProfile = (props) => {
                         )}
                     </View>
                 </View>
+
+                {userState.user.role === 'Admin' && (
+                    <View style={styles.bottomConatiner}>
+                        <TouchableOpacity style={styles.singleBottomContainer} onPress={() => confirmDioalog()}>
+                            <Text style={styles.bottomText}>Delete Candidate</Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
             </ScrollView>
 
-            <View>
-                <FooterMenu/>
-            </View>
+            {userState.user.role !== 'Admin' && (
+                <View>
+                    <FooterMenu/>
+                </View>
+            )}
         </View>
     )
 }

@@ -14,10 +14,10 @@ import {
 } from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 
-
 import {horizontalScale, verticalScale} from '../../../assets/styles/scaling';
 
 import {Routes} from '../../../navigation/Routes';
+
 import FooterMenu from '../../../components/Menus/FooterMenu';
 
 const AdminDashboard = ({navigation}) => {
@@ -55,7 +55,7 @@ const AdminDashboard = ({navigation}) => {
                   <Text style={styles.capsuleContainerText}>Students</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.capsuleContainer}>
+                <TouchableOpacity style={styles.capsuleContainer} onPress={() => navigation.navigate(Routes.AllCandidates)}>
                   <Image
                     source={require('../../../assets/images/candidates.png')}
                     style={styles.capsuleImage}

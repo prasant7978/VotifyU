@@ -22,4 +22,5 @@ export const Routes = {
     viewAllStudents: 'viewAllStudents',
     ViewSingleStudentDetails: 'ViewSingleStudentDetails',
     AddStudent: 'AddStudent',
+    AllCandidates: 'AllCandidates',
 }

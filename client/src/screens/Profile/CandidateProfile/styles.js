@@ -77,6 +77,29 @@ const styles = StyleSheet.create({
         height: horizontalScale(30),
         width: horizontalScale(30)
     },
+    labelText: {
+        fontFamily: getFontFamily('Inter', '400'),
+        color: COLORS.forestShadow,
+        fontSize: scaleFontSize(16),
+    },
+    documentsContainer: {
+        marginTop: verticalScale(10)
+    },
+    documentLabelText: {
+        color: COLORS.slateShadow,
+        fontSize: scaleFontSize(16),
+        fontFamily: getFontFamily('Inter', '500')
+    },
+    pdfContainer: {
+        marginBottom: verticalScale(18),
+    },
+    pdf: {
+        width: horizontalScale(310), 
+        height: verticalScale(380), 
+        backgroundColor: COLORS.midnightSapphire,
+        alignSelf: 'center',
+        marginTop: verticalScale(5)
+    },
     campaignListsContainer: {
         
     },
@@ -85,6 +108,24 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-between',
     },
+    bottomConatiner: {
+        paddingHorizontal: horizontalScale(10),
+        marginTop: verticalScale(10)
+    },
+    singleBottomContainer: {
+        backgroundColor: COLORS.darkLove,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: horizontalScale(5),
+        paddingVertical: verticalScale(10),
+        paddingHorizontal: horizontalScale(32),
+        marginBottom: verticalScale(18)
+    },
+    bottomText: {
+        fontFamily: getFontFamily('Inter', '900'),
+        color: COLORS.antifleshWhite,
+        fontSize: scaleFontSize(20),
+    }
 });
 
 export default styles;
