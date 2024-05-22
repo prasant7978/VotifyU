@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+
 import styles from "./styles";
+
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import { useNavigation } from "@react-navigation/native";
+
 import { Routes } from "../../navigation/Routes";
+
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { COLORS } from "../../constants/theme";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
+import { COLORS } from "../../constants/theme";
+
+import { AuthContext } from "../../context/authContext";
+
 const PositionDetailsCard = ({position}) => {
+    const [userState] = useContext(AuthContext);
+
     const navigation = useNavigation();
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -54,11 +63,24 @@ const PositionDetailsCard = ({position}) => {
             <View style={styles.container}>
                     <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
                         <Text style={styles.positionNameText}>{position.name}</Text>
-                        {isExpanded ? (
-                            <FontAwesomeIcon icon={faAngleUp} size={24} color={COLORS.slateShadow}/>
-                        ) : (
-                            <FontAwesomeIcon icon={faAngleDown} size={24} color={COLORS.slateShadow}/>
-                        )}
+
+
+                        <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                            {userState.user.role === 'Admin' && (
+                                <TouchableOpacity onPress={() => navigation.navigate(Routes.ViewSinglePositionDetails, {position: position})}>
+                                    <Image
+                                        source={require('../../assets/images/edit.png')}
+                                        style={styles.editIcon}
+                                    />
+                                </TouchableOpacity>
+                            )}
+                            
+                            {isExpanded ? (
+                                <FontAwesomeIcon icon={faAngleUp} size={24} color={COLORS.slateShadow}/>
+                            ) : (
+                                <FontAwesomeIcon icon={faAngleDown} size={24} color={COLORS.slateShadow}/>
+                            )}
+                        </View>
                     </View>
 
                     <Text style={styles.descriptionText}>{position.description}</Text>

@@ -70,7 +70,7 @@ const AdminDashboard = ({navigation}) => {
 
             <DropShadow style={styles.containerShadow}>
               <View style={styles.manageContentContainer}>
-                <TouchableOpacity style={styles.capsuleContainer}>
+                <TouchableOpacity style={styles.capsuleContainer} onPress={() => navigation.navigate(Routes.ManagePosition)}>
                   <Image
                     source={require('../../../assets/images/profile.png')}
                     style={styles.capsuleImage}

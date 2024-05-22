@@ -16,7 +16,13 @@ const styles = StyleSheet.create({
     positionNameText: {
         fontFamily: getFontFamily('Poppins', '700'),
         color: COLORS.midnightSapphire,
-        fontSize: scaleFontSize(28)
+        fontSize: scaleFontSize(25),
+        
+    },
+    editIcon: {
+        height: horizontalScale(20),
+        width: horizontalScale(20),
+        marginRight: horizontalScale(10)
     },
     descriptionText: {
         fontFamily: getFontFamily('Inter', '300'),

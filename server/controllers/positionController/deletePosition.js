@@ -2,10 +2,14 @@ const positionModel = require("../../models/positionModel");
 
 module.exports = async (req, res) => {
     try {
-        const {id} = req.query;
-        console.log('position id: ', id);
+        const deletedPosition = await positionModel.findByIdAndDelete({_id: req.query.positionId});
 
-        await positionModel.findByIdAndDelete({_id: id});
+        if(!deletedPosition){
+            return res.status(500).send({
+                success: false,
+                message: 'Error in deleting the position'
+            })
+        }
 
         res.status(200).send({
             success: true,

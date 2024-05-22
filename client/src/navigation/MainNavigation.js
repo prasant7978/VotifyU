@@ -51,11 +51,15 @@ import AdminDashboard from '../screens/Admin/AdminDashboard/AdminDashboard';
 import ManageStudent from '../screens/Admin/ManageStudents/ManageStudents';
 import ViewSingleStudentDetails from '../screens/Admin/ManageStudents/ViewSingleStudentDetails/ViewSingleStudentDetails';
 import AllCandidates from '../screens/AllCandidates/AllCandidates';
+import ManagePositions from '../screens/Admin/ManagePosition/ManagePosition';
+import ViewSinglePositionDetails from '../screens/Admin/ManagePosition/ViewSinglePositionDetails/ViewSinglePositionDetails';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
+  const [userState] = useContext(AuthContext)
+  
   return (
     <Drawer.Navigator
       drawerContent={props => <DrawerContent {...props} />}
@@ -78,15 +82,17 @@ const DrawerNavigator = () => {
           drawerIcon: () => <FontAwesomeIcon icon={faHome} size={22} />,
         }}
       />
-      <Drawer.Screen
-        name={Routes.AboutElection}
-        component={AboutElection}
-        options={{
-          title: 'About Election',
-          drawerIcon: () => <FontAwesomeIcon icon={faCircleInfo} size={22} />,
-          headerShown: true,
-        }}
-      />
+      {userState.user.role !== 'Admin' && (
+        <Drawer.Screen
+          name={Routes.AboutElection}
+          component={AboutElection}
+          options={{
+            title: 'About Election',
+            drawerIcon: () => <FontAwesomeIcon icon={faCircleInfo} size={22} />,
+            headerShown: true,
+          }}
+        />
+      )}
       <Drawer.Screen
         name={Routes.CreatePost}
         component={CreatePost}
@@ -243,6 +249,20 @@ const StackNavigator = () => {
         component={AllCandidates}
         options={{
           title: 'All Candidates'
+        }}
+      />
+      <Stack.Screen
+        name={Routes.ManagePosition}
+        component={ManagePositions}
+        options={{
+          title: 'Manage Positions',
+        }}
+      />
+       <Stack.Screen
+        name={Routes.ViewSinglePositionDetails}
+        component={ViewSinglePositionDetails}
+        options={{
+          title: 'Positon Details'
         }}
       />
       <Stack.Screen

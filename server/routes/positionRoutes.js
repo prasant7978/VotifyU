@@ -11,6 +11,7 @@ const addVoteToPosition = require('../controllers/positionController/addVoteToPo
 const verifyIfStudent = require('../middlewares/verifyIfStudent');
 const publishResult = require('../controllers/positionController/viewElectionResult');
 const assignWinnerCandidate = require('../controllers/positionController/assignWinnerCandidate');
+const updatePosition = require('../controllers/positionController/updatePosition');
 
 router.post('/create-position', verifyToken, createPosition)
 router.get('/view-all-positions', verifyToken, viewAllPositions)
@@ -18,5 +19,6 @@ router.delete('/delete-position', verifyToken, deletePosition)
 router.post('/add-vote', verifyToken, verifyIfStudent, addVoteToPosition)
 router.get('/view-election-result', verifyToken, publishResult)
 router.put('/assign-winner-candidate', verifyToken, assignWinnerCandidate)
+router.put('/update-position', verifyToken, updatePosition)
 
 module.exports = router;

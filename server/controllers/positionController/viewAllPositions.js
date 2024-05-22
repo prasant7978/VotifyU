@@ -3,7 +3,14 @@ const positionModel = require("../../models/positionModel");
 
 module.exports = async(req, res) => {
     try {
-        let positions = await positionModel.find({status: 'open'});
+        let positions = await positionModel.find({});
+
+        // filter the positions
+        if(!req.query.type){
+            positions = positions.filter((ele) => {
+                return ele.status === req.query.type
+            });
+        }
 
         if(!positions){
             return res.status(500).send({

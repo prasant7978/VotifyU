@@ -23,4 +23,7 @@ export const Routes = {
     ViewSingleStudentDetails: 'ViewSingleStudentDetails',
     AddStudent: 'AddStudent',
     AllCandidates: 'AllCandidates',
+    ManagePosition: 'ManagePosition',
+    AddPosition: 'AddPosition',
+    ViewSinglePositionDetails: 'ViewSinglePositionDetails', 
 }

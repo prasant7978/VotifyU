@@ -11,6 +11,16 @@ module.exports = async(req, res) => {
             });
         }
 
+        // check if already exists
+        const isExist = await positionModel.findOne({name: req.body.name})
+
+        if(isExist){
+            return res.status(500).send({
+                success: false,
+                message: 'A position with same name has been already added'
+            });
+        }
+
         const positionCode = generatePositionCode(req.body.name);
 
         const position = await positionModel({

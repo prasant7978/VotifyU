@@ -51,7 +51,7 @@ const AddStudent = () => {
             Alert.alert('Alert', response.message)
             clearInputText();
         } catch (error) {
-            console.log('Error in deleting student: ', error);
+            console.log('Error in adding student: ', error);
             Alert.alert('Error', error)
         } finally {
             setIsLoading(false)
