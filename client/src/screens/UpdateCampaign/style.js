@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { horizontalScale, scaleFontSize, verticalScale } from "../../assets/styles/scaling";
 import { getFontFamily } from "../../assets/fonts/helper";
-import { COLORS } from "../../constants/theme";
+import { COLORS, SIZES } from "../../constants/theme";
 
 const styles = StyleSheet.create({
     campaignImage: {
@@ -51,6 +51,18 @@ const styles = StyleSheet.create({
     buttonContainer: {
         marginTop: verticalScale(20),
         marginBottom: verticalScale(10)
+    },
+    deleteButton: {
+        backgroundColor: COLORS.darkLove,
+        paddingVertical: verticalScale(SIZES.small),
+        borderRadius: horizontalScale(SIZES.xSmall),
+        marginTop: verticalScale(10)
+    },
+    deleteButtonText: {
+        textAlign: 'center',
+        color: '#FFFFFF',
+        fontSize: scaleFontSize(SIZES.large),
+        fontFamily: getFontFamily('Inter', '600')
     }
 });
 

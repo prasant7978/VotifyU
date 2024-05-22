@@ -2,9 +2,14 @@ const postModel = require("../../models/postModel");
 
 module.exports = async(req, res) => {
     try {
-        const {id} = req.query;
+        const deletePost = await postModel.findByIdAndDelete({_id: req.query.postId});
 
-        await postModel.findByIdAndDelete({_id: id});
+        if(!deletePost){
+            return res.status(500).send({
+                success: false,
+                message: 'Error in deleteing the post'
+            })
+        }
 
         res.status(200).send({
             success: true,

@@ -42,10 +42,7 @@ const AdminDashboard = ({navigation}) => {
 
             <DropShadow style={styles.containerShadow}>
               <View
-                style={[
-                  styles.manageContentContainer,
-                  {justifyContent: 'space-between'},
-                ]}>
+                style={styles.manageContentContainer}>
                 <TouchableOpacity style={styles.capsuleContainer} onPress={() => navigation.navigate(Routes.ManageStudent)}>
                   <Image
                     source={require('../../../assets/images/group.png')}
@@ -55,22 +52,13 @@ const AdminDashboard = ({navigation}) => {
                   <Text style={styles.capsuleContainerText}>Students</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.capsuleContainer} onPress={() => navigation.navigate(Routes.AllCandidates)}>
+                <TouchableOpacity style={[styles.capsuleContainer, {marginLeft: horizontalScale(20)}]} onPress={() => navigation.navigate(Routes.AllCandidates)}>
                   <Image
                     source={require('../../../assets/images/candidates.png')}
                     style={styles.capsuleImage}
                   />
 
                   <Text style={styles.capsuleContainerText}>Candidates</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.capsuleContainer}>
-                  <Image
-                    source={require('../../../assets/images/blog.png')}
-                    style={styles.capsuleImage}
-                  />
-
-                  <Text style={styles.capsuleContainerText}>Posts</Text>
                 </TouchableOpacity>
               </View>
             </DropShadow>
@@ -94,7 +82,7 @@ const AdminDashboard = ({navigation}) => {
                 <TouchableOpacity
                   style={[
                     styles.capsuleContainer,
-                    {marginLeft: horizontalScale(19)},
+                    {marginLeft: horizontalScale(20)},
                   ]}>
                   <Image
                     source={require('../../../assets/images/results.png')}

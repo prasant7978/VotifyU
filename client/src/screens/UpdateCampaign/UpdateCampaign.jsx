@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-import { Alert, Image, ScrollView, Text, TextInput, View } from 'react-native';
+import { Alert, Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 // styles
 import styles from './style';
@@ -19,11 +19,16 @@ import { getFontFamily } from '../../assets/fonts/helper';
 
 // api
 import { updatePost } from '../../api/posts/updatePost';
+import deletePostAPI from '../../api/posts/deletePostAPI';
 
 // all posts context api
 import { PostContext } from '../../context/postContext';
+import { AuthContext } from '../../context/authContext';
 
-const UpdateCampaign = () => {
+const UpdateCampaign = ({navigation}) => {
+    // global state
+    const [userState] = useContext(AuthContext);
+
     const route = useRoute();
     const post = route.params?.post;
 
@@ -33,24 +38,35 @@ const UpdateCampaign = () => {
     const [description, setDescription] = useState(post.description);
     const [loading, setLoading] = useState(false);
 
-    const confirmDialogueBox = () => {
-        Alert.alert(
-            'Update Post', 
-            'Are you sure you want to update this post?',
-            [
-              {
-                text: 'Cancel',
-                style: 'cancel'
-              },
-              {
-                text: 'OK',
-                onPress: () => handleUpdatePost()
-              }
-            ],
-            {
-              cancelable: true
+    const fetchUpdatedData = async () => {
+        await fetchAllPosts('update page');
+    };
+
+    const handleDeletePost = async() => {
+        setLoading(true)
+
+        try {
+            const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
+            const response = await deletePostAPI(token, post._id);
+
+            if(!response.success){
+                console.log('Error in deleting the post: ', response.message);
+                Alert.alert('Error', response.message);
+                return;
             }
-          );
+
+            Snackbar.show({
+                text: 'The Post Has Been Deleted Successfully',
+                duration: Snackbar.LENGTH_SHORT,
+                fontFamily: getFontFamily('Inter', '400')
+            });
+            navigation.goBack();
+        } catch (error) {
+            console.log('Error in deleting post: ', error);
+            Alert.alert('Error', error);
+        } finally {
+            setLoading(false)
+        }
     }
 
     const handleUpdatePost = async() => {
@@ -81,9 +97,46 @@ const UpdateCampaign = () => {
             Alert.alert('Alert', 'Error in updating the post.\nPlease try again later.')
     }
 
-    const fetchUpdatedData = async () => {
-        await fetchAllPosts('update page');
-    };
+    const confirmDialogueBox = (type) => {
+        if(type === 'update'){
+            Alert.alert(
+                'Update Post', 
+                'Are you sure you want to update this post?',
+                [
+                    {
+                        text: 'Cancel',
+                        style: 'cancel'
+                    },
+                    {
+                        text: 'OK',
+                        onPress: () => handleUpdatePost()
+                    }
+                ],
+                {
+                    cancelable: true
+                }
+            );
+        }
+        else{
+            Alert.alert(
+                'Delete Post', 
+                'Are you sure you want to delete the post?',
+                [
+                  {
+                    text: 'Cancel',
+                    style: 'cancel'
+                  },
+                  {
+                    text: 'OK',
+                    onPress: () => handleDeletePost()
+                  }
+                ],
+                {
+                  cancelable: true
+                }
+            );
+        }
+    }
 
     return (
         <ScrollView style={[globalStyles.flex, globalStyles.whiteBackground, globalStyles.paddingHorizontal]} scrollEnabled={true} showsVerticalScrollIndicator={true}>
@@ -122,8 +175,13 @@ const UpdateCampaign = () => {
                 <Button
                     title={'Update Post'}
                     loading={loading}
-                    handleSubmit={confirmDialogueBox}
+                    handleSubmit={() => confirmDialogueBox('update')}
                 />
+
+                <TouchableOpacity style={styles.deleteButton} onPress={() => confirmDialogueBox('delete')} disabled={loading}>
+                    <Text style={styles.deleteButtonText}>Delete Post</Text>
+                </TouchableOpacity>
+                
             </View>
         </ScrollView>
     )
