@@ -49,58 +49,61 @@ const ResultCard = ({positionId}) => {
     }, []);
 
     return (
-        <View style={styles.container}>
+        <View>
             {loading ? (
                 <ActivityIndicator size={'large'} color={COLORS.primary}/>
             ) : (
-                <View>
-                    <Text style={styles.positionNameText}>{result.position}</Text>
-
-                    {(result.results?.length > 0 && result.status === 'majority') ? (
-                        <DropShadow style={styles.winnerContainerShadow}>
-                            <View style={styles.winnerContainer}>
-                                <Image
-                                    source={require('../../assets/images/rank.png')}
-                                    style={styles.firstPlaceBadge}
-                                />
-
+                <View style={result.voteCountArr?.length > 0 && styles.container}>
+                    {(result.voteCountArr?.length > 0) && (
+                        <>
+                            <Text style={styles.positionNameText}>{result.position}</Text>
+                            {result.status === 'majority' ? (
                                 <DropShadow style={styles.winnerContainerShadow}>
-                                    {result.results[0]?.name === 'NOTA' ? (
-                                        <View style={[styles.winnerImage, styles.notaContainer]}>
-                                            <Text style={styles.notaContainerText}>NOTA</Text>
-                                        </View>
-                                    ) : (
+                                    <View style={styles.winnerContainer}>
                                         <Image
-                                            source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${result.results[0]?.profileImage}`}}
-                                            resizeMode={'cover'}
-                                            style={styles.winnerImage}
+                                            source={require('../../assets/images/rank.png')}
+                                            style={styles.firstPlaceBadge}
                                         />
-                                    )}
+        
+                                        <DropShadow style={styles.winnerContainerShadow}>
+                                            {result.voteCountArr[0]?.name === 'NOTA' ? (
+                                                <View style={[styles.winnerImage, styles.notaContainer]}>
+                                                    <Text style={styles.notaContainerText}>NOTA</Text>
+                                                </View>
+                                            ) : (
+                                                <Image
+                                                    source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${result.voteCountArr[0]?.profileImage}`}}
+                                                    resizeMode={'cover'}
+                                                    style={styles.winnerImage}
+                                                />
+                                            )}
+                                        </DropShadow>
+        
+                                        <Text style={styles.winnerNameText}>{result.voteCountArr[0]?.name === 'NOTA' ? 'None of The Above' : result.voteCountArr[0]?.name}</Text>
+        
+                                        <View style={{flexDirection: 'row'}}>
+                                            <Text style={styles.winnerVoteCountLabel}>Vote Count:</Text>
+                                            <Text style={styles.winnerVoteCountText}>{result.voteCountArr[0]?.voteCount}</Text>
+                                        </View>
+                                    </View>
                                 </DropShadow>
-
-                                <Text style={styles.winnerNameText}>{result.results[0]?.name === 'NOTA' ? 'None of The Above' : result.results[0]?.name}</Text>
-
-                                <View style={{flexDirection: 'row'}}>
-                                    <Text style={styles.winnerVoteCountLabel}>Vote Count:</Text>
-                                    <Text style={styles.winnerVoteCountText}>{result.results[0]?.voteCount}</Text>
-                                </View>
-                            </View>
-                        </DropShadow>
-                    ) : (
-                        <Text style={styles.tieMessage}>The results for the {result.position} position have ended in a tie. Further steps will be announced soon.</Text>
+                            ) : (
+                                <Text style={styles.tieMessage}>The results for the {result.position} position have ended in a tie. Further steps will be announced soon.</Text>
+                            )}
+                        </>
                     )}
 
                     <View style={styles.bottomContainer}>
-                        {result.results?.length > 0 && (
+                        {result.voteCountArr?.length > 0 && (
                             <>
                                 {result.status === 'tie' ? (
-                                    result.results.map((item, index) => (
+                                    result.voteCountArr.map((item, index) => (
                                         <DropShadow key={index} style={styles.candidateContainerShadow}>
                                             <CandidateContainer item={item} status={result.status}/>
                                         </DropShadow>
                                     ))
                                 ) : (
-                                    result.results.slice(1).map((item, index) => (
+                                    result.voteCountArr.slice(1).map((item, index) => (
                                         <DropShadow key={index} style={styles.candidateContainerShadow}>
                                             <CandidateContainer item={item} status={result.status}/>
                                         </DropShadow>

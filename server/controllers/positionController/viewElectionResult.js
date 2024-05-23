@@ -12,38 +12,13 @@ module.exports = async(req, res) => {
             });
         }
 
-        const voteCountArr = position.voteCount.sort((a, b) => b.count - a.count);
+        const voteCountArr = position.results;
 
-        let results = await Promise.all(voteCountArr.map(async(ele, index) => {
-            if(ele.candidateId === "NOTA"){
-                var result = {
-                    name: "NOTA",
-                    voteCount: ele.count,
-                    rank: index + 1
-                }
-            }
-            else{
-                let candidate = await candidateModel.findOne({_id: ele.candidateId});
-    
-                // populating the student attribute
-                candidate = await candidate.populate('student', '_id name profileImage', 'Student');
-    
-                result = {
-                    name: candidate.student.name,
-                    profileImage: candidate.student.profileImage,
-                    voteCount: ele.count,
-                    rank: index + 1
-                }
-            }
-
-            return result;
-        }));
-
-        // console.log('election results: ', results);
+        // console.log('election results: ', voteCountArr);
 
         // check for vote tie
         let status
-        if(results.length > 1 && results[0].voteCount === results[1].voteCount)
+        if(voteCountArr.length > 1 && voteCountArr[0].voteCount === voteCountArr[1].voteCount)
             status = 'tie'
         else
             status = 'majority'
@@ -53,13 +28,13 @@ module.exports = async(req, res) => {
             messgae: `Result Fetched for ${position.name}`,
             position: position.name,
             status: status,
-            results
+            voteCountArr
         });
     } catch (error) {
-        console.log('Error in publish-vote API: ', error);
+        console.log('Error in view-election-results API: ', error);
         return res.status(500).send({
             success: false,
-            message: 'Error in publishing the election result',
+            message: 'Error in getting the election result',
             error
         });
     }

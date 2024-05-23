@@ -25,6 +25,7 @@ import Button from '../../components/Button/Button'
 
 // functions
 import checkExistingCandidate from "./checkExistingCandidate";
+import getAllOpenPositionAPI from "../../api/position/getAllOpenPositionAPI";
 
 const CandidateApply = ({navigation}) => {
     // local states
@@ -53,7 +54,7 @@ const CandidateApply = ({navigation}) => {
         handleClearStates();
         try {
             const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
-            const {positions} = await getAllPositionAPI(token);
+            const {positions} = await getAllOpenPositionAPI(token, 'unvotedPositions');
 
             // reseting the array before assigning all positions
             allPositions.length = 0;

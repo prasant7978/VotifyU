@@ -12,6 +12,13 @@ const positionSchema = new mongoose.Schema({
     voteCount: [{
         candidateId: { type: String, required: true },
         count: { type: Number, required: true },
+    }],
+    results: [{
+        id: {type: String},
+        name: {type: String},
+        profileImage: {type: String},
+        voteCount: {type: Number},
+        rank: {type: Number},
     }]
 }, {timestamps: true});
 

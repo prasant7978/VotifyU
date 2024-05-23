@@ -83,7 +83,9 @@ const AdminDashboard = ({navigation}) => {
                   style={[
                     styles.capsuleContainer,
                     {marginLeft: horizontalScale(20)},
-                  ]}>
+                  ]}
+                  onPress={() => navigation.navigate(Routes.PublishResults)}
+                >
                   <Image
                     source={require('../../../assets/images/results.png')}
                     style={styles.capsuleImage}

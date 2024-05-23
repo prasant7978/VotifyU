@@ -75,6 +75,12 @@ const styles = StyleSheet.create({
         width: horizontalScale(18),
         marginRight: horizontalScale(7)
     },
+    notRegisteredText: {
+        fontFamily: getFontFamily('Inter', '300'),
+        color: COLORS.slateShadow,
+        fontSize: scaleFontSize(16),
+        marginLeft: horizontalScale(10)
+    },
     bottomContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -97,6 +103,12 @@ const styles = StyleSheet.create({
         borderRadius: horizontalScale(5),
         paddingTop: verticalScale(3),
         paddingHorizontal: horizontalScale(22)
+    },
+    publishResultButton: {
+        backgroundColor: COLORS.darkMojito,
+        borderRadius: horizontalScale(5),
+        paddingVertical: verticalScale(4),
+        paddingHorizontal: horizontalScale(22),
     },
     buttonText: {
         fontFamily: getFontFamily('Inter', '700'),

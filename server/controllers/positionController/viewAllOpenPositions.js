@@ -3,7 +3,7 @@ const positionModel = require("../../models/positionModel");
 
 module.exports = async(req, res) => {
     try {
-        let positions = await positionModel.find({});
+        let positions = await positionModel.find({status: 'open'});
 
         if(!positions){
             return res.status(500).send({
@@ -28,16 +28,29 @@ module.exports = async(req, res) => {
             }
         }
 
+        // console.log('req query: ', req.body);
+
+        if(req.query.type === 'unvotedPositions'){
+            const unvotedPositions = positions.filter((position) => !position.studentVoted.includes(req.id))
+            return res.status(200).send({
+                success: true,
+                message: "All positions on which the user has not voted have been fetched.",
+                positions: unvotedPositions
+            })
+        }
+
+        // console.log('positions: ', positions);
+
         res.status(200).send({
             success: true,
-            message: "All positions have been fetched",
+            message: "All open positions have been fetched",
             positions
         })
     } catch (error) {
-        console.log(`Error in view-all-position api: ${error}`.bgRed.white);
+        console.log(`Error in view-all-open-position api: ${error}`.bgRed.white);
         return res.status(500).send({
             success: false,
-            message: 'Error in view-all-position api',
+            message: 'Error in view-all-open-position api',
             error
         });
     }

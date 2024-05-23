@@ -53,6 +53,7 @@ import ViewSingleStudentDetails from '../screens/Admin/ManageStudents/ViewSingle
 import AllCandidates from '../screens/AllCandidates/AllCandidates';
 import ManagePositions from '../screens/Admin/ManagePosition/ManagePosition';
 import ViewSinglePositionDetails from '../screens/Admin/ManagePosition/ViewSinglePositionDetails/ViewSinglePositionDetails';
+import PublishResults from '../screens/Admin/PublishResults/PublishResults';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -263,6 +264,13 @@ const StackNavigator = () => {
         component={ViewSinglePositionDetails}
         options={{
           title: 'Positon Details'
+        }}
+      />
+      <Stack.Screen
+        name={Routes.PublishResults}
+        component={PublishResults}
+        options={{
+          title: 'Publish Results'
         }}
       />
       <Stack.Screen

@@ -11,12 +11,29 @@ module.exports = async(req, res) => {
             })
         }
 
-        const updatePosition = await positionModel.findByIdAndUpdate({_id: req.query.positionId}, {
-            name: req.body.name || position.name,
-            description: req.body.description || position.description,
-            responsibilities: req.body.responsibilities || position.responsibilities,
-            status: req.body.status || position.status
-        }, {new: true});
+        var updatePosition
+        if(req.body.status === 'open'){
+            updatePosition = await positionModel.findByIdAndUpdate({_id: req.query.positionId}, {
+                name: req.body.name || position.name,
+                description: req.body.description || position.description,
+                responsibilities: req.body.responsibilities || position.responsibilities,
+                status: req.body.status || position.status,
+                appliedCandidates: [],
+                voteCount: [],
+                studentVoted: [],
+                results: [],
+                electedCandidate: null,
+            }, {new: true});
+        }
+        else{
+            updatePosition = await positionModel.findByIdAndUpdate({_id: req.query.positionId}, {
+                name: req.body.name || position.name,
+                description: req.body.description || position.description,
+                responsibilities: req.body.responsibilities || position.responsibilities,
+                status: req.body.status || position.status
+            }, {new: true});
+        }
+
 
         if(!updatePosition){
             return res.status(500).send({

@@ -71,6 +71,7 @@ const CandidateProfile = (props) => {
         try {
             const token = JSON.parse(await AsyncStorage.getItem('@auth-token'))
             const response = await deleteCandidateAPI(token, candidate._id)
+            console.log('response: ', response);
 
             if(!response.success){
                 console.log('Error in deleting the candidate: ', response.error);
