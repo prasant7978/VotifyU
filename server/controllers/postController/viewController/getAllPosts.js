@@ -1,4 +1,5 @@
 const postModel = require("../../../models/postModel");
+const candidateModel = require("../../../models/candidateModel");
 
 module.exports = async(req, res) => {
     try {
@@ -8,9 +9,14 @@ module.exports = async(req, res) => {
         for(let i=0; i<posts.length; i++){
             if(posts[i].userType === 'admin')
                 posts[i] = await posts[i].populate('postedBy', '_id name profileImage role', 'Admin');
-            else
+            else{
+                const candidate = await candidateModel.findById({_id: posts[i].postedBy});
+                posts[i].postedBy = candidate.student;
                 posts[i] = await posts[i].populate('postedBy', '_id name profileImage role', 'Student');
+            }
         }
+
+        console.log('posts: ', posts);
 
         res.status(200).send({
             success: true,

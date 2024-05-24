@@ -5,6 +5,7 @@ import styles from './style';
 import globalStyles from '../../assets/styles/globalStyles';
 
 import { View, FlatList, RefreshControl } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native';
 
 // components
 import FooterMenu from '../../components/Menus/FooterMenu';
@@ -12,8 +13,6 @@ import PostCard from '../../components/PostCard/PostCard';
 
 // post context api
 import { PostContext } from '../../context/postContext';
-
-import { useFocusEffect } from '@react-navigation/native';
 
 const Home = () => {
   // global states
