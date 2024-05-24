@@ -3,9 +3,8 @@ const getStudentName = require('../functions/getStudentName');
 
 module.exports = async(req, res, next) => {
     // get student name
-    var studentName = await getStudentName(req.id);
+    var studentName = await getStudentName(req.id, req.userType);
     studentName = studentName.replace(/\s/g, "-");
-    // console.log('student name: ', studentName);
 
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {

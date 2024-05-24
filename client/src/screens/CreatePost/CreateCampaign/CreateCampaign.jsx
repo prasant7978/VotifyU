@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // styles
 import styles from './style';
@@ -23,6 +23,7 @@ import { COLORS } from '../../../constants/theme';
 
 // APIs
 import createCampaignAPI from '../../../api/posts/createCampaignAPI';
+import { useFocusEffect } from '@react-navigation/native';
 
 const CreateCampaign = ({navigation}) => {
   // local states
@@ -30,6 +31,15 @@ const CreateCampaign = ({navigation}) => {
   const [fileName, setFileName] = useState('');
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      setImage(null);
+      setFileName('');
+      setDescription('');
+      setLoading(false);
+    }, [])
+  );
 
   const selectImage = async() => {
     try {

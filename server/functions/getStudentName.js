@@ -1,9 +1,16 @@
+const candidateModel = require("../models/candidateModel");
 const studentModel = require("../models/studentModel");
 
-module.exports = async(studentId) => {
+module.exports = async(id, type) => {
     try {
-        // console.log('studentId: ', studentId);
-        var student = await studentModel.findOne({_id: studentId});
+        var student
+        if(type === 'profile'){
+            student = await studentModel.findOne({_id: id});
+        }
+        else if(type === 'campaign'){
+            const candidate = await candidateModel.findById({_id: id});
+            student = await studentModel.findById({_id: candidate.student});
+        }
 
         if(!student){
             console.log('Student not found in getStudentName');

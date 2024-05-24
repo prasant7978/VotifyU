@@ -16,7 +16,7 @@ module.exports = async(req, res) => {
             }
         }
 
-        console.log('posts: ', posts);
+        // console.log('posts: ', posts);
 
         res.status(200).send({
             success: true,
