@@ -38,11 +38,11 @@ const FooterMenu = () => {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => {
-        if(userState.user.role === 'Student')
+        if(userState.loginType === 'student')
           navigation.navigate(Routes.StudentProfile)
-        else if(userState.user.role === 'Candidate')
+        else if(userState.loginType === 'candidate')
           navigation.navigate(Routes.CandidateProfile, {candidateId: userState.user.candidateId})
-        else if(userState.user.role === 'Admin')
+        else if(userState.loginType === 'admin')
           navigation.navigate(Routes.AdminDashboard)
       }}>
         <FontAwesomeIcon icon={faUser} size={24} style={styles.iconStyle} color={route.name === 'StudentProfile' || route.name === 'CandidateProfile' || route.name === 'AdminDashboard' ? COLORS.primary : "black"}/>

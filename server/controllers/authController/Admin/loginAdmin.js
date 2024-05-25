@@ -20,6 +20,7 @@ module.exports = async(req, res) => {
             success: true,
             message: 'Login Successfull',
             user: req.user,
+            loginType: 'admin',
             token,
         });
     } catch (error) {

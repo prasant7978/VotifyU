@@ -4,8 +4,8 @@ import { View, Text, Image, TextInput, ScrollView, Pressable, Alert, TouchableOp
 
 import { Dropdown } from 'react-native-element-dropdown';
 import DatePicker from 'react-native-date-picker'
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import DocumentPicker from 'react-native-document-picker';
 
 // imporitng styles
 import styles from './style'
@@ -20,7 +20,8 @@ import FooterMenu from '../../../components/Menus/FooterMenu'
 import Button from '../../../components/Button/Button'
 
 // importing update profile api
-import { updateProfile } from '../../../api/profile/updateProfile';
+import { updateProfileAPI } from '../../../api/profile/updateProfileAPI';
+import { updateProfileImageAPI } from '../../../api/profile/updateProfileImageAPI';
 
 // imporing assets
 import { horizontalScale } from '../../../assets/styles/scaling'
@@ -37,13 +38,14 @@ const StudentProfile = ({navigation}) => {
   const [userState, setUserState] = useContext(AuthContext); 
 
   // local states
-  const [course, setCourse] = useState(userState.user.course);
-  const [address, setAddress] = useState(userState.user.address);
-  const [phone, setPhone] = useState(userState.user.phone);
-  const [parentPhone, setParentPhone] = useState(userState.user.parentPhone);
-  const [gender, setGender] = useState(userState.user.gender);
-  const [dob, setDob] = useState(userState.user.dob);
-  const [isLoading, setIsLoading] = useState(false);
+  var [course, setCourse] = useState(userState.user.course);
+  var [department, setDepartment] = useState(userState.user.department);
+  var [phone, setPhone] = useState(userState.user.phone);
+  var [parentPhone, setParentPhone] = useState(userState.user.parentPhone);
+  var [gender, setGender] = useState(userState.user.gender);
+  var [dob, setDob] = useState(userState.user.dob);
+  var [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState(null);
 
   // dropdown visibility state
   const [isFocus, setIsFocus] = useState(false);
@@ -61,38 +63,152 @@ const StudentProfile = ({navigation}) => {
     setUserState(userState);
   }, [userState])
 
-  const handleUpdateProfile = async() => {
-    const newDetails = {
-      // profileImage: image,
-      course: course,
-      address: address,
-      phone: phone,
-      parentPhone: parentPhone,
-      gender: gender,
-      dob: dob
+  const selectImage = async() => {
+    try {
+      const file = await DocumentPicker.pickSingle({
+        type: [DocumentPicker.types.images]
+      });
+
+      setImage(file);
+
+      console.log('Image Selected: ', file);
+    } catch (error) {
+        console.log("Error in selecting the image: ", error);
     }
+  }
 
-    setIsLoading(true);
-    const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
-    const updatedProfile = await updateProfile(token, newDetails);
-    setIsLoading(false);
+  const handleUpdateProfile = async() => {
+    setIsLoading(true)
 
-    // console.log('received data: ', updatedProfile.data.updatedStudent);
-    // console.log('received data: ', JSON.stringify(updatedProfile.data));
-    // console.log('received user: ', JSON.stringify(updatedProfile.data.user));
-    // console.log('received token: ', JSON.stringify(updatedProfile.data.token));
+    try {
+      const newDetails = {
+        course: course,
+        department: department,
+        phone: phone,
+        parentPhone: parentPhone,
+        gender: gender,
+        dob: dob,
+      }
 
-    if(!updatedProfile.status){
-      Alert.alert('Alert', 'Error in updating the profile');
+      const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
+      const response = await updateProfileAPI(token, newDetails);
+      // console.log('response after updating profile details: ', response);
+
+      if(!response.status){
+        console.log('Error in updating the student profile: ', response.error);
+        Alert.alert('Error', response.error);
+      }
+      else{
+        await AsyncStorage.setItem('@auth-data', JSON.stringify(response.data));
+        const newData = JSON.parse(await AsyncStorage.getItem('@auth-data'));
+        setUserState(prevState => ({
+           ...prevState, 
+           user: newData.user, 
+           token: newData.token, 
+           loginType: 'student'
+        }));
+        Alert.alert('Alert', response.data.message);
+      }
+    } catch (error) {
+      console.log('Error in updating the profile: ', error);
+      Alert.alert('Error', error);
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleUploadImage = async() => {
+    setIsLoading(true)
+
+    try {
+      const {uri, name, type} = image;
+
+      const formData = new FormData();
+      formData.append('image', {
+        uri,
+        name,
+        type
+      });
+
+      const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
+      const response = await updateProfileImageAPI(token, formData);
+      // console.log('response after updating profile image: ', response);
+
+      if(!response.success){
+        console.log('Error in updating the profile image: ', response.error);
+        Alert.alert('Error', response.error);
+      }
+      else{
+        await AsyncStorage.setItem('@auth-data', JSON.stringify(response));
+        const newData = JSON.parse(await AsyncStorage.getItem('@auth-data'));
+        setUserState(prevState => ({
+           ...prevState, 
+           user: newData.user, 
+           token: newData.token, 
+           loginType: 'student'
+        }));
+        Alert.alert('Alert', 'Profile Image Updated Successfully');
+      }
+    } catch (error) {
+      console.log('Error in updating the profile image: ', error);
+      Alert.alert('Error', error);
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const confirmDialog = (type) => {
+    if(type === 'details'){
+      Alert.alert(
+        'Update Profile Details', 
+        'Are you sure, you want to update the profile details?',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Yes',
+            onPress: () => handleUpdateProfile()
+          }
+        ],
+        {
+          cancelable: false
+        }
+      );
     }
     else{
-      await AsyncStorage.setItem('@auth-data', JSON.stringify(updatedProfile.data));
-      const newData = JSON.parse(await AsyncStorage.getItem('@auth-data'));
-      // console.log('new data: ', newData);
-      setUserState(prevState => ({ ...prevState, user: newData.user, token: newData.token }));
-      // console.log('updated userState: ', userState);
-      Alert.alert('Alert', 'Profile updated successfully');
+      Alert.alert(
+        'Update Profile Image', 
+        'Are you sure, you want to update the profile image?',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel'
+          },
+          {
+            text: 'Yes',
+            onPress: () => handleUploadImage()
+          }
+        ],
+        {
+          cancelable: false
+        }
+      );
     }
+  }
+
+  const validation = () => {
+    if(!course || !department || !gender || !dob || !phone || !parentPhone){
+      Alert.alert('Alert', 'Please Provide All Details To Update The Profile')
+      return;
+    }
+    else if(phone?.length != 10 || parentPhone?.length != 10){
+      Alert.alert('Alert', 'Please Enter A Valid Phone No.')
+      return;
+    }
+
+    confirmDialog('details')
   }
 
   return (
@@ -100,21 +216,35 @@ const StudentProfile = ({navigation}) => {
       <ScrollView style={styles.profileContainer}>
         <View style={styles.userPrimaryDetailsContainer}>
           <View style={styles.profileImageContainer}>
-            {userState.user.profileImage ? (
-              <Image
-                source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${userState.user.profileImage}`}}
-                style={styles.profileImage}
-                resizeMode='cover'
-              />
-            ) : (
-              <InitialAvatar
-                name={userState.user.name}
-                avatarSize={40} 
-                textSize={16}
-                padding={5}
-              />
-            )
-          }
+            <TouchableOpacity onPress={selectImage}>
+              {userState.user.profileImage && !image ? (
+                <Image
+                  source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${userState.user.profileImage}`}}
+                  style={styles.profileImage}
+                  resizeMode='cover'
+                />
+              ) : (
+                <>
+                  {image ? (
+                    <Image source={{ uri: image.uri }} style={styles.profileImage} />
+                  ) : (
+                    <InitialAvatar
+                      name={userState.user.name}
+                      avatarSize={90} 
+                      textSize={28}
+                      padding={5}
+                    />
+                  )}
+                </>
+              )}
+
+              <TouchableOpacity onPress={selectImage}>
+                <Image
+                  source={require('../../../assets/images/pencil.png')}
+                  style={styles.editImageIcon}
+                />
+              </TouchableOpacity>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.userDetailsContainer}>
@@ -124,6 +254,12 @@ const StudentProfile = ({navigation}) => {
           </View>
         </View>
 
+        {image && (
+          <TouchableOpacity style={styles.uploadImageButton} onPress={() => confirmDialog('image')}>
+            <Text style={styles.uploadImageButtonText}>Upload Image</Text>
+          </TouchableOpacity>
+        )}
+
         <View style={styles.userSecondaryDetailsContainer}>
           <View style={styles.inputContainer}>
             <Text style={styles.inputLabelText}>Course</Text>
@@ -131,19 +267,21 @@ const StudentProfile = ({navigation}) => {
               value={course}
               onChangeText={(val) => setCourse(val)}
               style={styles.inputBox}
+              placeholder={'Enter Your Course'}
+              placeholderTextColor={COLORS.lightGray}
               autoFocus={false}
               returnKeyType={'next'}
             />
           </View>
 
           <View style={styles.inputContainer}>
-            <Text style={styles.inputLabelText}>Address</Text>
+            <Text style={styles.inputLabelText}>Department</Text>
             <TextInput
-              value={address}
-              onChangeText={(val) => setAddress(val)}
-              style={[styles.inputBox, styles.addressInputBox]}
-              multiline={true}
-              numberOfLines={3}
+              value={department}
+              onChangeText={(val) => setDepartment(val)}
+              style={styles.inputBox}
+              placeholder={'Enter Your Department'}
+              placeholderTextColor={COLORS.lightGray}
               autoFocus={false}
               returnKeyType={'next'}
             />
@@ -164,14 +302,16 @@ const StudentProfile = ({navigation}) => {
 
             <View style={[styles.inputContainer, {marginStart: horizontalScale(40)}]}>
               <Text style={styles.inputLabelText}>Parent Phone Number</Text>
-              <TextInput
-                value={parentPhone}
-                onChangeText={(val) => setParentPhone(val)}
-                style={styles.inputBox}
-                autoFocus={false}
-                returnKeyType={'next'}
-                keyboardType='phone-pad'
-              />
+                <TextInput
+                  value={parentPhone}
+                  onChangeText={(val) => setParentPhone(val)}
+                  style={styles.inputBox}
+                  placeholder={'Enter Mobile No.'}
+                  placeholderTextColor={COLORS.lightGray}
+                  autoFocus={false}
+                  returnKeyType={'next'}
+                  keyboardType='phone-pad'
+                />
             </View>
           </View>
 
@@ -210,7 +350,11 @@ const StudentProfile = ({navigation}) => {
                 <Pressable onPress={() => (
                   setShowDatePicker(true)
                 )}>
-                  <Text style={[styles.modalText, styles.dobContainerText]}>{dob}</Text>
+                  {dob ? (
+                    <Text style={[styles.modalText, styles.dobContainerText]}>{dob}</Text>
+                  ) : (
+                    <Text style={[styles.modalText, styles.dobContainerText]}>N/A</Text>
+                  )}
                 </Pressable>  
               </View>
           
@@ -248,7 +392,7 @@ const StudentProfile = ({navigation}) => {
           <Button
             title={'Update Profile'}
             loading={isLoading}
-            handleSubmit={handleUpdateProfile}
+            handleSubmit={validation}
           />
         </View>
       </ScrollView>

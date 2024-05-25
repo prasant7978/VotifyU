@@ -24,10 +24,10 @@ module.exports = async(req, res, next) => {
         upload.single("image")(req, res, function(err){
             if(err){
                 console.log('Errorrrr: ', err);
-                res.status(500).send({
+                return res.status(500).send({
                     success: false,
                     message: 'Error in uploading the image',
-                    error
+                    err
                 });
             }
             else{
@@ -37,7 +37,7 @@ module.exports = async(req, res, next) => {
         });
     } catch (error) {
         console.log('Error in uploading the image: ', error);
-        res.status(500).send({
+        return res.status(500).send({
             success: false,
             message: 'Error in uploading the image',
             error

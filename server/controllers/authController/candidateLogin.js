@@ -39,6 +39,7 @@ module.exports = async(req, res) => {
             success: true,
             message: 'Login Successfull',
             user: req.user,
+            loginType: 'candidate',
             token,
         });
     } catch (error) {

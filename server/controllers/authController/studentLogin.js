@@ -21,6 +21,7 @@ module.exports = async(req, res) => {
             success: true,
             message: 'Login Successfull',
             user: req.user,
+            loginType: 'student',
             token,
         });
     } catch (error) {

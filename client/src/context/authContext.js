@@ -9,6 +9,7 @@ const AuthProvider = ({children}) => {
     const [userState, setUserState] = useState({
         user: null,
         token: '',
+        loginType: ''
     });
 
     // console.log('userState at auth context: ', userState);
@@ -24,7 +25,12 @@ const AuthProvider = ({children}) => {
                 // console.log('data at auth context: ', data);
                 if (data) {
                     const loginData = JSON.parse(data);
-                    setUserState(prevState => ({ ...prevState, user: loginData.user, token: loginData.token }));
+                    setUserState(prevState => ({
+                      ...prevState,
+                      user: loginData.user,
+                      token: loginData.token,
+                      loginType: loginData.loginType,
+                    }));
                 }
                 else{
                     console.log('No data found in auth context...');

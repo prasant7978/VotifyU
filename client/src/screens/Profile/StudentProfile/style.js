@@ -5,7 +5,7 @@ import { COLORS } from "../../../constants/theme";
 
 const styles = StyleSheet.create({
     profileContainer: {
-        paddingTop: verticalScale(5)
+        paddingTop: verticalScale(15)
     },
     userPrimaryDetailsContainer: {
         flexDirection: 'row',
@@ -13,7 +13,9 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.primary,
         borderTopLeftRadius: horizontalScale(50),
         borderBottomLeftRadius: horizontalScale(50),
-        padding: horizontalScale(5),
+        borderTopRightRadius: horizontalScale(3),
+        borderBottomRightRadius: horizontalScale(3),
+        padding: horizontalScale(6),
         marginHorizontal: horizontalScale(10),
         shadowOffset: {
             width: 0,
@@ -24,6 +26,8 @@ const styles = StyleSheet.create({
         elevation: 10,
     },
     profileImageContainer: {
+        height: horizontalScale(90),
+        width: horizontalScale(90),
         shadowColor: COLORS.slateShadow,
         shadowOffset: {
             width: 0,
@@ -40,6 +44,15 @@ const styles = StyleSheet.create({
         borderRadius: horizontalScale(50),
         borderWidth: 2,
     },
+    editImageIcon: {
+        height: horizontalScale(23),
+        width: horizontalScale(23),
+        zIndex: 1,
+        position: 'absolute',
+        right: horizontalScale(3),
+        bottom: verticalScale(2),
+        opacity: 1
+    },
     userDetailsContainer: {
         height: horizontalScale(90),
         marginLeft: horizontalScale(5),
@@ -47,7 +60,7 @@ const styles = StyleSheet.create({
     },
     nameText: {
         fontFamily: getFontFamily('Inter', '700'),
-        fontSize: scaleFontSize(22),
+        fontSize: scaleFontSize(20),
         color: COLORS.boneWhite,
     },
     emailText: {
@@ -55,15 +68,32 @@ const styles = StyleSheet.create({
         fontSize: scaleFontSize(16),
         color: COLORS.snowWhite,
     },
+    uploadImageButton: {
+        backgroundColor: COLORS.lightGray,
+        borderRadius: horizontalScale(3),
+        padding: horizontalScale(3),
+        marginTop: verticalScale(10),
+        marginHorizontal: horizontalScale(10),
+        width: horizontalScale(100),
+        position: 'absolute',
+        right: horizontalScale(7),
+        top: verticalScale(80)
+    },
+    uploadImageButtonText: {
+        fontFamily: getFontFamily('Inter', '500'),
+        fontSize: scaleFontSize(13),
+        color: COLORS.slateShadow,
+        textAlign: 'center'
+    },
     userSecondaryDetailsContainer: {
         borderRadius: horizontalScale(10),
         backgroundColor: COLORS.snowWhite,
         paddingHorizontal: horizontalScale(15),
         paddingVertical: verticalScale(5),
-        marginTop: verticalScale(15),
+        marginTop: verticalScale(30),
         shadowColor: COLORS.chocolateNoir,
         shadowOffset: {
-            width: 0,
+            width: horizontalScale(3),
             height: verticalScale(2)
         },
         shadowOpacity: 0.2,
@@ -85,15 +115,12 @@ const styles = StyleSheet.create({
         fontSize: scaleFontSize(18),
         borderBottomWidth: 0.8,
         borderBottomColor: COLORS.darkGray,
-        paddingVertical: verticalScale(0),
+        paddingBottom: verticalScale(0),
+        paddingTop: verticalScale(3),
         paddingHorizontal: horizontalScale(0)
     },
-    addressInputBox: {
-        height: verticalScale(50),
-        lineHeight: verticalScale(22)
-    },
     modalContainer: {
-        width: horizontalScale(130),
+        width: horizontalScale(135),
         marginVertical: verticalScale(5)
     },
     modal: {
@@ -144,7 +171,7 @@ const styles = StyleSheet.create({
         paddingVertical: verticalScale(15),
     },
     updatePasswordContainer: {
-        paddingTop: verticalScale(25)
+        paddingTop: verticalScale(45)
     },
     updatePasswordText: {
         color: COLORS.secondary,
