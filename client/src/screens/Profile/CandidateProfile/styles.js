@@ -25,6 +25,21 @@ const styles = StyleSheet.create({
         height: horizontalScale(160),
         borderRadius: horizontalScale(5),
     },
+    imageContainer: {
+        backgroundColor: COLORS.antifleshWhite,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingBottom: verticalScale(10)
+    },
+    noImage: {
+        height: verticalScale(100),
+        width: horizontalScale(70)
+    },
+    noImageText: {
+        fontFamily: getFontFamily('Inter', '500'),
+        color: COLORS.slateShadow,
+        fontSize: scaleFontSize(14),
+    },
     primaryDetailsContainer: {
         alignItems: 'center',
         marginTop: verticalScale(12)

@@ -120,15 +120,19 @@ const CandidateProfile = (props) => {
                                     source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${candidate.student?.profileImage}`}}
                                     style={styles.profileImage}
                                     resizeMode='cover'
-                                /> ) : (
-                                    <InitialAvatar
-                                        name={candidate.student?.name}
-                                        avatarSize={40} 
-                                        textSize={16}
-                                        padding={5}
+                                />
+                                
+                            ) : (
+                                <View style={[styles.imageContainer, styles.profileImage]}>
+                                    <Image
+                                        source={require('../../../assets/images/no-pictures.png')}
+                                        style={styles.noImage}
+                                        resizeMode={'contain'}
                                     />
-                                )
-                            }
+                                    <Text style={styles.noImageText}>No Profile</Text>
+                                    <Text style={styles.noImageText}>Image</Text>
+                                </View>
+                            )}
                         </View>
                     </View>
 

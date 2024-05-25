@@ -16,6 +16,7 @@ import { Routes } from '../../navigation/Routes';
 import getSingleCandidateApplicationAPI from '../../api/candidate/getSingleCandidateApplication';
 
 import { AuthContext } from '../../context/authContext';
+import InitialAvatar from '../InitialAvatar/InitialAvatar';
 
 const ElectionCard = ({position, onVoteSubmit, onPublishReult}) => {
   const navigation = useNavigation();
@@ -156,13 +157,22 @@ const ElectionCard = ({position, onVoteSubmit, onPublishReult}) => {
                       }}>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                           <DropShadow style={styles.shadow}>
-                            <Image
-                              source={{
-                                uri: `http://192.168.93.221:3001/api/uploads/profile/${candidateDetails[id].student?.profileImage}`,
-                              }}
-                              resizeMode={'cover'}
-                              style={styles.image}
-                            />
+                            {candidateDetails[id].student?.profileImage ? (
+                              <Image
+                                source={{
+                                  uri: `http://192.168.93.221:3001/api/uploads/profile/${candidateDetails[id].student?.profileImage}`,
+                                }}
+                                resizeMode={'cover'}
+                                style={styles.image}
+                              />
+                            ) : (
+                              <InitialAvatar
+                                name={candidateDetails[id].student?.name}
+                                avatarSize={50}
+                                textSize={16}
+                                padding={5}
+                              />
+                            )}
                           </DropShadow>
     
                           <Text style={styles.candidateNameText}>

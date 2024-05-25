@@ -71,11 +71,23 @@ const ResultCard = ({positionId}) => {
                                                     <Text style={styles.notaContainerText}>NOTA</Text>
                                                 </View>
                                             ) : (
-                                                <Image
-                                                    source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${result.voteCountArr[0]?.profileImage}`}}
-                                                    resizeMode={'cover'}
-                                                    style={styles.winnerImage}
-                                                />
+                                                <>
+                                                    {result.voteCountArr[0]?.profileImag ? (
+                                                        <Image
+                                                            source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${result.voteCountArr[0]?.profileImage}`}}
+                                                            resizeMode={'cover'}
+                                                            style={styles.winnerImage}
+                                                        />
+                                                    ) : (
+                                                        <View style={[styles.imageContainer, styles.winnerImage]}>
+                                                            <Image
+                                                                source={require('../../assets/images/user.png')}
+                                                                style={styles.noImage}
+                                                                resizeMode={'contain'}
+                                                            />
+                                                        </View>
+                                                    )}
+                                                </>
                                             )}
                                         </DropShadow>
         

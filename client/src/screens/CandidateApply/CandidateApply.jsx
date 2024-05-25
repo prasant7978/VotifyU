@@ -16,16 +16,15 @@ import { COLORS } from "../../constants/theme";
 import { getFontFamily } from "../../assets/fonts/helper";
 import { horizontalScale, verticalScale } from "../../assets/styles/scaling";
 
-// apis
-import getAllPositionAPI from "../../api/position/getAllPositionAPI";
+// APIs
 import applyCandidateAPI from "../../api/candidate/applyCandidateAPI";
+import getAllOpenPositionAPI from "../../api/position/getAllOpenPositionAPI";
 
 // components
 import Button from '../../components/Button/Button'
 
 // functions
 import checkExistingCandidate from "./checkExistingCandidate";
-import getAllOpenPositionAPI from "../../api/position/getAllOpenPositionAPI";
 
 const CandidateApply = ({navigation}) => {
     // local states
@@ -245,7 +244,7 @@ const CandidateApply = ({navigation}) => {
         const fetchAllPositions = async() => {
             try {
                 const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
-                const {positions} = await getAllPositionAPI(token);
+                const {positions} = await getAllOpenPositionAPI(token, 'unvotedPositions');
     
                 // reseting the array before assigning all positions
                 allPositions.length = 0;
@@ -311,7 +310,7 @@ const CandidateApply = ({navigation}) => {
                             data={allPositions}
                             labelField="label"
                             valueField="value"
-                            placeholder={!isFocus ? 'Select position' : '...'}
+                            placeholder={!isFocus ? (allPositions.length > 0 ? 'Select position' : 'No open positions are available') : '...'}
                             value={position}
                             onFocus={() => setIsFocus(true)}
                             onBlur={() => setIsFocus(false)}

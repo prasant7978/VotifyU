@@ -7,6 +7,7 @@ import DropShadow from "react-native-drop-shadow";
 import secondPlaceBadge from '../../assets/images/second-place.png';
 import thirdPlaceBadge from '../../assets/images/third-place.png';
 import { horizontalScale } from "../../assets/styles/scaling";
+import InitialAvatar from "../InitialAvatar/InitialAvatar";
 
 const CandidateContainer = ({item, status}) => {
     return (
@@ -17,11 +18,22 @@ const CandidateContainer = ({item, status}) => {
                         <Text style={styles.notaContainerText}>N</Text>
                     </View>
                 ) : (
-                    <Image
-                        source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${item.profileImage}`}}
-                        resizeMode={'cover'}
-                        style={styles.candidateImage}
-                    />
+                    <>
+                        {item.profileImage ? (
+                            <Image
+                                source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${item.profileImage}`}}
+                                resizeMode={'cover'}
+                                style={styles.candidateImage}
+                            />
+                        ) : (
+                            <InitialAvatar
+                                name={item.name}
+                                avatarSize={50}
+                                textSize={16}
+                                padding={5}
+                            />
+                        )}
+                    </>
                 )}
             </DropShadow>
 

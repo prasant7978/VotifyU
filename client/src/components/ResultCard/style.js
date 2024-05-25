@@ -52,6 +52,21 @@ const styles = StyleSheet.create({
         width: horizontalScale(100),
         borderRadius: horizontalScale(5)
     },
+    imageContainer: {
+        backgroundColor: COLORS.antifleshWhite,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingBottom: verticalScale(10)
+    },
+    noImage: {
+        height: verticalScale(130),
+        width: horizontalScale(100)
+    },
+    noImageText: {
+        fontFamily: getFontFamily('Inter', '500'),
+        color: COLORS.slateShadow,
+        fontSize: scaleFontSize(14),
+    },
     winnerNameText: {
         fontFamily: getFontFamily('Inter', '600'),
         color: COLORS.midnightSapphire,
