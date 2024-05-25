@@ -27,7 +27,7 @@ const Home = () => {
   const [isLoadingUserPosts, setIsLoadingUserPosts] = useState(false);
 
   const pagination = (allPosts, currentPage, pageSize) => {
-    console.log('current page: ', currentPage);
+    // console.log('current page: ', currentPage);
     let startIndex = (currentPage - 1) * pageSize;
     let endIndex = startIndex + pageSize;
 
@@ -79,7 +79,7 @@ const Home = () => {
 
           setIsLoadingUserPosts(true);
 
-          console.log('fetching posts for page: ', userPostscurrentPage + 1);
+          // console.log('fetching posts for page: ', userPostscurrentPage + 1);
           const newPosts = pagination(allPosts, userPostscurrentPage + 1, userPostPageSize);
           if(newPosts.length > 0){
             setUserPostsCurrentPage(userPostscurrentPage + 1);

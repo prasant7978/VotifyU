@@ -18,6 +18,7 @@ import ResultCard from '../../components/ResultCard/ResultCard'
 
 import { AuthContext } from '../../context/authContext'
 import { useFocusEffect } from '@react-navigation/native'
+import { horizontalScale } from '../../assets/styles/scaling'
 
 const Results = () => {
   // global states
@@ -82,7 +83,7 @@ const Results = () => {
       )}
 
       {userState.user.role !== 'Admin' && (
-        <View>
+        <View style={globalStyles.paddingHorizontal}>
           <FooterMenu/>
         </View>
       )}

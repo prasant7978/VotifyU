@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
 import styles from './style'
+
 import { View, Text, Image, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+
 import { Routes } from '../../navigation/Routes'
 
 const CampaignCard = ({post}) => {
@@ -10,7 +13,7 @@ const CampaignCard = ({post}) => {
   return (
     <Pressable 
       style={styles.campaignContainer} 
-      onPress={() => navigation.navigate(Routes.UpdateCampaign, {post: post})}
+      onPress={() => {navigation.navigate(Routes.UpdateCampaign, {post: post})}}
     >
         {post.type === 'campaign' ? (
             <Image

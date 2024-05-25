@@ -37,7 +37,8 @@ const UpdateCampaign = ({navigation}) => {
     const [title, setTitle] = useState(post.type === 'notice' ? post.title : '');
     const [description, setDescription] = useState(post.description);
     const [loading, setLoading] = useState(false);
-
+    const [isDisable, setIsDisable] = useState(userState.loginType === 'student')
+    
     const fetchUpdatedData = async () => {
         await fetchAllPosts('update page');
     };
@@ -143,14 +144,20 @@ const UpdateCampaign = ({navigation}) => {
             {post.type === 'notice' ? (
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputLabelText}>Title</Text>
-                    <TextInput
-                        value={title}
-                        onChangeText={(val) => setTitle(val)}
-                        style={[styles.titleInputBox,]}
-                        multiline={true}
-                        autoFocus={false}
-                        returnKeyType={'next'}
-                    />
+                    <>
+                        {isDisable ? (
+                            <Text style={styles.titleInputBox}>{title}</Text>
+                        ) : (
+                            <TextInput
+                                value={title}
+                                onChangeText={(val) => setTitle(val)}
+                                style={styles.titleInputBox}
+                                multiline={true}
+                                autoFocus={false}
+                                returnKeyType={'next'}
+                            />
+                        )}
+                    </>
                 </View>
             ) : (
                 <Image
@@ -161,28 +168,34 @@ const UpdateCampaign = ({navigation}) => {
 
             <View style={styles.inputContainer}>
                 <Text style={[styles.inputLabelText, {paddingTop: verticalScale(10)}]}>Description</Text>
-                <TextInput
-                    value={description}
-                    onChangeText={(val) => setDescription(val)}
-                    style={[styles.descriptionInputBox, styles.multiLineInputBox]}
-                    multiline={true}
-                    autoFocus={false}
-                    returnKeyType={'next'}
-                />
+                {isDisable ? (
+                    <Text style={[styles.descriptionInputBox, styles.multiLineInputBox]}>{description}</Text>
+                ) : (
+                    <TextInput
+                        value={description}
+                        onChangeText={(val) => setDescription(val)}
+                        style={[styles.descriptionInputBox, styles.multiLineInputBox]}
+                        multiline={true}
+                        autoFocus={false}
+                        returnKeyType={'next'}
+                    />
+                )}
             </View>
 
-            <View style={styles.buttonContainer}>
-                <Button
-                    title={'Update Post'}
-                    loading={loading}
-                    handleSubmit={() => confirmDialogueBox('update')}
-                />
+            {userState.loginType !== 'student' && (
+                <View style={styles.buttonContainer}>
+                    <Button
+                        title={'Update Post'}
+                        loading={loading}
+                        handleSubmit={() => confirmDialogueBox('update')}
+                    />
 
-                <TouchableOpacity style={styles.deleteButton} onPress={() => confirmDialogueBox('delete')} disabled={loading}>
-                    <Text style={styles.deleteButtonText}>Delete Post</Text>
-                </TouchableOpacity>
-                
-            </View>
+                    <TouchableOpacity style={styles.deleteButton} onPress={() => confirmDialogueBox('delete')} disabled={loading}>
+                        <Text style={styles.deleteButtonText}>Delete Post</Text>
+                    </TouchableOpacity>
+                    
+                </View>
+            )}
         </ScrollView>
     )
 }

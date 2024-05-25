@@ -51,7 +51,7 @@ const Admin_Login = ({navigation}) => {
             await AsyncStorage.setItem('@auth-data', JSON.stringify(user.data));
             await AsyncStorage.setItem('@auth-token', JSON.stringify(user.data?.token));
             // Alert.alert(user.data && user.data.message);
-            // navigation.navigate(Routes.Feeds);
+            // navigation.navigate(Routes.AdminDashboard);
         }
 
         setIsLoading(false);

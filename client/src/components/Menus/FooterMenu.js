@@ -15,29 +15,33 @@ import { Routes } from '../../navigation/Routes'
 const FooterMenu = () => {
   // global states
   const [userState] = useContext(AuthContext);
-  // console.log('candidate id in footer menu: ', userState.user.candidateId);
 
   const navigation = useNavigation();
   const route = useRoute();
 
   return (
-    <View style={styles.container}>
+    <View style={userState.loginType === 'admin' ? styles.adminContainer : styles.container}>
       <TouchableOpacity onPress={() => navigation.navigate(Routes.Feeds)}>
         <FontAwesomeIcon icon={faImages} size={24} style={styles.iconStyle} color={route.name === 'Feeds' ? COLORS.primary : "black"}/>
         <Text style={[styles.text, route.name === 'Feeds' ? {color: COLORS.primary} : {color: 'black'}]}>Feeds</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate(Routes.Elections)}>
-        <FontAwesomeIcon icon={faCheckToSlot} size={24} style={styles.iconStyle} color={route.name === 'Elections' ? COLORS.primary : "black"}/>
-        <Text style={[styles.text, route.name === 'Elections' ? {color: COLORS.primary} : {color: 'black'}]}>Elections</Text>
-      </TouchableOpacity>
+      {userState.loginType !== 'admin' && (
+        <>
+          <TouchableOpacity onPress={() => navigation.navigate(Routes.Elections)}>
+            <FontAwesomeIcon icon={faCheckToSlot} size={24} style={styles.iconStyle} color={route.name === 'Elections' ? COLORS.primary : "black"}/>
+            <Text style={[styles.text, route.name === 'Elections' ? {color: COLORS.primary} : {color: 'black'}]}>Elections</Text>
+          </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate(Routes.Results)}>
-        <FontAwesomeIcon icon={faSquarePollVertical} size={24} style={styles.iconStyle} color={route.name === 'Results' ? COLORS.primary : "black"}/>
-        <Text style={[styles.text, route.name === 'Results' ? { color: COLORS.primary } : { color: 'black' }]}>Results</Text>
-      </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate(Routes.Results)}>
+            <FontAwesomeIcon icon={faSquarePollVertical} size={24} style={styles.iconStyle} color={route.name === 'Results' ? COLORS.primary : "black"}/>
+            <Text style={[styles.text, route.name === 'Results' ? { color: COLORS.primary } : { color: 'black' }]}>Results</Text>
+          </TouchableOpacity>
+        </>
+      )}
 
       <TouchableOpacity onPress={() => {
+        // console.log('loginType: ', userState.loginType)
         if(userState.loginType === 'student')
           navigation.navigate(Routes.StudentProfile)
         else if(userState.loginType === 'candidate')
@@ -54,19 +58,26 @@ const FooterMenu = () => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: horizontalScale(SIZES.small),
-        paddingVertical: verticalScale(5),
-        backgroundColor: '#00000000',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      paddingHorizontal: horizontalScale(SIZES.small),
+      paddingVertical: verticalScale(5),
+      backgroundColor: '#00000000',
+    },
+    adminContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      paddingHorizontal: horizontalScale(SIZES.small),
+      paddingVertical: verticalScale(5),
+      backgroundColor: '#00000000',
     },
     iconStyle: {
-        marginBottom: verticalScale(3),
-        alignSelf: 'center',
+      marginBottom: verticalScale(3),
+      alignSelf: 'center',
     },
     text: {
-        color: '#000000',
-        textAlign: 'center'
+      color: '#000000',
+      textAlign: 'center'
     }
 });
 

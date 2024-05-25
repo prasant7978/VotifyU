@@ -12,9 +12,9 @@ import {
   faCircleInfo,
   faHome,
   faPenToSquare,
-  faUsers,
+  faUserGroup,
 } from '@fortawesome/free-solid-svg-icons';
-import {faComments, faSquarePlus} from '@fortawesome/free-regular-svg-icons';
+import {faSquarePlus} from '@fortawesome/free-regular-svg-icons';
 import {faHeadset} from '@fortawesome/free-solid-svg-icons/faHeadset';
 
 // assets
@@ -74,6 +74,7 @@ const DrawerNavigator = () => {
           fontSize: scaleFontSize(15),
         },
       }}>
+
       <Drawer.Screen
         name={'Home'}
         component={StackNavigator}
@@ -82,52 +83,69 @@ const DrawerNavigator = () => {
           drawerIcon: () => <FontAwesomeIcon icon={faHome} size={22} />,
         }}
       />
+
       {userState.user.role !== 'Admin' && (
+        <>
+          <Drawer.Screen
+            name={Routes.AboutElection}
+            component={AboutElection}
+            options={{
+              title: 'About Election',
+              drawerIcon: () => <FontAwesomeIcon icon={faCircleInfo} size={22} />,
+              headerShown: true,
+            }}
+          />
+
+          {userState.loginType !== 'candidate' && (
+            <Drawer.Screen
+              name={Routes.AllCandidates}
+              component={AllCandidates}
+              options={{
+                title: 'All Candidates',
+                drawerIcon: () => <FontAwesomeIcon icon={faUserGroup} size={22} />,
+                headerShown: true,
+              }}
+            />
+          )}
+        </>
+      )}
+
+      {userState.loginType !== 'student' && (
         <Drawer.Screen
-          name={Routes.AboutElection}
-          component={AboutElection}
+          name={Routes.CreatePost}
+          component={CreatePost}
           options={{
-            title: 'About Election',
-            drawerIcon: () => <FontAwesomeIcon icon={faCircleInfo} size={22} />,
+            title: 'Create Post',
+            drawerIcon: () => <FontAwesomeIcon icon={faSquarePlus} size={22} />,
             headerShown: true,
           }}
         />
       )}
-      <Drawer.Screen
-        name={Routes.CreatePost}
-        component={CreatePost}
-        options={{
-          title: 'Create Post',
-          drawerIcon: () => <FontAwesomeIcon icon={faSquarePlus} size={22} />,
-          headerShown: true,
-        }}
-      />
-      <Drawer.Screen
-        name={Routes.CandidateApply}
-        component={CandidateApply}
-        options={{
-          title: 'Apply For Candidate',
-          drawerIcon: () => <FontAwesomeIcon icon={faPenToSquare} size={22} />,
-          headerShown: true,
-        }}
-      />
-      <Drawer.Screen
-        name={Routes.HelpCenter}
-        component={HelpCenter}
-        options={{
-          title: 'Help Center',
-          drawerIcon: () => <FontAwesomeIcon icon={faHeadset} size={22} />,
-          headerShown: true,
-        }}
-      />
-    </Drawer.Navigator>
 
-    // <Drawer.Navigator initialRouteName={Routes.AboutElection}>
-    // <Drawer.Screen name={Routes.AboutElection} component={AboutElection} options={{title: 'About Election'}}/>
-    // <Drawer.Screen name={Routes.CreateCampaign} component={CreateCampaign} options={{title: 'Create Campaign'}}/>
-    // <Drawer.Screen name={Routes.Feedback} component={Feedback}/>
-    // <Drawer.Screen name={Routes.HelpCenter} component={HelpCenter} options={{title: 'Help Center'}}/>
-    // </Drawer.Navigator>
+      {userState.user.role === 'Student' && (
+        <Drawer.Screen
+          name={Routes.CandidateApply}
+          component={CandidateApply}
+          options={{
+            title: 'Apply For Candidate',
+            drawerIcon: () => <FontAwesomeIcon icon={faPenToSquare} size={22} />,
+            headerShown: true,
+          }}
+        />
+      )}
+
+      {userState.user.role !== 'Admin' && (
+        <Drawer.Screen
+          name={Routes.HelpCenter}
+          component={HelpCenter}
+          options={{
+            title: 'Help Center',
+            drawerIcon: () => <FontAwesomeIcon icon={faHeadset} size={22} />,
+            headerShown: true,
+          }}
+        />
+      )}
+    </Drawer.Navigator>
   );
 };
 
@@ -227,7 +245,6 @@ const StackNavigator = () => {
         component={ManageStudent}
         options={{
           title: 'Manage Students',
-          // headerShown: false
         }}
       />
       <Stack.Screen
@@ -284,10 +301,10 @@ const NonAuthenticatedNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName={Routes.Student_Login}
-      screenOptions={{header: () => null, headerShown: false}}>
+      screenOptions={{header: () => null, headerShown: false}}
+    >
       <Stack.Screen name={Routes.Student_Login} component={Student_Login} />
       <Stack.Screen name={Routes.Admin_Login} component={Admin_Login} />
-      {/* <Stack.Screen name={'AuthenticatedNavigator'} component={AuthenticatedNavigator}/> */}
       <Stack.Screen name={'StackNavigator'} component={StackNavigator} />
     </Stack.Navigator>
   );
@@ -296,10 +313,6 @@ const NonAuthenticatedNavigator = () => {
 const AuthenticatedNavigator = () => {
   return (
     <DrawerNavigator />
-    // <Stack.Navigator initialRouteName="Drawer" screenOptions={{ header: () => null, headerShown: false }}>
-    //     <Stack.Screen name="Drawer" component={DrawerNavigator} />
-    //     <Stack.Screen name="Stack" component={StackNavigator} />
-    // </Stack.Navigator>
   );
 };
 

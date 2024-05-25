@@ -148,7 +148,7 @@ const ElectionCard = ({position, onVoteSubmit, onPublishReult}) => {
                         },
                       ]}
                       onPress={() => {
-                        if(userState.user.role !== 'Admin'){
+                        if(userState.user.role !== 'Admin' && userState.loginType !== 'candidate'){
                           if (selectedId === id) setSelectedId('');
                           else setSelectedId(id);
                           setIsChecked(false);
@@ -189,7 +189,7 @@ const ElectionCard = ({position, onVoteSubmit, onPublishReult}) => {
       </View>
 
       <View style={styles.bottomContainer}>
-        {userState.user.role !== 'Admin' ? (
+        {userState.user.role !== 'Admin' && userState.loginType !== 'candidate' ? (
           <>
             <View style={styles.checkBoxContainer}>
               <CheckBox

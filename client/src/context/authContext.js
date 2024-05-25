@@ -22,7 +22,7 @@ const AuthProvider = ({children}) => {
         const loadLocalStorageData = async () => {
             try {
                 const data = await AsyncStorage.getItem('@auth-data');
-                // console.log('data at auth context: ', data);
+                // console.log('data from async storeage: ', data);
                 if (data) {
                     const loginData = JSON.parse(data);
                     setUserState(prevState => ({

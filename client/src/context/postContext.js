@@ -16,14 +16,13 @@ const PostProvider = ({children}) => {
     // console.log('All Posts in post context: ', allPosts);
 
     const fetchAllPosts = async(from) => {
-        // console.log('calling....', from);
         // console.log('User State in post context: ', userState);
         // console.log("user data at post context: ",JSON.parse(await AsyncStorage.getItem('@auth-data')));
         try {
             const token = userState.token;
             // const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
 
-            console.log('token at context: ', token);
+            // console.log('token at context: ', token);
 
             if (!token) {
                 console.log('Token not found. Unable to make the request. Please login...');
