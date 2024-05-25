@@ -10,7 +10,6 @@ export const Routes = {
     CreatePost: 'CreatePost',
     CreateCampaign: 'CreateCampaign',
     CreateNotice: 'CreateNotice',
-    Feedback: 'Feedback',
     HelpCenter: 'HelpCenter',
     UpdatePassword: 'UpdatePassword',
     UpdateCampaign: 'UpdateCampaign',

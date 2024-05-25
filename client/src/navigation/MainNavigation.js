@@ -39,7 +39,6 @@ import Results from '../screens/Results/Results';
 import StudentProfile from '../screens/Profile/StudentProfile/StudentProfile';
 import CandidateProfile from '../screens/Profile/CandidateProfile/CandidateProfile';
 import AboutElection from '../screens/AboutElection/AboutElection';
-import Feedback from '../screens/Feedback/Feedback';
 import HelpCenter from '../screens/Help Center/HelpCenter';
 import UpdatePassword from '../screens/UpdatePassword/UpdatePassword';
 import UpdateCampaign from './../screens/UpdateCampaign/UpdateCampaign';
@@ -101,13 +100,6 @@ const DrawerNavigator = () => {
           title: 'Create Post',
           drawerIcon: () => <FontAwesomeIcon icon={faSquarePlus} size={22} />,
           headerShown: true,
-        }}
-      />
-      <Drawer.Screen
-        name={Routes.Feedback}
-        component={Feedback}
-        options={{
-          drawerIcon: () => <FontAwesomeIcon icon={faComments} size={22} />,
         }}
       />
       <Drawer.Screen
