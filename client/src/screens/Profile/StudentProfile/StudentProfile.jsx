@@ -91,7 +91,7 @@ const StudentProfile = ({navigation}) => {
       }
 
       const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
-      const response = await updateProfileAPI(token, newDetails);
+      const response = await updateProfileAPI(token, newDetails, 'student');
       // console.log('response after updating profile details: ', response);
 
       if(!response.status){
@@ -131,7 +131,7 @@ const StudentProfile = ({navigation}) => {
       });
 
       const token = JSON.parse(await AsyncStorage.getItem('@auth-token'));
-      const response = await updateProfileImageAPI(token, formData);
+      const response = await updateProfileImageAPI(token, formData, 'student');
       // console.log('response after updating profile image: ', response);
 
       if(!response.success){

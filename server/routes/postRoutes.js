@@ -9,6 +9,7 @@ const deletePost = require('../controllers/postController/deletePost');
 const updatePost = require('../controllers/postController/updateController/updatePost');
 const updateNotice = require('../controllers/postController/updateController/updateNotice');
 const verifyApplicationStatus = require('../middlewares/verifyApplicationStatus');
+const getAllAdminPost = require('../controllers/postController/viewController/getAllAdminPost');
 
 const router = express.Router();
 
@@ -23,6 +24,7 @@ router.put('/update-post/notice', verifyToken, updateNotice);
 // VIEW
 router.get('/get-all-posts', verifyToken, getAllPosts);
 router.get('/get-all-own-posts', verifyToken, getAllOwnPost);
+router.get('/get-all-admin-posts', verifyToken, getAllAdminPost);
 
 // DELETE
 router.delete('/delete-post', verifyToken, deletePost);

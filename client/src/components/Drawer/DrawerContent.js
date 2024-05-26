@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import styles from './style'
 
 import { View, Text, Image, TouchableOpacity, Alert } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer'
 
@@ -19,11 +20,14 @@ import Snackbar from 'react-native-snackbar'
 import { getFontFamily } from '../../assets/fonts/helper'
 
 import InitialAvatar from '../InitialAvatar/InitialAvatar'
+import { Routes } from '../../navigation/Routes'
 
 const DrawerContent = (props) => {
   // global state
   const [userState, setUserState] = useContext(AuthContext);
   const [resetAllPosts] = useContext(PostContext);
+
+  const navigation = useNavigation();
   
   const handleSignOut = async() => {
     // set the authContext to null
@@ -53,7 +57,17 @@ const DrawerContent = (props) => {
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView {...props}>
-        <View style={styles.topContainer}>
+        <TouchableOpacity 
+          style={styles.topContainer} 
+          onPress={() => {
+            if(userState.loginType === 'admin')
+              navigation.navigate(Routes.AdminProfile)
+            else if(userState.loginType === 'student')
+              navigation.navigate(Routes.StudentProfile)
+            else
+              navigation.navigate(Routes.CandidateProfile, {candidateId: userState.user.candidateId})
+          }}
+        >
           {
             userState.user.profileImage == undefined 
               ? 
@@ -78,7 +92,7 @@ const DrawerContent = (props) => {
               {userState.user.email}
             </Text>
           </View>
-        </View>
+        </TouchableOpacity>
 
         <View>
           <DrawerItemList {...props}/>

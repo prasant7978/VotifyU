@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const updateProfileImageAPI = async(token, formData) => {
+export const updateProfileImageAPI = async(token, formData, userType) => {
     try{
         const {data} = await axios.put(
-            '/profile/upload-profile-image',
+            `/profile/${userType}/upload-profile-image`,
             formData,
             {
                 headers: {

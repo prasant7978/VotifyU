@@ -5,7 +5,7 @@ module.exports = async(req, res, next) => {
     // get user name
     var userName = await getUserName(req.id, req.query.type, req.userType);
     userName = userName.replace(/\s/g, "-");
-    // console.log('user name: ', userName);
+    console.log('user name: ', userName);
 
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {

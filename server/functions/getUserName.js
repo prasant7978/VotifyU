@@ -6,16 +6,18 @@ module.exports = async(id, type, userType) => {
     try {
         var user
         if(type === 'profile'){
-            user = await studentModel.findOne({_id: id});
+            if(userType === 'student')
+                user = await studentModel.findOne({_id: id});
+            else
+                user = await adminModel.findById({_id: id});
         }
         else if(type === 'campaign'){
             if(userType === 'student'){
                 const candidate = await candidateModel.findById({_id: id});
                 user = await studentModel.findById({_id: candidate.student});
             }
-            else{
-                user = await adminModel.findById({_id: id});
-            }
+            else
+                user = await adminModel.findById({_id: id});     
         }
 
         if(!user){

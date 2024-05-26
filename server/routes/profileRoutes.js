@@ -9,15 +9,20 @@ const getAllStudentsProfile = require('../controllers/profileController/viewProf
 const getAllCandidatesProfile = require('../controllers/profileController/viewProfile/getAllCandidatesProfile');
 const updateStudentProfile = require('../controllers/profileController/updateStudentProfile');
 const updatePassword = require('../controllers/profileController/updatePassword');
+const updateAdminProfile = require('../controllers/profileController/updateAdminProfile');
 
 const uploadImage = require('../middlewares/uploadImage');
 
 router.get('/student/get-profile', verifyToken, getStudentProfile);
 router.get('/student/get-all-profile', verifyToken, getAllStudentsProfile);
-router.get('/student/get-all-candidates-profile', verifyToken, getAllCandidatesProfile);
-router.put('/student/update-profile', verifyToken, updateStudentProfile);
 
-router.put('/upload-profile-image', verifyToken, uploadImage, updateStudentProfile);
+router.get('/student/get-all-candidates-profile', verifyToken, getAllCandidatesProfile);
+
+router.put('/student/update-profile', verifyToken, updateStudentProfile);
+router.put('/admin/update-profile', verifyToken, updateAdminProfile);
+
+router.put('/student/upload-profile-image', verifyToken, uploadImage, updateStudentProfile);
+router.put('/admin/upload-profile-image', verifyToken, uploadImage, updateAdminProfile);
 
 router.put('/update-password', verifyToken, updatePassword);
 

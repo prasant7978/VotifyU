@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     topContainer: {
         padding: horizontalScale(20), 
         justifyContent: 'center', 
-        alignItems: 'center'
+        alignItems: 'center',
     },
     profileImage: {
         height: horizontalScale(90), 

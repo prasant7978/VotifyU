@@ -25,5 +25,6 @@ export const Routes = {
     ManagePosition: 'ManagePosition',
     AddPosition: 'AddPosition',
     ViewSinglePositionDetails: 'ViewSinglePositionDetails',
-    PublishResults: 'PublishResults'
+    PublishResults: 'PublishResults',
+    AdminProfile: 'AdminProfile',
 }

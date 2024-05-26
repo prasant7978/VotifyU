@@ -53,6 +53,7 @@ import AllCandidates from '../screens/AllCandidates/AllCandidates';
 import ManagePositions from '../screens/Admin/ManagePosition/ManagePosition';
 import ViewSinglePositionDetails from '../screens/Admin/ManagePosition/ViewSinglePositionDetails/ViewSinglePositionDetails';
 import PublishResults from '../screens/Admin/PublishResults/PublishResults';
+import AdminProfile from '../screens/Profile/AdminProdile/AdminProfile';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -280,6 +281,13 @@ const StackNavigator = () => {
         component={PublishResults}
         options={{
           title: 'Publish Results'
+        }}
+      />
+      <Stack.Screen
+        name={Routes.AdminProfile}
+        component={AdminProfile}
+        options={{
+          title: 'Profile'
         }}
       />
       <Stack.Screen

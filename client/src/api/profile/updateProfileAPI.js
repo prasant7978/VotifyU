@@ -1,17 +1,18 @@
 import axios from 'axios';
 
-export const updateProfileAPI = async(token, newDetails) => {
+export const updateProfileAPI = async(token, newDetails, userType) => {
     try{
         const {data} = await axios.put(
-            '/profile/student/update-profile',
-            {
-                course: newDetails.course,
-                department: newDetails.department,
-                phone: newDetails.phone,
-                parentPhone: newDetails.parentPhone,
-                gender: newDetails.gender,
-                dob: newDetails.dob,
-            },
+            `/profile/${userType}/update-profile`,
+            // {
+            //     course: newDetails.course,
+            //     department: newDetails.department,
+            //     phone: newDetails.phone,
+            //     parentPhone: newDetails.parentPhone,
+            //     gender: newDetails.gender,
+            //     dob: newDetails.dob,
+            // },
+            newDetails,
             {
                 headers: {
                     'auth-token': token,
