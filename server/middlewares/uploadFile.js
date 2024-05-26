@@ -1,17 +1,17 @@
 const multer = require('multer');
-const getStudentName = require('../functions/getStudentName');
+const getUserName = require('../functions/getUserName');
 
 module.exports = async(req, res, next) => {
-    // get student name
-    var studentName = await getStudentName(req.id, req.userType);
-    studentName = studentName.replace(/\s/g, "-");
+    // get user name
+    var userName = await getUserName(req.id, req.query.type, req.userType);
+    userName = userName.replace(/\s/g, "-");
 
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
             cb(null, 'uploads/files/')
         },
         filename: function (req, file, cb) {
-            cb(null, Date.now() + '-' + studentName + '-' + file.originalname)
+            cb(null, Date.now() + '-' + userName + '-' + file.originalname)
         }
     });
 

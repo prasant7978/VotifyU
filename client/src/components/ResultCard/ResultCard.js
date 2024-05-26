@@ -72,7 +72,7 @@ const ResultCard = ({positionId}) => {
                                                 </View>
                                             ) : (
                                                 <>
-                                                    {result.voteCountArr[0]?.profileImag ? (
+                                                    {result.voteCountArr[0]?.profileImage ? (
                                                         <Image
                                                             source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${result.voteCountArr[0]?.profileImage}`}}
                                                             resizeMode={'cover'}

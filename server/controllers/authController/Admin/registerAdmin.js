@@ -56,7 +56,8 @@ module.exports = async(req, res) => {
             name: admin.name,
             email: admin.email,
             password: hashedPassword,
-            phone: admin.phone
+            phone: admin.phone,
+            // profileImage: admin.profileImage
         }).save();
 
         res.status(200).send({
