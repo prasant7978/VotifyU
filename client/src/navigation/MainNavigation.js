@@ -123,7 +123,7 @@ const DrawerNavigator = () => {
         />
       )}
 
-      {userState.user.role === 'Student' && (
+      {userState.loginType === 'student' && (
         <Drawer.Screen
           name={Routes.CandidateApply}
           component={CandidateApply}

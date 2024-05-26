@@ -5,8 +5,10 @@ module.exports = async(req, res) => {
         let candidate = await candidateModel.findOne({_id: req.query.candidateId});
 
         // populating the position and student attribute
-        candidate = await candidate.populate('position', '_id name', 'Position');
-        candidate = await candidate.populate('student', '_id name profileImage roll email phone course department gender', 'Student');
+        if(candidate){
+            candidate = await candidate.populate('position', '_id name', 'Position');
+            candidate = await candidate.populate('student', '_id name profileImage roll email phone course department gender', 'Student');
+        }
 
         res.status(200).send({
             success: true,

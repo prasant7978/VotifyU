@@ -19,6 +19,12 @@ module.exports = async(id, type, userType) => {
             else
                 user = await adminModel.findById({_id: id});     
         }
+        else{
+            if(userType === 'student')
+                user = await studentModel.findOne({_id: id});
+            else
+                user = await adminModel.findById({_id: id});
+        }
 
         if(!user){
             console.log('User not found in getUserName');

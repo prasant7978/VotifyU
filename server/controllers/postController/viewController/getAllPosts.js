@@ -17,7 +17,7 @@ module.exports = async(req, res) => {
                 // check if the candidate has been elected as any position winner
                 const position = await positionModel.findById({_id: candidate.position._id});
 
-                if(position.electedCandidate !== null && position.electedCandidate.equals(candidate._id))
+                if(position.electedCandidate && position.electedCandidate.equals(candidate._id))
                     posts[i]._doc.positionApplied = candidate.position.name
                 else
                     posts[i]._doc.positionApplied = `Running for ${candidate.position.name}`;

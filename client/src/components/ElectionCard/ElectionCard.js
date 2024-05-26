@@ -53,7 +53,7 @@ const ElectionCard = ({position, onVoteSubmit, onPublishReult}) => {
           details.reduce(
             (acc, curr) => ({
               ...acc,
-              [curr.data.candidate._id]: curr.data.candidate,
+              [curr.data.candidate?._id]: curr.data.candidate,
             }),
             {},
           ),
@@ -228,11 +228,15 @@ const ElectionCard = ({position, onVoteSubmit, onPublishReult}) => {
             </TouchableOpacity>
           </>
         ) : (
-          <View style={{flex: 1, alignItems: 'flex-end'}}>
-            <TouchableOpacity style={styles.publishResultButton} onPress={() => confirmDialog('publish')}>
-              <Text style={styles.buttonText}>Publish Result</Text>
-            </TouchableOpacity>
-          </View>
+          <>
+          {userState.user.role === 'Admin' && (
+            <View style={{flex: 1, alignItems: 'flex-end'}}>
+              <TouchableOpacity style={styles.publishResultButton} onPress={() => confirmDialog('publish')}>
+                <Text style={styles.buttonText}>Publish Result</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+          </>
         )}
       </View>
     </View>

@@ -4,7 +4,7 @@ const getUserName = require('../functions/getUserName');
 module.exports = async(req, res, next) => {
     // get user name
     var userName = await getUserName(req.id, req.query.type, req.userType);
-    userName = userName.replace(/\s/g, "-");
+    userName = userName?.replace(/\s/g, "-");
 
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
