@@ -27,7 +27,9 @@ const PostCard = ({post}) => {
   
         <View style={styles.userDetailsContainer}>
             <Text style={styles.nameText}>{post.postedBy?.name}</Text>
-            <Text style={styles.roleText}>{post.postedBy?.role}</Text>
+            <Text style={styles.roleText}>
+              {post.userType === 'admin' ? post.postedBy.role : post.positionApplied}
+            </Text>
         </View>
       </View>
 
