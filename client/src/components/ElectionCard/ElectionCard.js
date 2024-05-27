@@ -198,47 +198,49 @@ const ElectionCard = ({position, onVoteSubmit, onPublishReult}) => {
         
       </View>
 
-      <View style={styles.bottomContainer}>
-        {userState.user.role !== 'Admin' && userState.loginType !== 'candidate' ? (
-          <>
-            <View style={styles.checkBoxContainer}>
-              <CheckBox
-                disabled={false}
-                value={isChecked}
-                onValueChange={val => setIsChecked(val)}
-                tintColors={{
-                  true: COLORS.darkBeach,
-                  false: COLORS.darkBeach,
-                }}
-              />
+      {position.appliedCandidates.length > 0 && (
+        <View style={styles.bottomContainer}>
+          {userState.user.role !== 'Admin' && userState.loginType !== 'candidate' ? (
+            <>
+              <View style={styles.checkBoxContainer}>
+                <CheckBox
+                  disabled={false}
+                  value={isChecked}
+                  onValueChange={val => setIsChecked(val)}
+                  tintColors={{
+                    true: COLORS.darkBeach,
+                    false: COLORS.darkBeach,
+                  }}
+                />
 
-              <TouchableOpacity
-                onPress={() => {
-                  setIsChecked(!isChecked);
+                <TouchableOpacity
+                  onPress={() => {
+                    setIsChecked(!isChecked);
 
-                  if (!isChecked) setSelectedId('NOTA');
-                  else setSelectedId('');
-                }}>
-                <Text style={styles.notaText}>None of The Above (NOTA)</Text>
+                    if (!isChecked) setSelectedId('NOTA');
+                    else setSelectedId('');
+                  }}>
+                  <Text style={styles.notaText}>None of The Above (NOTA)</Text>
+                </TouchableOpacity>
+              </View>
+
+              <TouchableOpacity style={styles.voteButton} onPress={() => confirmDialog('vote')}>
+                <Text style={styles.buttonText}>Vote</Text>
               </TouchableOpacity>
-            </View>
-
-            <TouchableOpacity style={styles.voteButton} onPress={() => confirmDialog('vote')}>
-              <Text style={styles.buttonText}>Vote</Text>
-            </TouchableOpacity>
-          </>
-        ) : (
-          <>
-          {userState.user.role === 'Admin' && (
-            <View style={{flex: 1, alignItems: 'flex-end'}}>
-              <TouchableOpacity style={styles.publishResultButton} onPress={() => confirmDialog('publish')}>
-                <Text style={styles.buttonText}>Publish Result</Text>
-              </TouchableOpacity>
-            </View>
+            </>
+          ) : (
+            <>
+            {userState.user.role === 'Admin' && (
+              <View style={{flex: 1, alignItems: 'flex-end'}}>
+                <TouchableOpacity style={styles.publishResultButton} onPress={() => confirmDialog('publish')}>
+                  <Text style={styles.buttonText}>Publish Result</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+            </>
           )}
-          </>
-        )}
-      </View>
+        </View>
+      )}
     </View>
   );
 };
