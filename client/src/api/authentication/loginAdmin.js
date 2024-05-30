@@ -11,7 +11,7 @@ export const loginAdmin = async(employeeId, email, password) => {
                 userType: 'admin'
             }
         );
-        // console.log('success data: ', data);
+        console.log('success data: ', data);
         return {
             status: true,
             data
@@ -20,7 +20,7 @@ export const loginAdmin = async(employeeId, email, password) => {
         console.log('Error in admin login: ', error.response.data.message);
         return {
             status: false,
-            error
+            error: error.response.data.message
         };
     }
 }
