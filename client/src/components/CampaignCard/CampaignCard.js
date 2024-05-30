@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native'
 
 import { Routes } from '../../navigation/Routes'
 
+import { imageUri } from '../../constants/theme'
+
 const CampaignCard = ({post}) => {
   const navigation = useNavigation();
 
@@ -17,7 +19,7 @@ const CampaignCard = ({post}) => {
     >
         {post.type === 'campaign' ? (
             <Image
-                source={{uri: `http://192.168.93.221:3001/api/uploads/campaign/${post.image}`}}
+                source={{uri: `${imageUri}/campaign/${post.image}`}}
                 style={styles.campaignImage}
             />
             ) : (

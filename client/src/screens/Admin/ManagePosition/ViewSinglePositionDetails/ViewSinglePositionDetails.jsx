@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import DropShadow from "react-native-drop-shadow";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { COLORS } from "../../../../constants/theme";
+import { COLORS, imageUri } from "../../../../constants/theme";
 
 import { horizontalScale, verticalScale } from "../../../../assets/styles/scaling";
 import { getFontFamily } from "../../../../assets/fonts/helper";
@@ -294,7 +294,7 @@ const ViewSinglePositionDetails = (props) => {
                         <TouchableOpacity style={styles.candidateDetailsContainer} onPress={() => navigation.navigate(Routes.CandidateProfile, {candidateId: position.electedCandidate})}>
                             <DropShadow style={styles.candidateImageShadow}>
                                 <Image
-                                    source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${position.candidate?.profileImage}`}}
+                                    source={{uri: `${imageUri}/profile/${position.candidate?.profileImage}`}}
                                     resizeMode={'cover'}
                                     style={styles.candidateImage}
                                 />

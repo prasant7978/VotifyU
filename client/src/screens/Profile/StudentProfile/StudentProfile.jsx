@@ -28,7 +28,7 @@ import { horizontalScale } from '../../../assets/styles/scaling'
 import { getFontFamily } from '../../../assets/fonts/helper'
 
 // importing colors
-import { COLORS } from '../../../constants/theme'
+import { COLORS, imageUri } from '../../../constants/theme'
 
 // importing navigation routes
 import { Routes } from '../../../navigation/Routes';
@@ -219,7 +219,7 @@ const StudentProfile = ({navigation}) => {
             <TouchableOpacity onPress={selectImage}>
               {userState.user.profileImage && !image ? (
                 <Image
-                  source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${userState.user.profileImage}`}}
+                  source={{uri: `${imageUri}/profile/${userState.user.profileImage}`}}
                   style={styles.profileImage}
                   resizeMode='cover'
                 />

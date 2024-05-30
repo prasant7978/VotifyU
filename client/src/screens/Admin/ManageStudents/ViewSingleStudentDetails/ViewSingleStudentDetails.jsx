@@ -12,7 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import Snackbar from "react-native-snackbar";
 
-import { COLORS } from "../../../../constants/theme";
+import { COLORS, imageUri } from "../../../../constants/theme";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faSquarePen } from "@fortawesome/free-solid-svg-icons";
@@ -198,7 +198,7 @@ const ViewSingleStudentDetails = (props) => {
                 <DropShadow style={styles.imageContainerShadow}>
                     {student.profileImage ? (
                         <Image
-                            source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${student.profileImage}`}}
+                            source={{uri: `${imageUri}/profile/${student.profileImage}`}}
                             style={styles.image}
                         />
                     ) : (

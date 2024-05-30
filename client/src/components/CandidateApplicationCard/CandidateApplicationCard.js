@@ -1,9 +1,14 @@
 import React from "react";
+
 import styles from "./style";
+
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Routes } from "../../navigation/Routes";
+
 import InitialAvatar from "../InitialAvatar/InitialAvatar";
+
+import { imageUri } from "../../constants/theme";
 
 const CandidateApplicationCard = ({item}) => {
     const navigation = useNavigation();
@@ -14,7 +19,7 @@ const CandidateApplicationCard = ({item}) => {
                 <View style={styles.imageContainer}>
                     {item.student?.profileImage ? (
                         <Image
-                            source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${item.student.profileImage}`}}
+                            source={{uri: `${imageUri}/profile/${item.student.profileImage}`}}
                             resizeMode="cover"
                             style={styles.image}
                         />

@@ -21,6 +21,7 @@ import InitialAvatar from "../../../components/InitialAvatar/InitialAvatar";
 import CampaignCard from "../../../components/CampaignCard/CampaignCard";
 import FooterMenu from "../../../components/Menus/FooterMenu";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { imageUri } from "../../../constants/theme";
 
 const CandidateProfile = (props) => {
     // global states
@@ -117,7 +118,7 @@ const CandidateProfile = (props) => {
                         <View style={styles.profileImageContainer}>
                             {candidate.student?.profileImage ? (
                                 <Image
-                                    source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${candidate.student?.profileImage}`}}
+                                    source={{uri: `${imageUri}/profile/${candidate.student?.profileImage}`}}
                                     style={styles.profileImage}
                                     resizeMode='cover'
                                 />
@@ -214,7 +215,7 @@ const CandidateProfile = (props) => {
                                 <Text style={styles.labelText}>Aadhar Card</Text>
                                 <Pdf
                                     trustAllCerts={false}
-                                    source={{uri: `http://192.168.93.221:3001/api/uploads/files/${candidate.aadharCard}`}}
+                                    source={{uri: `${imageUri}/files/${candidate.aadharCard}`}}
                                     renderActivityIndicator={() => (
                                         <ActivityIndicator color="white" size="large" />
                                     )}
@@ -231,7 +232,7 @@ const CandidateProfile = (props) => {
                                 <Text style={styles.labelText}>Marksheet</Text>
                                 <Pdf
                                     trustAllCerts={false}
-                                    source={{uri: `http://192.168.93.221:3001/api/uploads/files/${candidate.marksheet}`}}
+                                    source={{uri: `${imageUri}/files/${candidate.marksheet}`}}
                                     renderActivityIndicator={() => (
                                         <ActivityIndicator color="white" size="large" />
                                     )}
@@ -248,7 +249,7 @@ const CandidateProfile = (props) => {
                                 <Text style={styles.labelText}>College Id Card</Text>
                                 <Pdf
                                     trustAllCerts={false}
-                                    source={{uri: `http://192.168.93.221:3001/api/uploads/files/${candidate.collegeIdCard}`}}
+                                    source={{uri: `${imageUri}/files/${candidate.collegeIdCard}`}}
                                     renderActivityIndicator={() => (
                                         <ActivityIndicator color="white" size="large" />
                                     )}
@@ -265,7 +266,7 @@ const CandidateProfile = (props) => {
                                 <Text style={styles.labelText}>Hostel Id Card</Text>
                                 <Pdf
                                     trustAllCerts={false}
-                                    source={{uri: `http://192.168.93.221:3001/api/uploads/files/${candidate.hostelIdCard}`}}
+                                    source={{uri: `${imageUri}/files/${candidate.hostelIdCard}`}}
                                     renderActivityIndicator={() => (
                                         <ActivityIndicator color="white" size="large" />
                                     )}

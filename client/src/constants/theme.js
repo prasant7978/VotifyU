@@ -80,4 +80,6 @@ const SHADOWS = {
     },
   };
 
-  export {COLORS, SIZES, SHADOWS};
+  const imageUri = 'https://votifyu.onrender.com/api/uploads'
+
+  export {COLORS, SIZES, SHADOWS, imageUri};

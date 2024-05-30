@@ -14,7 +14,7 @@ import viewElectionResultAPI from "../../api/position/viewElectionResultAPI";
 import secondPlaceBadge from '../../assets/images/second-place.png';
 import thirdPlaceBadge from '../../assets/images/third-place.png';
 
-import { COLORS } from "../../constants/theme";
+import { COLORS, imageUri } from "../../constants/theme";
 import CandidateContainer from "./CandidateContainer";
 
 const ResultCard = ({positionId}) => {
@@ -74,7 +74,7 @@ const ResultCard = ({positionId}) => {
                                                 <>
                                                     {result.voteCountArr[0]?.profileImage ? (
                                                         <Image
-                                                            source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${result.voteCountArr[0]?.profileImage}`}}
+                                                            source={{uri: `${imageUri}/profile/${result.voteCountArr[0]?.profileImage}`}}
                                                             resizeMode={'cover'}
                                                             style={styles.winnerImage}
                                                         />

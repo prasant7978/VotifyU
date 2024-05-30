@@ -8,6 +8,7 @@ import DropShadow from "react-native-drop-shadow";
 
 import InitialAvatar from "../InitialAvatar/InitialAvatar";
 import { Routes } from "../../navigation/Routes";
+import { imageUri } from "../../constants/theme";
 
 const StudentCard = ({student}) => {
     const navigation = useNavigation()
@@ -17,7 +18,7 @@ const StudentCard = ({student}) => {
             <DropShadow style={styles.imageContainerShadow}>
                 {student.profileImage ? (
                     <Image
-                        source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${student.profileImage}`}}
+                        source={{uri: `${imageUri}/profile/${student.profileImage}`}}
                         style={styles.image}
                     />
                 ) : (

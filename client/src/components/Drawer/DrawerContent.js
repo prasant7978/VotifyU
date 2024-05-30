@@ -21,6 +21,7 @@ import { getFontFamily } from '../../assets/fonts/helper'
 
 import InitialAvatar from '../InitialAvatar/InitialAvatar'
 import { Routes } from '../../navigation/Routes'
+import { imageUri } from '../../constants/theme'
 
 const DrawerContent = (props) => {
   // global state
@@ -74,12 +75,12 @@ const DrawerContent = (props) => {
                 <InitialAvatar 
                   name={userState.user.name} 
                   avatarSize={90} 
-                  textSize={33}
+                  textSize={32}
                   padding={15}
                 /> 
               : 
                 <Image 
-                  source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${userState.user.profileImage}`}}
+                  source={{uri: `${imageUri}/profile/${userState.user.profileImage}`}}
                   style={styles.profileImage}
                   resizeMode={'cover'}
                 />

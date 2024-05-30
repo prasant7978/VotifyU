@@ -24,6 +24,7 @@ import deletePostAPI from '../../api/posts/deletePostAPI';
 // all posts context api
 import { PostContext } from '../../context/postContext';
 import { AuthContext } from '../../context/authContext';
+import { imageUri } from '../../constants/theme';
 
 const UpdateCampaign = ({navigation}) => {
     // global state
@@ -161,7 +162,7 @@ const UpdateCampaign = ({navigation}) => {
                 </View>
             ) : (
                 <Image
-                    source={{uri: `http://192.168.93.221:3001/api/uploads/campaign/${post.image}`}}
+                    source={{uri: `${imageUri}/campaign/${post.image}`}}
                     style={styles.campaignImage}
                 />
             )}

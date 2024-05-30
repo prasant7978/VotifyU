@@ -7,7 +7,7 @@ import { Alert, Image, SafeAreaView, ScrollView, Text, TextInput, TouchableOpaci
 
 import { AuthContext } from "../../../context/authContext";
 
-import { COLORS } from "../../../constants/theme";
+import { COLORS, imageUri } from "../../../constants/theme";
 import DropShadow from "react-native-drop-shadow";
 import Button from "../../../components/Button/Button";
 import { Routes } from "../../../navigation/Routes";
@@ -194,7 +194,7 @@ const AdminProfile = ({navigation}) => {
                     <DropShadow style={styles.imageShadow}>
                         {(userState.user?.profileImage && !image) ? (
                             <Image
-                                source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${userState.user.profileImage}`}}
+                                source={{uri: `${imageUri}/profile/${userState.user.profileImage}`}}
                                 style={styles.profileImage}
                                 resizeMode='cover'
                             />

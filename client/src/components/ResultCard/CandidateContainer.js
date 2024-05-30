@@ -8,6 +8,7 @@ import secondPlaceBadge from '../../assets/images/second-place.png';
 import thirdPlaceBadge from '../../assets/images/third-place.png';
 import { horizontalScale } from "../../assets/styles/scaling";
 import InitialAvatar from "../InitialAvatar/InitialAvatar";
+import { imageUri } from "../../constants/theme";
 
 const CandidateContainer = ({item, status}) => {
     return (
@@ -21,7 +22,7 @@ const CandidateContainer = ({item, status}) => {
                     <>
                         {item.profileImage ? (
                             <Image
-                                source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${item.profileImage}`}}
+                                source={{uri: `${imageUri}/profile/${item.profileImage}`}}
                                 resizeMode={'cover'}
                                 style={styles.candidateImage}
                             />

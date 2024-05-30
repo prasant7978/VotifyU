@@ -8,7 +8,7 @@ import CheckBox from '@react-native-community/checkbox';
 import DropShadow from "react-native-drop-shadow";
 import { useNavigation } from '@react-navigation/native';
 
-import {COLORS} from '../../constants/theme';
+import {COLORS, imageUri} from '../../constants/theme';
 
 import { Routes } from '../../navigation/Routes';
 
@@ -160,7 +160,7 @@ const ElectionCard = ({position, onVoteSubmit, onPublishReult}) => {
                             {candidateDetails[id].student?.profileImage ? (
                               <Image
                                 source={{
-                                  uri: `http://192.168.93.221:3001/api/uploads/profile/${candidateDetails[id].student?.profileImage}`,
+                                  uri: `${imageUri}/profile/${candidateDetails[id].student?.profileImage}`,
                                 }}
                                 resizeMode={'cover'}
                                 style={styles.image}

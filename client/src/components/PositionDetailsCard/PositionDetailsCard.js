@@ -11,7 +11,7 @@ import { Routes } from "../../navigation/Routes";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
 
-import { COLORS } from "../../constants/theme";
+import { COLORS, imageUri } from "../../constants/theme";
 
 import { AuthContext } from "../../context/authContext";
 
@@ -42,7 +42,7 @@ const PositionDetailsCard = ({position}) => {
                     <TouchableOpacity onPress={() => navigation.navigate(Routes.CandidateProfile, {candidateId: position.electedCandidate})} style={styles.candidateDetailsContainer}>
                         <DropShadow style={styles.candidateImageShadow}>
                             <Image
-                                source={{uri: `http://192.168.93.221:3001/api/uploads/profile/${position.candidate?.profileImage}`}}
+                                source={{uri: `${imageUri}/profile/${position.candidate?.profileImage}`}}
                                 resizeMode={'cover'}
                                 style={styles.candidateImage}
                             />
