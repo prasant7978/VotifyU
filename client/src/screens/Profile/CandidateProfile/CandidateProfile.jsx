@@ -168,7 +168,7 @@ const CandidateProfile = (props) => {
 
                     </View>
 
-                    <View style={styles.socialLinksContainer}>
+                    {/* <View style={styles.socialLinksContainer}>
                         <Text style={styles.conatainerHeadingText}>Connect With Me</Text>
 
                         <View style={styles.logoContainer}>
@@ -204,7 +204,7 @@ const CandidateProfile = (props) => {
                                 />
                             </Pressable>
                         </View>
-                    </View>
+                    </View> */}
 
                     {userState.user.role === 'Admin' && (
                         <View style={styles.documentsContainer}>

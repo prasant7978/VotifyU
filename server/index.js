@@ -33,6 +33,6 @@ app.use('/api/uploads/campaign', express.static('uploads/campaign'));
 app.use('/api/uploads/files', express.static('uploads/files'));
 
 // server listen
-app.listen(process.env.PORT || 3001, '192.168.93.221', () => {
+app.listen(process.env.PORT || 3001, () => {
     console.log(`server running on port ${process.env.PORT}...`.bgGreen.white);
 })
