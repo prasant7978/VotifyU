@@ -54,14 +54,16 @@ module.exports = async(req, res) => {
         req.user._doc['candidateId'] = candidate._id;
         // console.log('req.user in candidate login: ', req.user);
 
-        const getObjectParams = {
-            Bucket: bucketName,
-            Key: req.user.profileImage
-        }
-        const command = new GetObjectCommand(getObjectParams);
-        const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+        if(req.user.profileImage){
+            const getObjectParams = {
+                Bucket: bucketName,
+                Key: req.user.profileImage
+            }
+            const command = new GetObjectCommand(getObjectParams);
+            const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
 
-        req.user._doc.imageUrl = url
+            req.user._doc.imageUrl = url
+        }
 
         res.status(200).send({
             success: true,
