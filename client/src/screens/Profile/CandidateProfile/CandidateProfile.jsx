@@ -207,7 +207,8 @@ const CandidateProfile = (props) => {
                         </View>
                     </View> */}
 
-                    {userState.user.role === 'Admin' && (
+                    {/* app crashing */}
+                    {/* {userState.user.role === 'Admin' && (
                         <View style={styles.documentsContainer}>
                             <Text style={styles.conatainerHeadingText}>Document Details:</Text>
 
@@ -268,8 +269,7 @@ const CandidateProfile = (props) => {
                                 )}
                             </View>
 
-                            {/* app crashing */}
-                            {/* <View style={styles.pdfContainer}>
+                            <View style={styles.pdfContainer}>
                                 <Text style={styles.labelText}>Hostel Id Card</Text>
                                 {candidate?.hostelIdCardUrl && (
                                     <Pdf
@@ -286,9 +286,9 @@ const CandidateProfile = (props) => {
                                         style={styles.pdf}
                                     />
                                 )}
-                            </View> */}
+                            </View>
                         </View>
-                    )}
+                    )} */}
 
                     <View style={styles.campaignListsContainer}>
                         <Text style={styles.conatainerHeadingText}>Campaigns</Text>

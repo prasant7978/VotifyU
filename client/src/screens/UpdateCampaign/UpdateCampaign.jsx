@@ -183,7 +183,7 @@ const UpdateCampaign = ({navigation}) => {
                 )}
             </View>
 
-            {userState.loginType !== 'student' && (
+            {(userState.loginType === 'admin' || (userState.loginType === 'candidate' && userState.user.candidateId === post.postedBy)) && (
                 <View style={styles.buttonContainer}>
                     <Button
                         title={'Update Post'}
