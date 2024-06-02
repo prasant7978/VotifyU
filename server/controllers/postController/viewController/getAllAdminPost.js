@@ -31,15 +31,16 @@ module.exports = async(req, res) => {
             });
         }
 
-        for(const post of posts){
-            const getObjectParams = {
-                Bucket: bucketName,
-                Key: post.image
+        for(let i=0; i<posts.length; i++){
+            if(posts[i].type === 'campaign'){
+                var getObjectParams = {
+                    Bucket: bucketName,
+                    Key: posts[i].image
+                }
+                var command = new GetObjectCommand(getObjectParams);
+                var url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+                posts[i]._doc.imageUrl = url;
             }
-            
-            const command = new GetObjectCommand(getObjectParams);
-            const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
-            post._doc.imageUrl = url;
         }
 
         res.status(200).send({
