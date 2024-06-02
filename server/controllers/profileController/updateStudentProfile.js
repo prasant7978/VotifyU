@@ -58,14 +58,16 @@ module.exports = async(req, res) => {
 
         const token = req.headers['auth-token']
 
-        const getObjectParams = {
-            Bucket: bucketName,
-            Key: user.profileImage
-        }
-        const command = new GetObjectCommand(getObjectParams);
-        const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+        if(user.profileImage){
+            const getObjectParams = {
+                Bucket: bucketName,
+                Key: user.profileImage
+            }
+            const command = new GetObjectCommand(getObjectParams);
+            const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
 
-        user._doc.imageUrl = url
+            user._doc.imageUrl = url
+        }
 
         return res.status(200).send({
             success: true,
