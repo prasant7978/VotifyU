@@ -43,7 +43,8 @@ const Admin_Login = ({navigation}) => {
         // console.log('user: ', user);
         
         if(!user.status){
-            setError(user.error.response.data.message);
+            console.log('Error in admin login: ', user);
+            setError(user.error);
         }
         else{
             setError('');

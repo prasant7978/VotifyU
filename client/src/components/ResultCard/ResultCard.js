@@ -10,10 +10,6 @@ import DropShadow from "react-native-drop-shadow";
 // APIs
 import viewElectionResultAPI from "../../api/position/viewElectionResultAPI";
 
-// rank badges
-import secondPlaceBadge from '../../assets/images/second-place.png';
-import thirdPlaceBadge from '../../assets/images/third-place.png';
-
 import { COLORS, imageUri } from "../../constants/theme";
 import CandidateContainer from "./CandidateContainer";
 
@@ -72,9 +68,9 @@ const ResultCard = ({positionId}) => {
                                                 </View>
                                             ) : (
                                                 <>
-                                                    {result.voteCountArr[0]?.profileImage ? (
+                                                    {result.voteCountArr[0]?.imageUrl ? (
                                                         <Image
-                                                            source={{uri: `${imageUri}/profile/${result.voteCountArr[0]?.profileImage}`}}
+                                                            source={{uri: `${result.voteCountArr[0]?.imageUrl}`}}
                                                             resizeMode={'cover'}
                                                             style={styles.winnerImage}
                                                         />

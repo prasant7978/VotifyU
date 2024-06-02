@@ -44,10 +44,6 @@ const DrawerContent = (props) => {
     await AsyncStorage.removeItem('@auth-token')
     await AsyncStorage.removeItem('@auth-data')
 
-    // console.log("user state after logout: ", userState);
-    // console.log("user token after logout: ",JSON.parse(await AsyncStorage.getItem('@auth-token')));
-    // console.log("user data after logout: ",JSON.parse(await AsyncStorage.getItem('@auth-data')));
-
     Snackbar.show({
       text: 'Sign Out Successfull',
       duration: Snackbar.LENGTH_SHORT,
@@ -69,21 +65,20 @@ const DrawerContent = (props) => {
               navigation.navigate(Routes.CandidateProfile, {candidateId: userState.user.candidateId})
           }}
         >
-          {
-            userState.user.profileImage == undefined 
-              ? 
-                <InitialAvatar 
-                  name={userState.user.name} 
-                  avatarSize={90} 
-                  textSize={32}
-                  padding={15}
-                /> 
-              : 
-                <Image 
-                  source={{uri: `${imageUri}/profile/${userState.user.profileImage}`}}
-                  style={styles.profileImage}
-                  resizeMode={'cover'}
-                />
+          {userState.user.profileImage ? (
+              <Image 
+                source={{uri: `${userState.user.imageUrl}`}}
+                style={styles.profileImage}
+                resizeMode={'cover'}
+              />
+            ) : ( 
+              <InitialAvatar 
+                name={userState.user.name} 
+                avatarSize={90} 
+                textSize={32}
+                padding={15}
+              /> 
+            )
           }
           <View style={styles.userDetailsContainer}>
             <Text style={styles.userNameText}>

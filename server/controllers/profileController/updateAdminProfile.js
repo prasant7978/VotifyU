@@ -16,7 +16,7 @@ module.exports = async(req, res) => {
 
         if(req.file){
             var user = await adminModel.findByIdAndUpdate({_id: req.id}, {
-                profileImage: req.file?.filename || admin?.profileImage,
+                profileImage: req.imageName || admin?.profileImage,
             }, {new: true});
         }
         else{

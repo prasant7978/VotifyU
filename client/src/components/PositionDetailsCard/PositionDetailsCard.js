@@ -42,7 +42,7 @@ const PositionDetailsCard = ({position}) => {
                     <TouchableOpacity onPress={() => navigation.navigate(Routes.CandidateProfile, {candidateId: position.electedCandidate})} style={styles.candidateDetailsContainer}>
                         <DropShadow style={styles.candidateImageShadow}>
                             <Image
-                                source={{uri: `${imageUri}/profile/${position.candidate?.profileImage}`}}
+                                source={{uri: `${position.candidate?.imageUrl}`}}
                                 resizeMode={'cover'}
                                 style={styles.candidateImage}
                             />

@@ -2,9 +2,9 @@ const candidateModel = require("../../models/candidateModel");
 
 module.exports = async(req, res) => {
     try {
-        // console.log('Student Id: ', req.id);
         // console.log('Request Body: ', req.body);
         // console.log('Request Files: ', req.files);
+        // console.log('up Files: ', req.uploadedFiles);
 
         const {slogan, position} = req.body;
 
@@ -22,10 +22,10 @@ module.exports = async(req, res) => {
             position: position,
             student: req.id,
             status: 'pending',
-            aadharCard: req.files[0].filename,
-            marksheet: req.files[1].filename,
-            collegeIdCard: req.files[2].filename,
-            hostelIdCard: req.files[3].filename,
+            aadharCard: req.uploadedFiles[0],
+            marksheet: req.uploadedFiles[1],
+            collegeIdCard: req.uploadedFiles[2],
+            hostelIdCard: req.uploadedFiles[3],
         }).save();
 
         await candidate.populate('position', '_id name', 'Position');

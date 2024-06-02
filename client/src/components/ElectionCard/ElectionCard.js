@@ -28,11 +28,8 @@ const ElectionCard = ({position, onVoteSubmit, onPublishReult}) => {
   const [isChecked, setIsChecked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedId, setSelectedId] = useState('');
-  // console.log('candidates applied: ', position.appliedCandidates);
-  // console.log('selcted id: ', selectedId);
 
   const [candidateDetails, setCandidateDetails] = useState({});
-  // console.log('candidate details: ', candidateDetails);
 
   useEffect(() => {
     setSelectedId('');
@@ -160,7 +157,7 @@ const ElectionCard = ({position, onVoteSubmit, onPublishReult}) => {
                             {candidateDetails[id].student?.profileImage ? (
                               <Image
                                 source={{
-                                  uri: `${imageUri}/profile/${candidateDetails[id].student?.profileImage}`,
+                                  uri: `${candidateDetails[id].imageUrl}`,
                                 }}
                                 resizeMode={'cover'}
                                 style={styles.image}

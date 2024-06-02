@@ -25,14 +25,12 @@ import { Routes } from "../../../navigation/Routes";
 
 const SingleCandidateApplication = (props) => {
     const candidateId = props.route.params.candidateId;
-    // console.log('candidate id: ', candidateId);
 
     const navigation = useNavigation();
 
     const [candidate, setCandidate] = useState({});
     const [loading, setLoading] = useState(false);
-    
-    // console.log('Candidate Application: ', candidate);
+    const [imageLoading, setImageLoading] = useState(true);
 
     useEffect(() => {
         const fetchCandidateApplication = async() => {
@@ -128,9 +126,10 @@ const SingleCandidateApplication = (props) => {
                         <View style={styles.imageContainer}>
                             {candidate.student?.profileImage ? (
                                 <Image
-                                    source={{uri: `${imageUri}/profile/${candidate.student?.profileImage}`}}
+                                    source={{uri: `${candidate.imageUrl}`}}
                                     resizeMode='cover'
                                     style={styles.image}
+                                    onLoad={() => setImageLoading(false)}
                                 />
                             ) : (
                                 <View>
@@ -138,7 +137,7 @@ const SingleCandidateApplication = (props) => {
                                     <Text style={styles.imageAltText}>Not</Text>
                                     <Text style={styles.imageAltText}>Available</Text>
                                 </View>
-                            )}
+                            )}                        
                         </View>
 
                         <View style={styles.candidateNameContainer}>
@@ -197,7 +196,7 @@ const SingleCandidateApplication = (props) => {
                                 <Text style={styles.labelText}>Aadhar Card</Text>
                                 <Pdf
                                     trustAllCerts={false}
-                                    source={{uri: `${imageUri}/files/${candidate.aadharCard}`}}
+                                    source={{uri: `${candidate.aadharCardUrl}`}}
                                     renderActivityIndicator={() => (
                                         <ActivityIndicator color="white" size="large" />
                                     )}
@@ -214,7 +213,7 @@ const SingleCandidateApplication = (props) => {
                                 <Text style={styles.labelText}>Marksheet</Text>
                                 <Pdf
                                     trustAllCerts={false}
-                                    source={{uri: `${imageUri}/files/${candidate.marksheet}`}}
+                                    source={{uri: `${candidate.marksheetUrl}`}}
                                     renderActivityIndicator={() => (
                                         <ActivityIndicator color="white" size="large" />
                                     )}
@@ -231,7 +230,7 @@ const SingleCandidateApplication = (props) => {
                                 <Text style={styles.labelText}>College Id Card</Text>
                                 <Pdf
                                     trustAllCerts={false}
-                                    source={{uri: `${imageUri}/files/${candidate.collegeIdCard}`}}
+                                    source={{uri: `${candidate.collegeIdCardUrl}`}}
                                     renderActivityIndicator={() => (
                                         <ActivityIndicator color="white" size="large" />
                                     )}
@@ -248,7 +247,7 @@ const SingleCandidateApplication = (props) => {
                                 <Text style={styles.labelText}>Hostel Id Card</Text>
                                 <Pdf
                                     trustAllCerts={false}
-                                    source={{uri: `${imageUri}/files/${candidate.hostelIdCard}`}}
+                                    source={{uri: `${candidate.hostelIdCardUrl}`}}
                                     renderActivityIndicator={() => (
                                         <ActivityIndicator color="white" size="large" />
                                     )}

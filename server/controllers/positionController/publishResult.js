@@ -1,5 +1,25 @@
 const candidateModel = require("../../models/candidateModel");
 const positionModel = require("../../models/positionModel");
+const postModel = require("../../models/postModel");
+
+const { S3Client, DeleteObjectCommand } = require("@aws-sdk/client-s3");
+
+const dotenv = require('dotenv')
+
+dotenv.config()
+
+const bucketName = process.env.BUCKET_NAME
+const bucketRegion = process.env.BUCKET_REGION
+const accessKey = process.env.ACCESS_KEY
+const secretAccessKey = process.env.SECRET_ACCESS_KEY
+
+const s3 = new S3Client({
+    credentials: {
+        accessKeyId: accessKey,
+        secretAccessKey: secretAccessKey,
+    },
+    region: bucketRegion
+});
 
 module.exports = async(req, res) => {
     try {
@@ -46,7 +66,6 @@ module.exports = async(req, res) => {
                 result = {
                     id: candidate.student._id,
                     name: candidate.student.name,
-                    profileImage: candidate.student.profileImage,
                     voteCount: ele.count,
                     rank: index + 1
                 }
@@ -95,18 +114,32 @@ module.exports = async(req, res) => {
                     message: 'Error in updating the position'
                 })
             }
-
-            console.log('updated position: ', updatePosition);
         }
 
         // delete other candidates except electedCandidate if any
         if(voteCountArr[0].candidateId !== 'NOTA' && (voteCountArr.length > 1 && voteCountArr[0].count !== voteCountArr[1].count)){
-            const deleteCandidates = await candidateModel.deleteMany({
-                position: req.query.positionId,
-                _id: {
-                    $ne: voteCountArr[0].candidateId
+            const candidates = await candidateModel.find({position: req.query.positionId});
+
+            for(let i=0; i<candidates.length; i++){
+                if(candidates[i]._id.toString() !== voteCountArr[0].candidateId){                    
+                    const posts = await postModel.find({postedBy: candidates[i]._id})
+                    for(let i=0; i<posts.length; i++){
+                        const params = {
+                            Bucket: bucketName,
+                            Key: posts[i].image
+                        }
+                
+                        const command = new DeleteObjectCommand(params);
+                        await s3.send(command)
+                        
+                        const deletedPost = await postModel.findByIdAndDelete({_id: posts[i]._id});
+                    }
+
+                    const deleteCandidate = await candidateModel.findByIdAndDelete({_id: candidates[i]._id})
+
+                    // console.log('deleted candidates and posts: ', deleteCandidate, " ", deletedPosts);
                 }
-            })
+            }
         }
 
         return res.status(200).send({

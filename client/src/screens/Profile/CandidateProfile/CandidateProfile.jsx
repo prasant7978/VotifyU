@@ -17,7 +17,6 @@ import deleteCandidateAPI from "../../../api/candidate/deleteCandidateAPI";
 import { AuthContext } from "../../../context/authContext";
 
 // importing components
-import InitialAvatar from "../../../components/InitialAvatar/InitialAvatar";
 import CampaignCard from "../../../components/CampaignCard/CampaignCard";
 import FooterMenu from "../../../components/Menus/FooterMenu";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -31,12 +30,13 @@ const CandidateProfile = (props) => {
     const [ownPosts, setOwnPosts] = useState([]);
     const [candidate, setCandidate] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+
+    // console.log('candidate profile: ', candidate);
     // console.log('all own posts: ', ownPosts);
 
     const navigation = useNavigation();
 
     const candidateId = props.route.params.candidateId;
-    // console.log('candidateId in candidate profile: ', candidateId);
 
     // get candidate posts
     useFocusEffect(
@@ -116,9 +116,9 @@ const CandidateProfile = (props) => {
                 <View style={styles.topContainer}>
                     <View style={{alignItems: 'center'}}>
                         <View style={styles.profileImageContainer}>
-                            {candidate.student?.profileImage ? (
+                            {candidate?.imageUrl ? (
                                 <Image
-                                    source={{uri: `${imageUri}/profile/${candidate.student?.profileImage}`}}
+                                    source={{uri: `${candidate.imageUrl}`}}
                                     style={styles.profileImage}
                                     resizeMode='cover'
                                 />
@@ -213,71 +213,80 @@ const CandidateProfile = (props) => {
 
                             <View style={styles.pdfContainer}>
                                 <Text style={styles.labelText}>Aadhar Card</Text>
-                                <Pdf
-                                    trustAllCerts={false}
-                                    source={{uri: `${imageUri}/files/${candidate.aadharCard}`}}
-                                    renderActivityIndicator={() => (
-                                        <ActivityIndicator color="white" size="large" />
-                                    )}
-                                    page={1}
-                                    scale={1.0}
-                                    minScale={1.0}
-                                    maxScale={3.0}
-                                    onError={(error) => console.log(error)}
-                                    style={styles.pdf}
-                                />
+                                {candidate?.aadharCardUrl && (
+                                    <Pdf
+                                        trustAllCerts={false}
+                                        source={{uri: `${candidate.aadharCardUrl}`}}
+                                        renderActivityIndicator={() => (
+                                            <ActivityIndicator color="white" size="large" />
+                                        )}
+                                        page={1}
+                                        scale={1.0}
+                                        minScale={1.0}
+                                        maxScale={3.0}
+                                        onError={(error) => console.log(error)}
+                                        style={styles.pdf}
+                                    />
+                                )}
                             </View>
 
                             <View style={styles.pdfContainer}>
                                 <Text style={styles.labelText}>Marksheet</Text>
-                                <Pdf
-                                    trustAllCerts={false}
-                                    source={{uri: `${imageUri}/files/${candidate.marksheet}`}}
-                                    renderActivityIndicator={() => (
-                                        <ActivityIndicator color="white" size="large" />
-                                    )}
-                                    page={1}
-                                    scale={1.0}
-                                    minScale={1.0}
-                                    maxScale={3.0}
-                                    onError={(error) => console.log(error)}
-                                    style={styles.pdf}
-                                />
+                                {candidate?.marksheetUrl && (
+                                    <Pdf
+                                        trustAllCerts={false}
+                                        source={{uri: `${candidate?.marksheetUrl}`}}
+                                        renderActivityIndicator={() => (
+                                            <ActivityIndicator color="white" size="large" />
+                                        )}
+                                        page={1}
+                                        scale={1.0}
+                                        minScale={1.0}
+                                        maxScale={3.0}
+                                        onError={(error) => console.log(error)}
+                                        style={styles.pdf}
+                                    />
+                                )}
                             </View>
 
                             <View style={styles.pdfContainer}>
                                 <Text style={styles.labelText}>College Id Card</Text>
-                                <Pdf
-                                    trustAllCerts={false}
-                                    source={{uri: `${imageUri}/files/${candidate.collegeIdCard}`}}
-                                    renderActivityIndicator={() => (
-                                        <ActivityIndicator color="white" size="large" />
-                                    )}
-                                    page={1}
-                                    scale={1.0}
-                                    minScale={1.0}
-                                    maxScale={3.0}
-                                    onError={(error) => console.log(error)}
-                                    style={styles.pdf}
-                                />
+                                {candidate?.collegeIdCardUrl && (
+                                    <Pdf
+                                        trustAllCerts={false}
+                                        source={{uri: `${candidate.collegeIdCardUrl}`}}
+                                        renderActivityIndicator={() => (
+                                            <ActivityIndicator color="white" size="large" />
+                                        )}
+                                        page={1}
+                                        scale={1.0}
+                                        minScale={1.0}
+                                        maxScale={3.0}
+                                        onError={(error) => console.log(error)}
+                                        style={styles.pdf}
+                                    />
+                                )}
                             </View>
 
-                            <View style={styles.pdfContainer}>
+                            {/* app crashing */}
+                            {/* <View style={styles.pdfContainer}>
                                 <Text style={styles.labelText}>Hostel Id Card</Text>
-                                <Pdf
-                                    trustAllCerts={false}
-                                    source={{uri: `${imageUri}/files/${candidate.hostelIdCard}`}}
-                                    renderActivityIndicator={() => (
-                                        <ActivityIndicator color="white" size="large" />
-                                    )}
-                                    page={1}
-                                    scale={1.0}
-                                    minScale={1.0}
-                                    maxScale={3.0}
-                                    onError={(error) => console.log(error)}
-                                    style={styles.pdf}
-                                />
-                            </View>
+                                {candidate?.hostelIdCardUrl && (
+                                    <Pdf
+                                        trustAllCerts={false}
+                                        source={{uri: `${candidate.hostelIdCardUrl}`}}
+                                        renderActivityIndicator={() => (
+                                            <ActivityIndicator color="white" size="large" />
+                                        )}
+                                        page={1}
+                                        scale={1.0}
+                                        minScale={1.0}
+                                        maxScale={3.0}
+                                        onError={(error) => console.log(error)}
+                                        style={styles.pdf}
+                                    />
+                                )}
+                            </View> */}
                         </View>
                     )}
 

@@ -17,9 +17,9 @@ const CampaignCard = ({post}) => {
       style={styles.campaignContainer} 
       onPress={() => {navigation.navigate(Routes.UpdateCampaign, {post: post})}}
     >
-        {post.type === 'campaign' ? (
+        {(post.type === 'campaign' && post?.image) ? (
             <Image
-                source={{uri: `${imageUri}/campaign/${post.image}`}}
+                source={{uri: `${post.imageUrl}`}}
                 style={styles.campaignImage}
             />
             ) : (

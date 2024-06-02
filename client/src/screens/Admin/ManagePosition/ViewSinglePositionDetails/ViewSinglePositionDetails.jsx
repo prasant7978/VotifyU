@@ -294,7 +294,7 @@ const ViewSinglePositionDetails = (props) => {
                         <TouchableOpacity style={styles.candidateDetailsContainer} onPress={() => navigation.navigate(Routes.CandidateProfile, {candidateId: position.electedCandidate})}>
                             <DropShadow style={styles.candidateImageShadow}>
                                 <Image
-                                    source={{uri: `${imageUri}/profile/${position.candidate?.profileImage}`}}
+                                    source={{uri: `${position.candidate?.imageUrl}`}}
                                     resizeMode={'cover'}
                                     style={styles.candidateImage}
                                 />

@@ -20,9 +20,9 @@ const CandidateContainer = ({item, status}) => {
                     </View>
                 ) : (
                     <>
-                        {item.profileImage ? (
+                        {item.imageUrl ? (
                             <Image
-                                source={{uri: `${imageUri}/profile/${item.profileImage}`}}
+                                source={{uri: `${item.imageUrl}`}}
                                 resizeMode={'cover'}
                                 style={styles.candidateImage}
                             />

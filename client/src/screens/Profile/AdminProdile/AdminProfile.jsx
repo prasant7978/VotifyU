@@ -192,13 +192,12 @@ const AdminProfile = ({navigation}) => {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.topContainer}>
                     <DropShadow style={styles.imageShadow}>
-                        {(userState.user?.profileImage && !image) ? (
+                        {(userState.user.profileImage && !image) ? (
                             <Image
-                                source={{uri: `${imageUri}/profile/${userState.user.profileImage}`}}
+                                source={{uri: `${userState.user.imageUrl}`}}
                                 style={styles.profileImage}
                                 resizeMode='cover'
                             />
-                            
                         ) : (
                             <>
                                 {image ? (

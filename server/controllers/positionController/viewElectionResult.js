@@ -1,6 +1,27 @@
 const positionModel = require("../../models/positionModel");
 const candidateModel = require("../../models/candidateModel");
 
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
+
+const dotenv = require('dotenv');
+const studentModel = require("../../models/studentModel");
+
+dotenv.config()
+
+const bucketName = process.env.BUCKET_NAME
+const bucketRegion = process.env.BUCKET_REGION
+const accessKey = process.env.ACCESS_KEY
+const secretAccessKey = process.env.SECRET_ACCESS_KEY
+
+const s3 = new S3Client({
+    credentials: {
+        accessKeyId: accessKey,
+        secretAccessKey: secretAccessKey,
+    },
+    region: bucketRegion
+});
+
 module.exports = async(req, res) => {
     try {
         const position = await positionModel.findOne({_id: req.query.positionId});
@@ -14,14 +35,27 @@ module.exports = async(req, res) => {
 
         const voteCountArr = position.results;
 
-        // console.log('election results: ', voteCountArr);
+        for(let i=0; i<voteCountArr.length; i++){
+            const student = await studentModel.findById({_id: voteCountArr[i].id})
 
+            const getObjectParams = {
+                Bucket: bucketName,
+                Key: student.profileImage
+            }
+            const command = new GetObjectCommand(getObjectParams);
+            const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+
+            voteCountArr[i]._doc.imageUrl = url
+        }
+        
         // check for vote tie
         let status
         if(voteCountArr.length > 1 && voteCountArr[0].voteCount === voteCountArr[1].voteCount)
             status = 'tie'
         else
-            status = 'majority'
+        status = 'majority'
+    
+        // console.log('election results: ', voteCountArr);
 
         return res.status(200).send({
             success: true,

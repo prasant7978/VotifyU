@@ -5,13 +5,14 @@ import InitialAvatar from '../InitialAvatar/InitialAvatar'
 import { imageUri } from '../../constants/theme'
 
 const PostCard = ({post}) => {
+
   return (
     <View style={styles.postContainer}>
       <View style={styles.topContainer}>
         <View style={styles.avatarImageContainer}>
-          {post.postedBy?.profileImage ? (
+          {post.postedBy.imageUrl ? (
             <Image
-              source={{uri: `${imageUri}/profile/${post.postedBy.profileImage}`}}
+              source={{uri: `${post.postedBy.imageUrl}`}}
               style={styles.avatarImage}
               resizeMode='cover'
             />
@@ -37,7 +38,7 @@ const PostCard = ({post}) => {
       <View style={styles.middleContainer}>
         {post.type === 'campaign' ? (
             <Image
-                source={{uri: `${imageUri}/campaign/${post.image}`}}
+                source={{uri: `${post.imageUrl}`}}
                 style={styles.campaignImage}
                 resizeMode='cover'
             />

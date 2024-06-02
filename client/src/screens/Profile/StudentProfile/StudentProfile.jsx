@@ -217,9 +217,9 @@ const StudentProfile = ({navigation}) => {
         <View style={styles.userPrimaryDetailsContainer}>
           <View style={styles.profileImageContainer}>
             <TouchableOpacity onPress={selectImage}>
-              {userState.user.profileImage && !image ? (
+              {userState.user.imageUrl && !image ? (
                 <Image
-                  source={{uri: `${imageUri}/profile/${userState.user.profileImage}`}}
+                  source={{uri: `${userState.user.imageUrl}`}}
                   style={styles.profileImage}
                   resizeMode='cover'
                 />

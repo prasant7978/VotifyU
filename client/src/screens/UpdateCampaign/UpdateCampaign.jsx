@@ -162,7 +162,7 @@ const UpdateCampaign = ({navigation}) => {
                 </View>
             ) : (
                 <Image
-                    source={{uri: `${imageUri}/campaign/${post.image}`}}
+                    source={{uri: `${post.imageUrl}`}}
                     style={styles.campaignImage}
                 />
             )}

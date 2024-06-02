@@ -24,7 +24,7 @@ module.exports = async(req, res) => {
 
         // save post
         const post = await postModel({
-            image: req.file.filename,
+            image: req.imageName,
             description: description,
             type: 'campaign',
             postedBy: req.id,

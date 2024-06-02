@@ -18,7 +18,7 @@ const CandidateCard = ({candidate}) => {
             <DropShadow style={styles.imageContainerShadow}>
                 {candidate.student.profileImage ? (
                     <Image
-                        source={{uri: `${imageUri}/profile/${candidate.student.profileImage}`}}
+                        source={{uri: `${candidate.imageUrl}`}}
                         style={styles.image}
                     />
                 ) : (

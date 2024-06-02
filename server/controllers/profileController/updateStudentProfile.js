@@ -1,5 +1,25 @@
 const studentModel = require("../../models/studentModel");
 
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
+
+const dotenv = require('dotenv')
+
+dotenv.config()
+
+const bucketName = process.env.BUCKET_NAME
+const bucketRegion = process.env.BUCKET_REGION
+const accessKey = process.env.ACCESS_KEY
+const secretAccessKey = process.env.SECRET_ACCESS_KEY
+
+const s3 = new S3Client({
+    credentials: {
+        accessKeyId: accessKey,
+        secretAccessKey: secretAccessKey,
+    },
+    region: bucketRegion
+});
+
 module.exports = async(req, res) => {
     try {
         // console.log('req body in updateStudentProfile: ', req.body);
@@ -16,7 +36,7 @@ module.exports = async(req, res) => {
 
         if(req.file){
             var user = await studentModel.findByIdAndUpdate({_id: req.id}, {
-                profileImage: req.file?.filename || student?.profileImage,
+                profileImage: req.imageName || student?.profileImage,
             }, {new: true});
         }
         else{
@@ -37,6 +57,15 @@ module.exports = async(req, res) => {
         user.password = undefined;
 
         const token = req.headers['auth-token']
+
+        const getObjectParams = {
+            Bucket: bucketName,
+            Key: user.profileImage
+        }
+        const command = new GetObjectCommand(getObjectParams);
+        const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+
+        user._doc.imageUrl = url
 
         return res.status(200).send({
             success: true,

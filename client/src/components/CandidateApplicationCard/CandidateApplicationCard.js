@@ -19,7 +19,7 @@ const CandidateApplicationCard = ({item}) => {
                 <View style={styles.imageContainer}>
                     {item.student?.profileImage ? (
                         <Image
-                            source={{uri: `${imageUri}/profile/${item.student.profileImage}`}}
+                            source={{uri: `${item.imageUrl}`}}
                             resizeMode="cover"
                             style={styles.image}
                         />
