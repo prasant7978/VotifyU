@@ -36,14 +36,16 @@ module.exports = async(req, res) => {
         // generate jwt token
         const token = await generateAuthToken(req.id, req.userType);
 
-        const getObjectParams = {
-            Bucket: bucketName,
-            Key: req.user.profileImage
-        }
-        const command = new GetObjectCommand(getObjectParams);
-        const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+        if(req.user.profileImage){
+            const getObjectParams = {
+                Bucket: bucketName,
+                Key: req.user.profileImage
+            }
+            const command = new GetObjectCommand(getObjectParams);
+            const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
 
-        req.user._doc.imageUrl = url
+            req.user._doc.imageUrl = url
+        }
 
         // console.log('req user after retreiving image: ', req.user);
 
