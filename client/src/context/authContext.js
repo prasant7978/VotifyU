@@ -15,8 +15,8 @@ const AuthProvider = ({children}) => {
     // console.log('userState at auth context: ', userState);
 
     // default axios settings
-    axios.defaults.baseURL = 'http://192.168.93.221:3001/api';
-    // axios.defaults.baseURL = 'https://votifyu.onrender.com/api';
+    // axios.defaults.baseURL = 'http://192.168.93.221:3001/api';
+    axios.defaults.baseURL = 'https://votifyu.onrender.com/api';
     
     // get initial storage data
     useEffect(() => {
