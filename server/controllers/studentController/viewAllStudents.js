@@ -34,13 +34,15 @@ module.exports = async(req, res) => {
         for(let i=0; i<students.length; i++){
             students[i].password = undefined
 
-            const getObjectParams = {
-                Bucket: bucketName,
-                Key: students[i].profileImage
+            if(students[i].profileImage){
+                const getObjectParams = {
+                    Bucket: bucketName,
+                    Key: students[i].profileImage
+                }
+                const command = new GetObjectCommand(getObjectParams);
+                const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+                students[i]._doc.imageUrl = url;
             }
-            const command = new GetObjectCommand(getObjectParams);
-            const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
-            students[i]._doc.imageUrl = url;
         }
 
         return res.status(200).send({
